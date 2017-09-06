@@ -10,7 +10,9 @@ import { AngularFireModule } from 'angularfire2';
 // New imports to update based on AngularFire2 version 4
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { CustomerService } from './customers/customer.service';
 import { CustomersComponent } from './customers/customers.component';
+import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCs2NEgHP3U0JXaKnhRI7_2l80n9qiOFZU",
@@ -30,13 +32,18 @@ const ROUTES = [
   {
     path: 'customers',
     component: CustomersComponent
+  }, 
+  { 
+    path: 'customer-detail', 
+    component: CustomerDetailComponent
   }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    CustomersComponent
+    CustomersComponent,
+    CustomerDetailComponent
   ],
   imports: [
     BrowserModule, 
@@ -46,7 +53,7 @@ const ROUTES = [
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
-  providers: [],
+  providers: [CustomerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

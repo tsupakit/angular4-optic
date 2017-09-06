@@ -23,6 +23,7 @@ input#message {
     margin: 12px;
     width:auto;
     min-width:200px;
+    cursor: pointer;
 }
 
 img {

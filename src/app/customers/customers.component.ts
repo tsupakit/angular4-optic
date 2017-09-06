@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -6,11 +7,13 @@ import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 
 import { Customer } from './customer.model';
+import { CustomerService } from './customer.service';
 
 @Component({
   selector: 'app-customers',
   templateUrl: './customers.component.html',
-  styleUrls: ['./customers.component.css']
+  styleUrls: ['./customers.component.css'],
+  //providers: [CustomerService]
 })
 export class CustomersComponent implements OnInit {
 
@@ -20,7 +23,7 @@ export class CustomersComponent implements OnInit {
 
   customers: FirebaseListObservable<Customer[]>;
 
-  constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase) {
+  constructor(private router: Router, private customerService: CustomerService, public afAuth: AngularFireAuth, public af: AngularFireDatabase) {
 
     this.customers = af.list('/customers', {
       query: {
@@ -38,6 +41,12 @@ export class CustomersComponent implements OnInit {
 
   logout() {
     this.afAuth.auth.signOut();
+  }
+
+  onSelect (customer: Customer) : void {
+    this.customerService.customer = customer;
+    //alert(this.customerService.customer.firstName);
+    this.router.navigate(['/customer-detail']);
   }
 
   Send(desc: string) {
