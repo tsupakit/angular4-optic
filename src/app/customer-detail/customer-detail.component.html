@@ -1,16 +1,154 @@
-<p>
-    {{customer.firstName + ' ' + customer.lastName}}
-</p>
-
-<form class="cf">
-  <div class="half left cf">
-    <input type="text" id="input-firstName" name="firstName" placeholder="First Name" [(ngModel)]="customer.firstName" />
-    <input type="text" id="input-lastName" name="lastName" placeholder="Last Name" [(ngModel)]="customer.lastName" />
-    <input type="email" id="input-email" placeholder="Email address">
-    <input type="text" id="input-subject" placeholder="Subject">
+<section class="hero is-dark">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Customer Information
+      </h1>
+      <!-- <h2 class="subtitle">
+        Primary subtitle
+      </h2> -->
+    </div>
   </div>
-  <div class="half right cf">
-    <textarea name="message" type="text" id="input-message" placeholder="Message"></textarea>
-  </div>  
-  <input type="submit" value="Submit" id="input-submit">
-</form>
+</section>
+<section class="section">
+<div class="container">
+
+  <form [formGroup]="customerForm" (ngSubmit)="saveCustomer(customerForm.value)">
+    <div class="field is-horizontal">  
+      <div class="field-label is-normal">
+        <label class="label">First Name</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded has-icons-left">
+            <input class="input" type="text" placeholder="First Name" formControlName="firstName">
+            <span class="icon is-small is-left">
+              <i class="fa fa-user"></i>
+            </span>
+          </p>
+        </div>
+
+        <!-- <div class="field">
+          <p class="control is-expanded has-icons-left">
+            <input class="input" type="text" placeholder="Last Name" formControlName="lastName">
+            <span class="icon is-small is-left">
+              <i class="fa fa-user"></i>
+            </span>
+          </p>
+        </div> -->
+      </div>
+
+
+      <!-- <div class="field-label is-normal">
+        <label class="label">Last Name</label>
+      </div>
+
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded has-icons-left">
+            <input class="input" type="text" placeholder="Last Name" formControlName="lastName">
+            <span class="icon is-small is-left">
+              <i class="fa fa-user"></i>
+            </span>
+          </p>
+        </div>
+      </div> -->
+      
+    </div>
+
+    <div class="field is-horizontal">  
+      <div class="field-label is-normal">
+        <label class="label">Last Name</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded has-icons-left">
+            <input class="input" type="text" placeholder="Last Name" formControlName="lastName">
+            <span class="icon is-small is-left">
+              <i class="fa fa-user"></i>
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div class="field is-horizontal is-grouped">
+      <!-- <div class="control is-expanded"> -->
+        <div class="field-label is-normal">
+          <label class="label">Gender</label>
+        </div>
+        <div class="field-body">
+          <div class="level">
+            
+            <div class="level-left">
+              <div class="level-item">
+                <div class="field">
+                  <div class="control">
+                      <div class="select is-fullwidth">
+                        <select>
+                          <option>Male</option>
+                          <option>Female</option>
+                        </select>
+                      </div>
+                    </div>
+                </div>
+              </div>
+
+              <div class="level-item">
+                <div class="field">
+                  <div class="control">
+                    <label class="label">Age</label>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="level-item">
+                <div class="field">
+                  <div class="control">
+                    <input class="input" type="number" placeholder="Age">
+                  </div>
+                </div>
+              </div>
+
+              <div class="level-item">
+                  <div class="field">
+                    <div class="control">
+                      <label class="label">Telephone</label>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="level-item">
+                  <div class="field is-expanded">
+                    <div class="control">
+                      <input class="input" type="text" placeholder="Telephone">
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          </div> <!-- level -->
+        </div>
+
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-label">
+        <label class="label">Address</label>
+      </div>
+      <div class="field-body">
+        <div class="field is-expanded">
+          <div class="control">
+            <input class="input" type="text" placeholder="Address">
+          </div>          
+        </div>
+      </div>
+    </div>
+    
+    
+  </form>
+</div>
+</section>

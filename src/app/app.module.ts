@@ -1,7 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
+
+// import {MdExpansionModule, MdInputModule, MdButtonModule} from '@angular/material';
+// import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 
@@ -47,7 +50,12 @@ const ROUTES = [
   ],
   imports: [
     BrowserModule, 
+    // BrowserAnimationsModule,
+    // MdExpansionModule,
+    // MdInputModule,
+    // MdButtonModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(ROUTES), // Add routes to the app
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,

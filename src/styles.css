@@ -3,9 +3,9 @@ body {
     background-color:#EBEBEB;
     padding-top: 5em;
 }
-* {
+/* * {
     font-family: 'Raleway';
-}
+} */
 button {
     background:#008FEF;
     color:white;
@@ -15,4 +15,4 @@ button {
     font-size:1.2em;
     margin-bottom: 30px;
     cursor:pointer;
-}
+} 
