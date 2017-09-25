@@ -32,8 +32,8 @@ export class CustomerDetailComponent implements OnInit {
   ngOnInit() {
   }
 
-  saveCustomer() {
-    
+  saveCustomer(customer) {
+    console.log(customer);
   }
 
 }
