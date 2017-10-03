@@ -23,16 +23,16 @@ export class CustomersComponent implements OnInit {
 
   customers: FirebaseListObservable<Customer[]>;
 
-  constructor(private router: Router, private customerService: CustomerService, public afAuth: AngularFireAuth, public af: AngularFireDatabase) {
+  constructor(private router: Router, private customerService: CustomerService, public afAuth: AngularFireAuth) { //, public af: AngularFireDatabase) {
 
-    this.customers = af.list('/customers', {
-      query: {
-        limitToLast: 50
-      }
-    });
+    // this.customers = af.list('/customers', {
+    //   query: {
+    //     limitToLast: 50
+    //   }
+    // });
 
-    this.user = this.afAuth.authState;
-    this.user.subscribe(u => console.log(`${u.uid} - ${u.displayName}`));
+    // this.user = this.afAuth.authState;
+    // this.user.subscribe(u => console.log(`${u.uid} - ${u.displayName}`));
   }
 
   login() {
@@ -44,7 +44,7 @@ export class CustomersComponent implements OnInit {
   }
 
   onSelect (customer: Customer) : void {
-    this.customerService.customer = customer;
+    //this.customerService.customer = customer;
     //alert(this.customerService.customer.firstName);
     this.router.navigate(['/customer-detail']);
   }
@@ -56,13 +56,14 @@ export class CustomersComponent implements OnInit {
     // customer.telephoneNo = '0815347979';
     // customer.address = 'Bangkok';
 
-    const customer = Customer.SampleData();
-    this.customers.push(customer);
+    // const customer = Customer.SampleData();
+    // this.customers.push(customer);
 
-    this.msgVal = '';
+    // this.msgVal = '';
   }
 
   ngOnInit() {
+    this.customers = this.customerService.getCustomersList({limitToLast: 50})
   }
 
 }

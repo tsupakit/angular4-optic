@@ -92,6 +92,7 @@ class VisionCheck {
 
 export class Customer {
     //profile
+    $key: string;
     firstName: string;
     lastName: string;
     age: number;
