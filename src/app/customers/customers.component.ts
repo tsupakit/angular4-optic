@@ -45,11 +45,12 @@ export class CustomersComponent implements OnInit {
     this.afAuth.auth.signOut();
   }
 
+  createNew() : void {
+    this.customerService.selectedCustomer = null;
+    this.router.navigate(['/customer-detail']);
+  }
+
   onSelect (customer: Customer) : void {
-    //this.customerService.customer = customer;
-    //alert(this.customerService.customer.firstName);
-    //this.router.navigate(['/customer-detail']);
-    console.log(customer);
     this.customerService.selectedCustomer = customer;
     this.router.navigate(['/customer-detail']);
   }

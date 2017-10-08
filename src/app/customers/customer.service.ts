@@ -12,15 +12,15 @@ export class CustomerService {
   customers: FirebaseListObservable<Customer[]> = null; //  list of objects
   customer: FirebaseObjectObservable<Customer> = null; //   single object
   
-  constructor(private db: AngularFireDatabase) {     
+  constructor(private db: AngularFireDatabase) {
+    this.customers = db.list(this.basePath, { 
+      query: { limitToLast : 1 } 
+    })
   }
 
   getCustomersList(query={}): FirebaseListObservable<Customer[]> {
     this.customers = this.db.list(this.basePath, {
       query: query
-      // query: {
-      //   limitToLast: 50
-      // }
     });
     return this.customers
   }

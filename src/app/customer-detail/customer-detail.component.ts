@@ -19,12 +19,16 @@ import { CustomerService } from '../customers/customer.service';
 export class CustomerDetailComponent implements OnInit {
 
   //@Input() customer: Customer;
-  private customer: Customer;  
-  isNew: boolean;
+  private customer: Customer;
   customerForm: FormGroup;
 
   user: Observable<firebase.User>;
   //items: FirebaseListObservable<any[]>;
+
+  genders: string[] = [
+    'Male', 
+    'Female'
+  ]
 
   //constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase, private customerService: CustomerService, private fb: FormBuilder) { 
   constructor(public afAuth: AngularFireAuth, private customerService: CustomerService, private fb: FormBuilder) {     
@@ -42,9 +46,8 @@ export class CustomerDetailComponent implements OnInit {
 
   private initialize() {
 
-    if (!this.customerService.selectedCustomer) {
-      this.isNew = true;
-      this.customer = new Customer("Pex", "Kid");
+    if (!this.customer) {
+      this.customer = new Customer("", "");
     }
     
     this.customerForm = this.fb.group({
@@ -53,18 +56,35 @@ export class CustomerDetailComponent implements OnInit {
       'age' : [this.customer.age],
       'sex' : [this.customer.sex],
       'telephoneNo' : [this.customer.telephoneNo],
-      'address' : [this.customer.address]
+      'address' : [this.customer.address],
+      'cc' : [this.customer.cc],
+      'remark' : [this.customer.remark]
     });
 
   }
 
-  saveCustomer(customer: Customer) {
-    if (this.customer.$key) {
-      this.editCustomer(customer);      
+  saveCustomer(formValue: any) {
+    let customerToSave = this.setCustomerValue(formValue);
+
+    if (customerToSave.$key) {
+      this.editCustomer(customerToSave);
     }
     else {
-      this.addCustomer(customer);
-    }    
+      this.addCustomer(customerToSave);
+    }
+  }
+
+  private setCustomerValue(formValue: any) : Customer {
+    this.customer.firstName = formValue.firstName;
+    this.customer.lastName = formValue.lastName;    
+    this.customer.sex = formValue.sex;
+    this.customer.age = formValue.age;
+    this.customer.telephoneNo = formValue.telephoneNo;
+    this.customer.address = formValue.address;
+    this.customer.remark = formValue.remark;
+    this.customer.cc = formValue.cc;
+
+    return this.customer;
   }
 
   private addCustomer(customer: Customer) {
@@ -72,7 +92,7 @@ export class CustomerDetailComponent implements OnInit {
   }
 
   private editCustomer(customer: Customer) {
-    this.customerService.updateCustomer(customer.$key, customer);
+    this.customerService.updateCustomer(this.customer.$key, customer);
   }
 
 }
