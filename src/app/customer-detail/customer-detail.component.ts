@@ -81,8 +81,8 @@ export class CustomerDetailComponent implements OnInit {
     this.customer.age = formValue.age;
     this.customer.telephoneNo = formValue.telephoneNo;
     this.customer.address = formValue.address;
-    this.customer.remark = formValue.remark;
     this.customer.cc = formValue.cc;
+    this.customer.remark = formValue.remark;
 
     return this.customer;
   }
