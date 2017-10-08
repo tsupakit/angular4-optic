@@ -6,7 +6,7 @@ import { FirebaseListObservable, FirebaseObjectObservable, AngularFireDatabase }
 @Injectable()
 export class CustomerService {
 
-  //customer: Customer;
+  selectedCustomer: Customer;
 
   private basePath: string = '/customers';
   customers: FirebaseListObservable<Customer[]> = null; //  list of objects

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { FormControl } from '@angular/forms';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
@@ -20,8 +20,10 @@ export class CustomersComponent implements OnInit {
   user: Observable<firebase.User>;
   //items: FirebaseListObservable<any[]>;
   msgVal: string = '';
+  seachControl = new FormControl();
 
   customers: FirebaseListObservable<Customer[]>;
+  selectedCustomer: Customer;
 
   constructor(private router: Router, private customerService: CustomerService, public afAuth: AngularFireAuth) { //, public af: AngularFireDatabase) {
 
@@ -46,6 +48,9 @@ export class CustomersComponent implements OnInit {
   onSelect (customer: Customer) : void {
     //this.customerService.customer = customer;
     //alert(this.customerService.customer.firstName);
+    //this.router.navigate(['/customer-detail']);
+    console.log(customer);
+    this.customerService.selectedCustomer = customer;
     this.router.navigate(['/customer-detail']);
   }
 

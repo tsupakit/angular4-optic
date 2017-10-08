@@ -1,3 +1,10 @@
+@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+@import "https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.min.css";
+
+table tbody tr {
+    cursor: pointer;
+}
+
 input#message {
     background:#fff;
     border:none;

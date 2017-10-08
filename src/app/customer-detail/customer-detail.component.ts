@@ -18,14 +18,13 @@ import { CustomerService } from '../customers/customer.service';
 })
 export class CustomerDetailComponent implements OnInit {
 
-  @Input() customer: Customer;
-  //private customer: Customer;  
+  //@Input() customer: Customer;
+  private customer: Customer;  
   isNew: boolean;
   customerForm: FormGroup;
 
   user: Observable<firebase.User>;
   //items: FirebaseListObservable<any[]>;
-  customers: FirebaseListObservable<Customer[]>;
 
   //constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase, private customerService: CustomerService, private fb: FormBuilder) { 
   constructor(public afAuth: AngularFireAuth, private customerService: CustomerService, private fb: FormBuilder) {     
@@ -33,7 +32,7 @@ export class CustomerDetailComponent implements OnInit {
     this.user = this.afAuth.authState;
     this.user.subscribe(u => console.log(`${u.uid} - ${u.displayName}`));
 
-    //this.customer = customerService.customer;
+    this.customer = customerService.selectedCustomer;
     
     this.initialize();
   }
@@ -43,9 +42,9 @@ export class CustomerDetailComponent implements OnInit {
 
   private initialize() {
 
-    if (!this.customer) {
+    if (!this.customerService.selectedCustomer) {
       this.isNew = true;
-      //this.customerService.customer = new Customer("Pex", "Kid");
+      this.customer = new Customer("Pex", "Kid");
     }
     
     this.customerForm = this.fb.group({
@@ -54,25 +53,26 @@ export class CustomerDetailComponent implements OnInit {
       'age' : [this.customer.age],
       'sex' : [this.customer.sex],
       'telephoneNo' : [this.customer.telephoneNo],
+      'address' : [this.customer.address]
     });
 
   }
 
-  saveCustomer(customer) {
-    if (this.isNew) {
-      this.addCustomer(customer);
+  saveCustomer(customer: Customer) {
+    if (this.customer.$key) {
+      this.editCustomer(customer);      
     }
     else {
-      this.editCustomer(customer);
+      this.addCustomer(customer);
     }    
   }
 
-  private addCustomer(customer) {
-    this.customers.push(customer);
+  private addCustomer(customer: Customer) {
+    this.customerService.createCustomer(customer);
   }
 
-  private editCustomer(customer) {
-    
+  private editCustomer(customer: Customer) {
+    this.customerService.updateCustomer(customer.$key, customer);
   }
 
 }

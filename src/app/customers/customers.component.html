@@ -1,12 +1,128 @@
-<div class="row columns">
-  <!-- <h3>{{user.uid}} - {{user.displayName}}</h3> -->
+<!-- <div class="row columns">
   <button (click)="login()" *ngIf="!(user | async)?.uid">Anonymous Login</button>
   <button (click)="logout()" *ngIf="(user | async)?.uid">Logout</button>
 
   <input type="text" id="message" *ngIf="(user | async)?.uid" placeholder="What is it that you do?" (keyup.enter)="Send($event.target.value)" [(ngModel)]="msgVal" />
-  <div id="details-container">
+  <div class="box" >
       <p *ngFor="let item of customers | async" (click)="onSelect(item)">
           <img src="../assets/images/pin.svg">{{item.firstName + ' ' + item.lastName}}
       </p>
   </div>
-</div>
+</div> -->
+<section class="hero is-primary is-bold">
+    <div class="hero-body">
+        <div class="container">
+        <h1 class="title">
+            Ravipanich
+        </h1>
+        <!-- <h2 class="subtitle">
+            Primary subtitle
+        </h2> -->
+        </div>
+    </div>
+    <div class="hero-foot">
+        <div class="container">
+            <nav class="tabs is-boxed">
+            <ul>
+                <li class="is-active">
+                    <a routerLink="/customers">Customer</a>
+                </li>
+                <!--                    
+                <li>
+                    <a href="http://bulma.io/documentation/modifiers/syntax">Modifiers</a>
+                </li>
+                <li>
+                    <a href="http://bulma.io/documentation/columns/basics">Columns</a>
+                </li>
+                -->
+            </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column is-half">
+                <div class="field has-addons has-addons-right">
+                    <p class="control is-expanded">
+                        <input class="input" type="text" placeholder="Find customer" [formControl]="seachControl" />
+                    </p>
+                    <p class="control">
+                        <a class="button is-info">
+                        Search
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <div class="column is-half">
+                <div class="level has-text-right">
+                    <div class="level-left"></div>
+                    <div class="level-right">
+                        <p class="level-item"><strong>Sort By</strong></p>
+                        <p class="level-item"><a>Name</a></p>
+                        <p class="level-item"><a>Recent</a></p>            
+                        <p class="level-item"><a class="button is-success">New</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+
+    <div class="container">
+        <table class="table is-fullwidth is-stripe">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Telephone No.</th>
+                    <!-- <th>Date</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of customers | async" (click)="onSelect(item)">
+                    <td>{{item.firstName}}</td>
+                    <td>{{item.lastName}}</td>
+                    <td>{{item.telephoneNo}}</td>
+                    <!-- <td>{{item.}}</td> -->
+                </tr>
+            </tbody>
+
+        </table>
+
+        <!-- <div class="columns">
+            <div class="column is-3" *ngFor="let item of customers | async" (click)="onSelect(item)">
+                <div class="box">
+                    <article class="media">
+                        <p class="subtitle">{{item.firstName + ' ' + item.lastName}}</p>
+                    </article>
+                </div>
+            </div>
+
+            <div class="column is-3">
+                <div class="box">aa</div>
+            </div>
+            <div class="column is-3">
+                <div class="box">bb</div>
+            </div>
+
+            <div class="column is-3">
+                <div class="box">cc</div>
+            </div>
+        </div> -->
+        
+        <!-- <div class="tile is-ancestor">
+            <div class="tile is-parent" *ngFor="let item of customers | async" (click)="onSelect(item)">
+                <article class="tile is-child box">
+                <p class="subtitle">{{item.firstName + ' ' + item.lastName}}</p>
+                </article>
+            </div>            
+        </div> -->
+
+        
+    </div>
+</section>
