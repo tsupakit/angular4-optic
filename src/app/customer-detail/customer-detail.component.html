@@ -52,18 +52,28 @@
 
 <section class="section">
   <div class="container">
-      <div class="columns">
-        <div class="column is-three-quarters">is-three-quarters</div>
-        <div class="column">Auto</div>
-        <div class="column">
-            <div class="control" *ngIf="!isEnabled">
-              <button class="button is-primary" (click)="isEnabled = true">Edit</button>
-            </div>
 
-            <div class="control" *ngIf="customerForm.dirty">
-              <button class="button is-danger" (click)="cancelEditing()">Cancel</button>
-            </div>
-              
+      <div class="columns">
+        <div class="column is-10"></div>
+        <!-- <div class="column"></div> -->
+        <div class="column">
+          <div class="field is-grouped is-grouped-right">
+            <p class="control"> <!-- *ngIf="!isEnabled"> -->
+              <button class="button is-medium" (click)="isEnabled = true" [disabled]="isEnabled">
+                <span class="icon is-medium">
+                  <i class="fa fa-pencil"></i>
+                </span>
+              </button>
+            </p>
+
+            <p class="control"> <!-- *ngIf="customerForm.dirty"> -->
+              <button class="button is-medium" (click)="cancelEditing()" [disabled]="!customerForm.dirty">
+                <span class="icon is-medium">
+                  <i class="fa fa-refresh"></i>
+                </span>
+              </button>
+            </p>
+          </div>
         </div>
       </div>
 
@@ -195,8 +205,7 @@
         <div class="field-body">
           <div class="field">
             <div class="control">
-              <input type="submit" class="button is-primary is-medium" value="Save" />
-              <!-- [disabled]="!customerForm.valid"> -->
+              <input type="submit" class="button is-primary is-medium" value="Save" [disabled]="!customerForm.valid" />
             </div>
           </div>
         </div>

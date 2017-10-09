@@ -68,7 +68,7 @@ export class CustomerDetailComponent implements OnInit {
 
 
   cancelEditing(): void {
-    this.isEnabled = false;
+    
     this.customerForm.reset({
       'firstName' : this.customer.firstName,
       'lastName' : this.customer.lastName,
@@ -79,6 +79,10 @@ export class CustomerDetailComponent implements OnInit {
       'cc' : this.customer.cc,
       'remark' : this.customer.remark
     });
+
+    if (this.customer.$key) {
+      this.isEnabled = false;
+    }
   }
 
   saveCustomer(formValue: any) {
@@ -89,6 +93,8 @@ export class CustomerDetailComponent implements OnInit {
     } else {
       this.addCustomer(customerToSave);
     }
+
+    this.isEnabled = false;
   }
 
   private setCustomerValue(formValue: any): Customer {
