@@ -16,6 +16,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { CustomerService } from './customers/customer.service';
 import { CustomersComponent } from './customers/customers.component';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
+import { DisableControlDirective } from './directives/disable-control.directive';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCs2NEgHP3U0JXaKnhRI7_2l80n9qiOFZU",
@@ -46,7 +47,8 @@ const ROUTES = [
   declarations: [
     AppComponent,
     CustomersComponent,
-    CustomerDetailComponent
+    CustomerDetailComponent,
+    DisableControlDirective
   ],
   imports: [
     BrowserModule, 

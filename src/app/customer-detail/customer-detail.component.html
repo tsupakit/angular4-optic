@@ -52,6 +52,20 @@
 
 <section class="section">
   <div class="container">
+      <div class="columns">
+        <div class="column is-three-quarters">is-three-quarters</div>
+        <div class="column">Auto</div>
+        <div class="column">
+            <div class="control" *ngIf="!isEnabled">
+              <button class="button is-primary" (click)="isEnabled = true">Edit</button>
+            </div>
+
+            <div class="control" *ngIf="customerForm.dirty">
+              <button class="button is-danger" (click)="cancelEditing()">Cancel</button>
+            </div>
+              
+        </div>
+      </div>
 
     <form [formGroup]="customerForm" (ngSubmit)="saveCustomer(customerForm.value)">
 
@@ -63,7 +77,7 @@
         <div class="field-body">
           <div class="field">
             <p class="control is-expanded has-icons-left">
-              <input class="input" type="text" placeholder="First Name" formControlName="firstName">
+              <input class="input" type="text" placeholder="First Name" formControlName="firstName" [disableControl]="!isEnabled">
               <span class="icon is-small is-left">
                 <i class="fa fa-user"></i>
               </span>
@@ -72,7 +86,7 @@
 
           <div class="field">
             <p class="control is-expanded has-icons-left">
-              <input class="input" type="text" placeholder="Last Name" formControlName="lastName">
+              <input class="input" type="text" placeholder="Last Name" formControlName="lastName" [disableControl]="!isEnabled">
               <span class="icon is-small is-left">
                 <i class="fa fa-user-circle"></i>
               </span>
@@ -89,7 +103,7 @@
           <div class="field is-narrow">
             <p class="control has-icons-left">
                 <span class="select is-fullwidth">
-                    <select formControlName="sex">
+                    <select formControlName="sex" [disableControl]="!isEnabled">
                         <option *ngFor="let gender of genders" [value]="gender">{{gender}}</option>
                     </select>
                 </span>
@@ -107,7 +121,7 @@
 
           <div class="field is-narrow">
             <p class="control has-icons-left">
-                <input class="input" type="number" placeholder="Age" formControlName="age">
+                <input class="input" type="number" placeholder="Age" formControlName="age" [disableControl]="!isEnabled">
                 <span class="icon is-small is-left">
                   <i class="fa fa-user-secret"></i>
                 </span>
@@ -123,7 +137,7 @@
 
           <div class="field">
             <p class="control has-icons-left">
-                <input class="input" type="text" placeholder="Telephone" formControlName="telephoneNo">
+                <input class="input" type="text" placeholder="Telephone" formControlName="telephoneNo" [disableControl]="!isEnabled">
                 <span class="icon is-small is-left">
                   <i class="fa fa-mobile"></i>
                 </span>
@@ -139,7 +153,7 @@
         <div class="field-body">
           <div class="field">
             <p class="control is-expanded has-icons-left">
-                <input class="input" type="text" placeholder="Address" formControlName="address">
+                <input class="input" type="text" placeholder="Address" formControlName="address" [disableControl]="!isEnabled">
                 <span class="icon is-small is-left">
                   <i class="fa fa-map-marker"></i>
                 </span>
@@ -156,7 +170,7 @@
         <div class="field-body">
             <div class="field">
                 <p class="control is-expanded has-icons-left">
-                  <input class="input" type="text" placeholder="cc" formControlName="cc">
+                  <input class="input" type="text" placeholder="cc" formControlName="cc" [disableControl]="!isEnabled">
                   <span class="icon is-small is-left">
                     <i class="fa fa-cc"></i>
                   </span>
@@ -165,7 +179,7 @@
             
             <div class="field">
               <p class="control is-expanded has-icons-left">
-                  <input class="input" type="text" placeholder="remark" formControlName="remark">
+                  <input class="input" type="text" placeholder="remark" formControlName="remark" [disableControl]="!isEnabled">
                   <span class="icon is-small is-left">
                     <i class="fa fa-comment-o"></i>
                   </span>
