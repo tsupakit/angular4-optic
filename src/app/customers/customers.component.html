@@ -83,7 +83,7 @@
                     <th>Last Name</th>
                     <th>Telephone No.</th>
                     <th>CC</th>
-                    <!-- <th>Date</th> -->
+                    <th>Last Update</th>
                 </tr>
             </thead>
             <tbody>
@@ -92,7 +92,7 @@
                     <td>{{item.lastName}}</td>
                     <td>{{item.telephoneNo}}</td>
                     <td>{{item.cc}}</td>
-                    <!-- <td>{{item.}}</td> -->
+                    <td>{{item.updatedAt | date: 'medium'}}</td>
                 </tr>
             </tbody>
 

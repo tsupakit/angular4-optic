@@ -70,6 +70,8 @@ export class CustomersComponent implements OnInit {
 
   ngOnInit() {
     this.customers = this.customerService.getCustomersList({limitToLast: 50})
+    // this.customerService.getCustomersList({limitToLast: 30})
+    // .subscribe(customers => this.customers = customers);
   }
 
 }

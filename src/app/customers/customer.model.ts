@@ -102,6 +102,8 @@ export class Customer {
     job: string;    
     cc: string; //reason
     remark: string;
+    createdAt: Object; //firebase.database.ServerValue.TIMESTAMP
+    updatedAt: Object; //firebase.database.ServerValue.TIMESTAMP
 
     //sight information
     VASC_R: number;

@@ -111,10 +111,12 @@ export class CustomerDetailComponent implements OnInit {
   }
 
   private addCustomer(customer: Customer) {
+    customer.createdAt = firebase.database.ServerValue.TIMESTAMP;
     this.customerService.createCustomer(customer);
   }
 
   private editCustomer(customer: Customer) {
+    customer.updatedAt = firebase.database.ServerValue.TIMESTAMP;
     this.customerService.updateCustomer(this.customer.$key, customer);
   }
 
