@@ -74,7 +74,7 @@ class ContactLensSight extends Sight {
 }
 
 class VisionCheck {
-    checkDate: string; //represent as date time in string format
+    checkedAt: Object; //represent as date time in string format
     oldGlassesSight: OldGlassesSight;
     eyeSight: EyeSight;
     //newGlassesSight: NewGlassesSight;
@@ -82,7 +82,7 @@ class VisionCheck {
 
     static SampleData() : VisionCheck {
         const vision = new VisionCheck();
-        vision.checkDate = new Date().toLocaleDateString();
+        vision.checkedAt = new Date().toLocaleDateString();
         vision.oldGlassesSight = OldGlassesSight.SampleData();
         vision.eyeSight = EyeSight.SampleData();        
 

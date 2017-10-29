@@ -9,7 +9,7 @@
       </p>
   </div>
 </div> -->
-<section class="hero is-primary is-bold">
+<section class="hero is-link is-bold">
     <div class="hero-body">
         <div class="container">
         <h1 class="title">
@@ -45,16 +45,16 @@
     <div class="container">
         <div class="columns">
             <div class="column is-half">
-                <div class="field has-addons has-addons-right">
-                    <p class="control is-expanded">
-                        <input class="input" type="text" placeholder="Find customer" [formControl]="seachControl" />
-                    </p>
-                    <p class="control">
-                        <a class="button is-info">
-                        Search
-                        </a>
-                    </p>
-                </div>
+                <form (ngSubmit)="search()">
+                    <div class="field has-addons has-addons-right">                        
+                        <p class="control is-expanded">
+                            <input class="input" type="text" placeholder="Find customer" [formControl]="searchControl" />
+                        </p>
+                        <p class="control">
+                            <button type="submit" class="button is-info">Search</button>
+                        </p>                        
+                    </div>
+                </form>
             </div>
             <div class="column is-half">
                 <div class="level has-text-right">
@@ -93,6 +93,12 @@
                     <td>{{item.telephoneNo}}</td>
                     <td>{{item.cc}}</td>
                     <td>{{item.updatedAt | date: 'medium'}}</td>
+                </tr>
+
+                <tr *ngIf="customers?.length < 1">                    
+                    <td colspan="5">
+                      No results found
+                    </td>
                 </tr>
             </tbody>
 

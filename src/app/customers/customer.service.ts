@@ -25,15 +25,17 @@ export class CustomerService {
     return this.customers
   }
 
-  getCustomerss(start, end): FirebaseListObservable<Customer[]> {
+  getCustomers(start, end): FirebaseListObservable<Customer[]> {
     return this.db.list(this.basePath, {
       query: {
-        //orderByChild: 'Title',
+        orderByChild: 'firstName',
         limitToFirst: 10,
         startAt: start,
         endAt: end
       }
     });
+
+    //return this.customers;
   }
 
   // Return a single observable item

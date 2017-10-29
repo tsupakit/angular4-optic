@@ -4,6 +4,7 @@ import { FormControl } from '@angular/forms';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject'
 import * as firebase from 'firebase/app';
 
 import { Customer } from './customer.model';
@@ -20,8 +21,9 @@ export class CustomersComponent implements OnInit {
   user: Observable<firebase.User>;
   //items: FirebaseListObservable<any[]>;
   msgVal: string = '';
-  seachControl = new FormControl();
+  searchControl = new FormControl();
 
+  //customers: any[]; 
   customers: FirebaseListObservable<Customer[]>;
   selectedCustomer: Customer;
 
@@ -35,6 +37,7 @@ export class CustomersComponent implements OnInit {
 
     // this.user = this.afAuth.authState;
     // this.user.subscribe(u => console.log(`${u.uid} - ${u.displayName}`));
+
   }
 
   login() {
@@ -43,6 +46,23 @@ export class CustomersComponent implements OnInit {
 
   logout() {
     this.afAuth.auth.signOut();
+  }
+
+  startAt = new Subject();
+  endAt = new Subject();
+  //lastKeypress: number = 0;
+  
+  search() { //$event) {
+    // if ($event.timeStamp - this.lastKeypress > 200) {     
+    // }
+    //this.lastKeypress = $event.timeStamp;
+    const value = this.searchControl.value
+    console.log(value);
+    this.startAt.next(value);
+    this.endAt.next(value + "\uf8ff");
+
+    this.customers = this.customerService.getCustomers(this.startAt, this.endAt); //.subscribe(customers => this.customers = customers );
+    console.log(this.customers);
   }
 
   createNew() : void {
@@ -55,23 +75,11 @@ export class CustomersComponent implements OnInit {
     this.router.navigate(['/customer-detail']);
   }
 
-  Send(desc: string) {
-    //this.items.push({ message: desc});
-    //let customer = new Customer('Supakit', 'Thanomboonchareon');
-    // customer.age = 33;
-    // customer.telephoneNo = '0815347979';
-    // customer.address = 'Bangkok';
-
-    // const customer = Customer.SampleData();
-    // this.customers.push(customer);
-
-    // this.msgVal = '';
-  }
-
   ngOnInit() {
     this.customers = this.customerService.getCustomersList({limitToLast: 50})
-    // this.customerService.getCustomersList({limitToLast: 30})
-    // .subscribe(customers => this.customers = customers);
+
+    // this.customerService.getCustomers(this.startAt, this.endAt)
+    // .subscribe(customers => this.customers = customers );
   }
 
 }
