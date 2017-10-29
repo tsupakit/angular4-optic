@@ -15,7 +15,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { CustomerService } from './customers/customer.service';
 import { CustomersComponent } from './customers/customers.component';
-import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
+import { CustomerProfileComponent } from './customers/profile/customer-profile.component';
 import { DisableControlDirective } from './directives/disable-control.directive';
 
 export const firebaseConfig = {
@@ -30,16 +30,16 @@ export const firebaseConfig = {
 const ROUTES = [
   {
     path: '',
-    redirectTo: 'customers',
+    redirectTo: 'customer/main',
     pathMatch: 'full'
   },
   {
-    path: 'customers',
+    path: 'customer/main',
     component: CustomersComponent
   }, 
   { 
-    path: 'customer-detail', 
-    component: CustomerDetailComponent
+    path: 'customer/profile', 
+    component: CustomerProfileComponent
   }
 ];
 
@@ -47,7 +47,7 @@ const ROUTES = [
   declarations: [
     AppComponent,
     CustomersComponent,
-    CustomerDetailComponent,
+    CustomerProfileComponent,
     DisableControlDirective
   ],
   imports: [

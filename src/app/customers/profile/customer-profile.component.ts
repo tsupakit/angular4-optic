@@ -7,17 +7,17 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 
-import { Customer } from '../customers/customer.model';
-import { CustomerService } from '../customers/customer.service';
-import { DisableControlDirective } from '../directives/disable-control.directive';
+import { Customer } from '..//customer.model';
+import { CustomerService } from '../customer.service';
+import { DisableControlDirective } from '../../directives/disable-control.directive';
 
 @Component({
-  selector: 'customer-detail',
-  templateUrl: './customer-detail.component.html',
-  styleUrls: ['./customer-detail.component.css'],
+  selector: 'customer-profile',
+  templateUrl: './customer-profile.component.html',
+  styleUrls: ['./customer-profile.component.css'],
   //providers: [CustomerService]
 })
-export class CustomerDetailComponent implements OnInit {
+export class CustomerProfileComponent implements OnInit {
 
   //@Input() customer: Customer;
   private customer: Customer;
@@ -91,7 +91,7 @@ export class CustomerDetailComponent implements OnInit {
     if (customerToSave.$key) {
       this.editCustomer(customerToSave);
     } else {
-      this.addCustomer(customerToSave);
+      this.createCustomer(customerToSave);
     }
 
     this.isEnabled = false;
@@ -110,7 +110,7 @@ export class CustomerDetailComponent implements OnInit {
     return this.customer;
   }
 
-  private addCustomer(customer: Customer) {
+  private createCustomer(customer: Customer) {
     customer.createdAt = firebase.database.ServerValue.TIMESTAMP;
     this.customerService.createCustomer(customer);
   }

@@ -14,7 +14,7 @@
       <nav class="tabs is-boxed">
         <ul>
           <li class="is-active">
-            <a routerLink="/customers">Customer</a>
+            <a routerLink="/customer/main">Customer</a>
           </li>
           <!--                    
               <li>
@@ -40,12 +40,12 @@
 <nav class="navbar has-shadow">
   <div class="container">
     <div class="navbar-tabs">
-      <p class="navbar-item is-tab is-active">
-        Details
-      </p>
-      <!-- <a class="navbar-item is-tab " href="http://bulma.io/documentation/layout/level/">
-          Level
-        </a>         -->
+      <a class="navbar-item is-tab " routerLink="/customer/main">
+        Main
+      </a>        
+    </div>
+    <div class="navbar-tabs">
+      <p class="navbar-item is-tab is-active">Profile</p>      
     </div>
   </div>
 </nav>
@@ -78,8 +78,6 @@
       </div>
 
     <form [formGroup]="customerForm" (ngSubmit)="saveCustomer(customerForm.value)">
-
-
       <div class="field is-horizontal">
         <div class="field-label is-normal">
           <label class="label">Name</label>
@@ -212,5 +210,6 @@
       </div>
 
     </form>
+
   </div>
 </section>

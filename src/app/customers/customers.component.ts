@@ -67,16 +67,16 @@ export class CustomersComponent implements OnInit {
 
   createNew() : void {
     this.customerService.selectedCustomer = null;
-    this.router.navigate(['/customer-detail']);
+    this.router.navigate(['/customer/profile']);
   }
 
   onSelect (customer: Customer) : void {
     this.customerService.selectedCustomer = customer;
-    this.router.navigate(['/customer-detail']);
+    this.router.navigate(['/customer/profile']);
   }
 
   ngOnInit() {
-    this.customers = this.customerService.getCustomersList({limitToLast: 50})
+    this.customers = this.customerService.getCustomerList({limitToLast: 50})
 
     // this.customerService.getCustomers(this.startAt, this.endAt)
     // .subscribe(customers => this.customers = customers );

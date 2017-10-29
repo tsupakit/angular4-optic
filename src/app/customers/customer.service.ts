@@ -18,7 +18,7 @@ export class CustomerService {
     })
   }
 
-  getCustomersList(query={}): FirebaseListObservable<Customer[]> {
+  getCustomerList(query={}): FirebaseListObservable<Customer[]> {
     this.customers = this.db.list(this.basePath, {
       query: query
     });
