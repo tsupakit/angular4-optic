@@ -54,7 +54,9 @@
   <div class="container">
 
       <div class="columns">
-        <div class="column is-10"></div>
+        <div class="column is-10">
+          <h3 class="title is-4 is-spaced">Information</h3>
+        </div>
         <!-- <div class="column"></div> -->
         <div class="column">
           <div class="field is-grouped is-grouped-right">
@@ -212,4 +214,75 @@
     </form>
 
   </div>
+</section>
+
+<!-- VISION -->
+<section class="section">
+    <div class="container">
+
+        <div class="columns">
+            <div class="column is-10">
+              <h3 class="title is-4 is-spaced">Visions</h3>
+            </div>
+            <!-- <div class="column"></div> -->
+            <div class="column">
+              <div class="field is-grouped is-grouped-right">
+                <p class="control"> <!-- *ngIf="!isEnabled"> -->
+                  <button class="button is-medium"> <!-- (click)="isEnabled = true" [disabled]="isEnabled"> -->
+                    <span class="icon is-medium">
+                      <i class="fa fa-pencil"></i>
+                    </span>
+                  </button>
+                </p>
+    
+                <p class="control"> <!-- *ngIf="customerForm.dirty"> -->
+                  <button class="button is-medium"> <!-- (click)="cancelEditing()" [disabled]="!customerForm.dirty"> -->
+                    <span class="icon is-medium">
+                      <i class="fa fa-refresh"></i>
+                    </span>
+                  </button>
+                </p>
+              </div>
+            </div>
+        </div>
+
+        <table class="table is-bordered is-stripe">
+            <colgroup>
+              <col>
+            </colgroup>
+            <colgroup span="2"></colgroup>
+            <thead>
+                <tr>
+                    <th rowspan="2" scope="col">Eye</th>
+                    <th colspan="2" rowspan="2" scope="colgroup">VASC</th>
+                    <th rowspan="2" scope="col">PinH.</th>
+                    <th colspan="2" scope="colgroup">PD</th>
+                    <!-- <th colspan="2" scope="colgroup">Near</th> -->
+                </tr>
+                <tr>
+                  <th scope="col">Dist.</th>
+                  <th scope="col">Near</th>
+                </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>R</th>
+                <td>{{customer.VASC_R}}</td>
+                <td rowspan="2" scope="rowgroup">{{customer.VASC}}</td>
+                <td>{{customer.PinH_R}}</td>
+                <td>{{customer.PD_Dist_R}}</td>
+                <td>{{customer.PD_Near_R}}</td>
+              </tr>
+
+              <tr>
+                  <th>L</th>
+                  <td>{{customer.VASC_L}}</td>
+                  <!-- <td></td> -->
+                  <td>{{customer.PinH_L}}</td>
+                  <td>{{customer.PD_Dist_L}}</td>
+                  <td>{{customer.PD_Near_L}}</td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
 </section>

@@ -116,6 +116,17 @@ export class CustomerProfileComponent implements OnInit {
   }
 
   private editCustomer(customer: Customer) {
+    //test eye sight data
+    // customer.VASC_R = "แสง";    
+    // customer.VASC_L = "แสง";
+    // customer.VASC = 0.04;
+    // customer.PinH_R = 0.1;
+    // customer.PinH_L = 0.06
+    // customer.PD_Dist_R = 29.5;
+    // customer.PD_Dist_L = 29.5;
+    // customer.PD_Near_R = 27.5;
+    // customer.PD_Near_L = 27.5;
+    //
     customer.updatedAt = firebase.database.ServerValue.TIMESTAMP;
     this.customerService.updateCustomer(this.customer.$key, customer);
   }

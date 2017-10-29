@@ -106,10 +106,11 @@ export class Customer {
     updatedAt: Object; //firebase.database.ServerValue.TIMESTAMP
 
     //sight information
-    VASC_R: number;
-    VASC_L: number;
+    VASC_R: string;
+    VASC_L: string;
     VASC: number; //L & R
-    PinH: number;
+    PinH_R: number;
+    PinH_L: number;
     PD_Dist_R: number;
     PD_Dist_L: number;
     PD_Near_R: number;
