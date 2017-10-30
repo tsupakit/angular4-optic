@@ -22,6 +22,7 @@ export class CustomerProfileComponent implements OnInit {
   //@Input() customer: Customer;
   private customer: Customer;
   customerForm: FormGroup;
+  visionForm: FormGroup;
   isEnabled: boolean;
 
   user: Observable<firebase.User>;
@@ -62,6 +63,18 @@ export class CustomerProfileComponent implements OnInit {
       'address' : [this.customer.address],
       'cc' : [this.customer.cc],
       'remark' : [this.customer.remark]
+    });
+
+    this.visionForm = this.fb.group({
+      'VASC_R' : [this.customer.VASC_R],
+      'VASC_L' : [this.customer.VASC_L],
+      'VASC' : [this.customer.VASC],
+      'PinH_R' : [this.customer.PinH_R],
+      'PinH_L' : [this.customer.PinH_L],
+      'PD_Dist_R' : [this.customer.PD_Dist_R],
+      'PD_Dist_L' : [this.customer.PD_Dist_L],
+      'PD_Near_R' : [this.customer.PD_Near_R],
+      'PD_Near_L' : [this.customer.PD_Near_L]
     });
 
   }
@@ -129,6 +142,13 @@ export class CustomerProfileComponent implements OnInit {
     //
     customer.updatedAt = firebase.database.ServerValue.TIMESTAMP;
     this.customerService.updateCustomer(this.customer.$key, customer);
+  }
+
+
+
+
+  // VISIONs
+  saveCustomerVision(formValue: any) {
   }
 
 }

@@ -4,7 +4,7 @@ abstract class Sight {
 
     CYL_R: number;
     CYL_L: number;
-    
+
     Ax_R: number;
     Ax_L: number;
 }
@@ -21,7 +21,7 @@ class OldGlassesSight extends Sight {
     VA_L: number;
     VA: number; //L & R
 
-    static SampleData() : OldGlassesSight {
+    static SampleData(): OldGlassesSight {
         let oldGlasses = new OldGlassesSight();
         oldGlasses.SPH_R = -3;
         oldGlasses.SPH_L = -3.5;
@@ -55,7 +55,7 @@ class EyeSight extends Sight {
         sight.Ax_L = 5;
         sight.VA_R = 0.6;
         sight.VA_L = 0.5;
-        sight.VA = 0.6
+        sight.VA = 0.6;
         sight.Add_R = 1.5;
         sight.Add_L = 1.5;
 
