@@ -7,9 +7,10 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 
-import { Customer, VisionCheck } from '..//customer.model';
+import { Customer, VisionCheck } from '../customer.model';
 import { CustomerService } from '../customer.service';
 import { DisableControlDirective } from '../../directives/disable-control.directive';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'customer-profile',
@@ -27,6 +28,7 @@ export class CustomerProfileComponent implements OnInit {
 
   user: Observable<firebase.User>;
   //items: FirebaseListObservable<any[]>;
+  visionCheckDate: Object;
 
   genders: string[] = [
     'Male',
@@ -65,7 +67,9 @@ export class CustomerProfileComponent implements OnInit {
       'remark' : [this.customer.remark]
     });
 
-    const vision = this.customer.visionChecks ? this.customer.visionChecks[0] : new VisionCheck();
+    const vision = this.customer.visionChecks ?  _.maxBy(this.customer.visionChecks, 'checkedAt') : new VisionCheck();
+    this.visionCheckDate = vision.checkedAt;
+    console.log(vision);
 
     this.visionForm = this.fb.group({
       'VASC_R' : [vision.VASC_R],
