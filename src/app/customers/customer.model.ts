@@ -1,63 +1,63 @@
 abstract class Sight {
-    SPH_R: number;
-    SPH_L: number;
+    SPH_R: string;
+    SPH_L: string;
 
-    CYL_R: number;
-    CYL_L: number;
+    CYL_R: string;
+    CYL_L: string;
 
-    Ax_R: number;
-    Ax_L: number;
+    Ax_R: string;
+    Ax_L: string;
 }
 
 class OldGlassesSight extends Sight {
-    PD_Dist_R: number;
-    PD_Dist_L: number;
-    PD_Near_R: number;
-    PD_Near_L: number;
+    PD_Dist_R: string;
+    PD_Dist_L: string;
+    PD_Near_R: string;
+    PD_Near_L: string;
 
-    PH_R: number;
-    PH_L: number;
-    VA_R: number;
-    VA_L: number;
-    VA: number; //L & R
+    PH_R: string;
+    PH_L: string;
+    VA_R: string;
+    VA_L: string;
+    VA: string; //L & R
 
     static SampleData(): OldGlassesSight {
         let oldGlasses = new OldGlassesSight();
-        oldGlasses.SPH_R = -3;
-        oldGlasses.SPH_L = -3.5;
-        oldGlasses.VA_R = 0.08;
-        oldGlasses.VA = 0.08;
+        oldGlasses.SPH_R = '-3';
+        oldGlasses.SPH_L = '-3.5';
+        oldGlasses.VA_R = '0.08';
+        oldGlasses.VA = '0.08';
 
         return oldGlasses;
     }
 }
 
 class EyeSight extends Sight {
-    VA_R: number;
-    VA_L: number;
-    VA: number; //L & R
+    VA_R: string;
+    VA_L: string;
+    VA: string; //L & R
 
-    Add_R: number;
-    Add_L: number;
-    VA_Near: number;
-    Prism_R: number;
-    Prism_L: number;
+    Add_R: string;
+    Add_L: string;
+    VA_Near: string;
+    Prism_R: string;
+    Prism_L: string;
 
     remark: string;
 
     static SampleData() : EyeSight {
         let sight = new EyeSight();
-        sight.SPH_R = -6;
-        sight.SPH_L = -9.5;
-        sight.CYL_R = -0.5;
-        sight.CYL_L = -2.25;
-        sight.Ax_R = 16.5;
-        sight.Ax_L = 5;
-        sight.VA_R = 0.6;
-        sight.VA_L = 0.5;
-        sight.VA = 0.6;
-        sight.Add_R = 1.5;
-        sight.Add_L = 1.5;
+        sight.SPH_R = '-6';
+        sight.SPH_L = '-9.5';
+        sight.CYL_R = '-0.5';
+        sight.CYL_L = '-2.25';
+        sight.Ax_R = '16.5';
+        sight.Ax_L = '5';
+        sight.VA_R = '0.6';
+        sight.VA_L = '0.5';
+        sight.VA = '0.6';
+        sight.Add_R = '1.5';
+        sight.Add_L = '1.5';
 
         sight.remark = 'test';
 
@@ -73,8 +73,20 @@ class ContactLensSight extends Sight {
 
 }
 
-class VisionCheck {
+export class VisionCheck {
     checkedAt: Object; //represent as date time in string format
+
+    //sight information
+    VASC_R: string;
+    VASC_L: string;
+    VASC: string; //L & R
+    PinH_R: string;
+    PinH_L: string;
+    PD_Dist_R: string;
+    PD_Dist_L: string;
+    PD_Near_R: string;
+    PD_Near_L: string;
+
     oldGlassesSight: OldGlassesSight;
     eyeSight: EyeSight;
     //newGlassesSight: NewGlassesSight;
@@ -105,16 +117,16 @@ export class Customer {
     createdAt: Object; //firebase.database.ServerValue.TIMESTAMP
     updatedAt: Object; //firebase.database.ServerValue.TIMESTAMP
 
-    //sight information
-    VASC_R: string;
-    VASC_L: string;
-    VASC: number; //L & R
-    PinH_R: number;
-    PinH_L: number;
-    PD_Dist_R: number;
-    PD_Dist_L: number;
-    PD_Near_R: number;
-    PD_Near_L: number;
+    // //sight information
+    // VASC_R: string;
+    // VASC_L: string;
+    // VASC: string; //L & R
+    // PinH_R: string;
+    // PinH_L: string;
+    // PD_Dist_R: string;
+    // PD_Dist_L: string;
+    // PD_Near_R: string;
+    // PD_Near_L: string;
 
     visionChecks: VisionCheck[];
 

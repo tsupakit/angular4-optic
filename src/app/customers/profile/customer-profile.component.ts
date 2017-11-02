@@ -7,7 +7,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 
-import { Customer } from '..//customer.model';
+import { Customer, VisionCheck } from '..//customer.model';
 import { CustomerService } from '../customer.service';
 import { DisableControlDirective } from '../../directives/disable-control.directive';
 
@@ -65,16 +65,18 @@ export class CustomerProfileComponent implements OnInit {
       'remark' : [this.customer.remark]
     });
 
+    const vision = this.customer.visionChecks ? this.customer.visionChecks[0] : new VisionCheck();
+
     this.visionForm = this.fb.group({
-      'VASC_R' : [this.customer.VASC_R],
-      'VASC_L' : [this.customer.VASC_L],
-      'VASC' : [this.customer.VASC],
-      'PinH_R' : [this.customer.PinH_R],
-      'PinH_L' : [this.customer.PinH_L],
-      'PD_Dist_R' : [this.customer.PD_Dist_R],
-      'PD_Dist_L' : [this.customer.PD_Dist_L],
-      'PD_Near_R' : [this.customer.PD_Near_R],
-      'PD_Near_L' : [this.customer.PD_Near_L]
+      'VASC_R' : [vision.VASC_R],
+      'VASC_L' : [vision.VASC_L],
+      'VASC' : [vision.VASC],
+      'PinH_R' : [vision.PinH_R],
+      'PinH_L' : [vision.PinH_L],
+      'PD_Dist_R' : [vision.PD_Dist_R],
+      'PD_Dist_L' : [vision.PD_Dist_L],
+      'PD_Near_R' : [vision.PD_Near_R],
+      'PD_Near_L' : [vision.PD_Near_L]
     });
 
   }
@@ -128,18 +130,22 @@ export class CustomerProfileComponent implements OnInit {
     this.customerService.createCustomer(customer);
   }
 
-  private editCustomer(customer: Customer) {
-    //test eye sight data
-    // customer.VASC_R = "แสง";    
-    // customer.VASC_L = "แสง";
-    // customer.VASC = 0.04;
-    // customer.PinH_R = 0.1;
-    // customer.PinH_L = 0.06
-    // customer.PD_Dist_R = 29.5;
-    // customer.PD_Dist_L = 29.5;
-    // customer.PD_Near_R = 27.5;
-    // customer.PD_Near_L = 27.5;
-    //
+  private editCustomer(customer: Customer) {    
+    // //test eye sight data
+    // const visionCheck = new VisionCheck();    
+    // visionCheck.checkedAt = firebase.database.ServerValue.TIMESTAMP;
+    // visionCheck.VASC_R = "แสง";    
+    // visionCheck.VASC_L = "แสง";
+    // visionCheck.VASC = "0.04";
+    // visionCheck.PinH_R = "0.1";
+    // visionCheck.PinH_L = "0.06"
+    // visionCheck.PD_Dist_R = "29.5";
+    // visionCheck.PD_Dist_L = "29.5";
+    // visionCheck.PD_Near_R = "27.5";
+    // visionCheck.PD_Near_L = "27.5";
+
+    // customer.visionChecks.push(visionCheck);
+    // //
     customer.updatedAt = firebase.database.ServerValue.TIMESTAMP;
     this.customerService.updateCustomer(this.customer.$key, customer);
   }
