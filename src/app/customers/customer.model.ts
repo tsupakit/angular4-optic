@@ -75,6 +75,7 @@ class ContactLensSight extends Sight {
 
 export class VisionCheck {
     checkedAt: Object; //represent as date time in string format
+    checkedBy: string;
 
     //sight information
     VASC_R: string;

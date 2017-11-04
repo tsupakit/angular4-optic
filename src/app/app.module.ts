@@ -17,6 +17,7 @@ import { CustomerService } from './customers/customer.service';
 import { CustomersComponent } from './customers/customers.component';
 import { CustomerProfileComponent } from './customers/profile/customer-profile.component';
 import { DisableControlDirective } from './directives/disable-control.directive';
+import { CustomerVisionComponent } from './customers/vision/customer-vision.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCs2NEgHP3U0JXaKnhRI7_2l80n9qiOFZU",
@@ -46,9 +47,10 @@ const ROUTES = [
 @NgModule({
   declarations: [
     AppComponent,
+    DisableControlDirective,
     CustomersComponent,
-    CustomerProfileComponent,
-    DisableControlDirective
+    CustomerProfileComponent,    
+    CustomerVisionComponent
   ],
   imports: [
     BrowserModule, 

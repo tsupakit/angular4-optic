@@ -1,0 +1,255 @@
+<section class="section">
+  <div class="container">
+
+      <div class="columns">
+          <div class="column is-10">
+            <div class="level">
+                <div class="level-left ">                  
+                  <div class="level-item">
+                    <h3 class="level-item title is-4 is-spaced">Visions</h3>
+                  </div>
+                  <div class="level-item">
+                    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+                      <!-- <a class="pagination-previous">Previous</a>
+                      <a class="pagination-next">Next page</a> -->
+                      <ul class="pagination-list">
+                        <li *ngFor="let vision of customer.visionChecks; index as i">
+                          <a class="pagination-link" [class.is-current]="i==pageIndex" aria-label="Goto page i" (click)="selectVisionPage(i)">{{i + 1}}</a>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
+                  <div class="level-item">
+                      <h4 class="subtitle is-4">{{vision.checkedAt | date: 'medium'}}</h4>
+                  </div>
+                </div>
+            </div>              
+          </div>
+          <!-- <div class="column"></div> -->
+          <div class="column">
+            <div class="field is-grouped is-grouped-right">
+              <p class="control"> <!-- *ngIf="!isEnabled"> -->
+                <button class="button is-medium"> <!-- (click)="isEnabled = true" [disabled]="isEnabled"> -->
+                  <span class="icon is-medium">
+                    <i class="fa fa-pencil"></i>
+                  </span>
+                </button>
+              </p>
+  
+              <p class="control"> <!-- *ngIf="customerForm.dirty"> -->
+                <button class="button is-medium"> <!-- (click)="cancelEditing()" [disabled]="!customerForm.dirty"> -->
+                  <span class="icon is-medium">
+                    <i class="fa fa-refresh"></i>
+                  </span>
+                </button>
+              </p>
+            </div>
+          </div>
+      </div>
+
+      <form [formGroup]="visionForm" (ngSubmit)="saveCustomerVision(visionForm.value)">
+        <div class="columns">
+          <div class="column is-5">
+              
+            <table class="table is-bordered is-stripe">
+                <colgroup>
+                  <col>
+                </colgroup>
+                <colgroup span="2"></colgroup>
+                <thead>
+                    <tr>
+                        <th rowspan="2" scope="col">Eye</th>
+                        <th colspan="2" rowspan="2" scope="colgroup">VASC</th>
+                        <th rowspan="2" scope="col">PinH.</th>
+                        <th colspan="2" scope="colgroup">PD</th>
+                        <!-- <th colspan="2" scope="colgroup">Near</th> -->
+                    </tr>
+                    <tr>
+                      <th scope="col">Dist.</th>
+                      <th scope="col">Near</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>R</th>
+                    <td>
+                      <!-- {{customer.VASC_R}} -->
+                      <p class="control">
+                        <input class="input vision" type="text" formControlName="VASC_R"> <!-- [disableControl]="!isEnabled"> -->                      
+                      </p>
+                    </td>
+                    <td rowspan="2" scope="rowgroup">
+                      <!-- {{customer.VASC}} -->
+                      <p class="control">
+                        <input class="input vision" type="text" formControlName="VASC"> <!-- [disableControl]="!isEnabled"> -->                      
+                      </p>
+                    </td>
+                    <td>
+                      <!-- {{customer.PinH_R}} -->
+                      <p class="control">
+                          <input class="input vision" type="text" formControlName="PinH_R"> <!-- [disableControl]="!isEnabled"> -->                      
+                      </p>
+                    </td>
+                    <td>
+                      <!-- {{customer.PD_Dist_R}} -->
+                      <p class="control">
+                          <input class="input vision" type="text" formControlName="PD_Dist_R"> <!-- [disableControl]="!isEnabled"> -->                      
+                      </p>
+                    </td>
+                    <td>
+                      <!-- {{customer.PD_Near_R}} -->
+                      <p class="control">
+                          <input class="input vision" type="text" formControlName="PD_Near_R"> <!-- [disableControl]="!isEnabled"> -->                      
+                      </p>
+                    </td>
+                  </tr>
+  
+                  <tr>
+                      <th>L</th>
+                      <td>
+                        <!-- {{customer.VASC_L}} -->
+                        <p class="control">
+                            <input class="input vision" type="text" formControlName="VASC_L"> <!-- [disableControl]="!isEnabled"> -->                      
+                        </p>
+                      </td>
+                      <!-- <td></td> -->
+                      <td>
+                        <!-- {{customer.PinH_L}} -->
+                        <p class="control">
+                            <input class="input vision" type="text" formControlName="PinH_L"> <!-- [disableControl]="!isEnabled"> -->                      
+                        </p>
+                      </td>
+                      <td>
+                        <!-- {{customer.PD_Dist_L}} -->
+                        <p class="control">
+                            <input class="input vision" type="text" formControlName="PD_Dist_L"> <!-- [disableControl]="!isEnabled"> -->                      
+                        </p>
+                      </td>
+                      <td>
+                        <!-- {{customer.PD_Near_L}} -->
+                        <p class="control">
+                            <input class="input vision" type="text" formControlName="PD_Near_L"> <!-- [disableControl]="!isEnabled"> -->                      
+                        </p>
+                      </td>
+                  </tr>
+                </tbody>
+            </table>      
+              
+          </div>
+          <div class="column">
+              <table class="table is-bordered is-stripe">                    
+                  <colgroup>
+                    <col>
+                  </colgroup>
+                  <colgroup span="2"></colgroup>
+                  <thead>
+                      <tr>
+                          <th rowspan="2" scope="col">OLD Rx.</th>
+                          <th rowspan="2" scope="col">SPH</th>
+                          <th rowspan="2" scope="col">CYL</th>
+                          <th rowspan="2" scope="col">Ax</th>
+                          <th colspan="2" scope="colgroup">PD</th>
+                          <th rowspan="2" scope="col">PH/Seg</th>
+                          <th colspan="2" rowspan="2" scope="colgroup">VA</th>
+                          <!-- <th colspan="2" scope="colgroup">Near</th> -->
+                      </tr>
+                      <tr>
+                        <th scope="col">Dist.</th>
+                        <th scope="col">Near</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>R</th>
+                      <td>
+                        <p class="control">
+                          <input class="input vision" type="text"> <!-- formControlName=""> [disableControl]="!isEnabled"> -->                      
+                        </p>
+                      </td>
+                      <td>
+                        <p class="control">
+                          <input class="input vision" type="text"> <!-- formControlName=""> [disableControl]="!isEnabled"> -->                      
+                        </p>
+                      </td>
+                      <td>
+                        <p class="control">
+                            <input class="input vision" type="text"> <!-- formControlName=""> [disableControl]="!isEnabled"> -->                      
+                        </p>
+                      </td>
+                      <td>
+                        <p class="control">
+                            <input class="input vision" type="text"> <!-- formControlName=""> [disableControl]="!isEnabled"> -->                      
+                        </p>
+                      </td>
+                      <td>
+                        <p class="control">
+                            <input class="input vision" type="text"> <!-- formControlName=""> [disableControl]="!isEnabled"> -->                      
+                        </p>
+                      </td>
+
+                      <td>
+                        <p class="control">
+                          <input class="input vision" type="text"> <!-- formControlName=""> [disableControl]="!isEnabled"> -->                      
+                        </p>
+                      </td>
+                      <td>
+                        <p class="control">
+                            <input class="input vision" type="text"> <!-- formControlName=""> [disableControl]="!isEnabled"> -->                      
+                        </p>
+                      </td>
+                      <td rowspan="2" scope="rowgroup">
+                        <p class="control">
+                            <input class="input vision" type="text"> <!-- formControlName=""> [disableControl]="!isEnabled"> -->                      
+                        </p>
+                      </td>
+                      
+                    </tr>
+    
+                    <tr>
+                        <th>L</th>
+                        <td>
+                            <p class="control">
+                              <input class="input vision" type="text"> <!-- formControlName=""> [disableControl]="!isEnabled"> -->                      
+                            </p>
+                          </td>
+                          <td>
+                            <p class="control">
+                              <input class="input vision" type="text"> <!-- formControlName=""> [disableControl]="!isEnabled"> -->                      
+                            </p>
+                          </td>
+                          <td>
+                            <p class="control">
+                                <input class="input vision" type="text"> <!-- formControlName=""> [disableControl]="!isEnabled"> -->                      
+                            </p>
+                          </td>
+                          <td>
+                            <p class="control">
+                                <input class="input vision" type="text"> <!-- formControlName=""> [disableControl]="!isEnabled"> -->                      
+                            </p>
+                          </td>
+                          <td>
+                            <p class="control">
+                                <input class="input vision" type="text"> <!-- formControlName=""> [disableControl]="!isEnabled"> -->                      
+                            </p>
+                          </td>
+  
+                          <td>
+                            <p class="control">
+                              <input class="input vision" type="text"> <!-- formControlName=""> [disableControl]="!isEnabled"> -->                      
+                            </p>
+                          </td>
+                          <td>
+                            <p class="control">
+                                <input class="input vision" type="text"> <!-- formControlName=""> [disableControl]="!isEnabled"> -->                      
+                            </p>
+                          </td>                            
+                    </tr>
+                  </tbody>
+              </table> 
+
+          </div>
+        </div>
+      </form>
+      
+  </div>
+</section>

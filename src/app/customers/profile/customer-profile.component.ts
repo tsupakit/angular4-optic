@@ -28,7 +28,7 @@ export class CustomerProfileComponent implements OnInit {
 
   user: Observable<firebase.User>;
   //items: FirebaseListObservable<any[]>;
-  visionCheckDate: Object;
+  // visionCheckDate: Object;
 
   genders: string[] = [
     'Male',
@@ -67,21 +67,21 @@ export class CustomerProfileComponent implements OnInit {
       'remark' : [this.customer.remark]
     });
 
-    const vision = this.customer.visionChecks ?  _.maxBy(this.customer.visionChecks, 'checkedAt') : new VisionCheck();
-    this.visionCheckDate = vision.checkedAt;
-    console.log(vision);
+    // const vision = this.customer.visionChecks ?  _.maxBy(this.customer.visionChecks, 'checkedAt') : new VisionCheck();
+    // this.visionCheckDate = vision.checkedAt;
+    // console.log(vision);
 
-    this.visionForm = this.fb.group({
-      'VASC_R' : [vision.VASC_R],
-      'VASC_L' : [vision.VASC_L],
-      'VASC' : [vision.VASC],
-      'PinH_R' : [vision.PinH_R],
-      'PinH_L' : [vision.PinH_L],
-      'PD_Dist_R' : [vision.PD_Dist_R],
-      'PD_Dist_L' : [vision.PD_Dist_L],
-      'PD_Near_R' : [vision.PD_Near_R],
-      'PD_Near_L' : [vision.PD_Near_L]
-    });
+    // this.visionForm = this.fb.group({
+    //   'VASC_R' : [vision.VASC_R],
+    //   'VASC_L' : [vision.VASC_L],
+    //   'VASC' : [vision.VASC],
+    //   'PinH_R' : [vision.PinH_R],
+    //   'PinH_L' : [vision.PinH_L],
+    //   'PD_Dist_R' : [vision.PD_Dist_R],
+    //   'PD_Dist_L' : [vision.PD_Dist_L],
+    //   'PD_Near_R' : [vision.PD_Near_R],
+    //   'PD_Near_L' : [vision.PD_Near_L]
+    // });
 
   }
 
@@ -134,7 +134,7 @@ export class CustomerProfileComponent implements OnInit {
     this.customerService.createCustomer(customer);
   }
 
-  private editCustomer(customer: Customer) {    
+  private editCustomer(customer: Customer) {
     // //test eye sight data
     // const visionCheck = new VisionCheck();    
     // visionCheck.checkedAt = firebase.database.ServerValue.TIMESTAMP;
@@ -157,8 +157,8 @@ export class CustomerProfileComponent implements OnInit {
 
 
 
-  // VISIONs
-  saveCustomerVision(formValue: any) {
-  }
+  // // VISIONs
+  // saveCustomerVision(formValue: any) {
+  // }
 
 }
