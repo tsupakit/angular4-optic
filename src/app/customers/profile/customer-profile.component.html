@@ -53,23 +53,42 @@
 <section class="section">
   <div class="container">
 
+    <form [formGroup]="customerForm" (ngSubmit)="saveCustomer(customerForm.value)">      
       <div class="columns">
         <div class="column is-10">
-          <h3 class="title is-4 is-spaced">Information</h3>
+
+            <div class="level">
+              <div class="level-left ">
+                <div class="level-item">
+                    <span class="icon">
+                      <i class="fa fa-info-circle"></i>
+                    </span>
+                    <h3 class="level-item title is-4 is-spaced">Information</h3>
+                </div>
+              </div>
+            </div>
         </div>
         <!-- <div class="column"></div> -->
         <div class="column">
           <div class="field is-grouped is-grouped-right">
-            <p class="control"> <!-- *ngIf="!isEditing"> -->
-              <button class="button is-medium" (click)="isEditing = true" [disabled]="isEditing">
+            <p class="control">
+              <button class="button is-medium" title="Edit" (click)="isEditing = true" [disabled]="isEditing">
                 <span class="icon is-medium">
                   <i class="fa fa-pencil"></i>
                 </span>
               </button>
             </p>
 
+            <p class="control">
+              <button type="submit" class="button is-success is-medium" title="Save" [disabled]="!isEditing">
+                <span class="icon is-medium">
+                  <i class="fa fa-floppy-o"></i>
+                </span>
+              </button>
+            </p>
+
             <p class="control"> <!-- *ngIf="customerForm.dirty"> -->
-              <button class="button is-medium" (click)="cancelEditing()" [disabled]="!isEditing">
+              <button class="button is-warning is-medium" title="Reset" (click)="cancelEditing()" [disabled]="!isEditing">
                 <span class="icon is-medium">
                   <i class="fa fa-refresh"></i>
                 </span>
@@ -78,8 +97,7 @@
           </div>
         </div>
       </div>
-
-    <form [formGroup]="customerForm" (ngSubmit)="saveCustomer(customerForm.value)">
+    
       <div class="field is-horizontal">
         <div class="field-label is-normal">
           <label class="label">Name</label>
@@ -198,9 +216,8 @@
         </div>
       </div>
 
-      <div class="field is-horizontal">
+      <!-- <div class="field is-horizontal">
         <div class="field-label">
-          <!-- Left empty for spacing -->
         </div>
         <div class="field-body">
           <div class="field">
@@ -209,7 +226,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
     </form>
 

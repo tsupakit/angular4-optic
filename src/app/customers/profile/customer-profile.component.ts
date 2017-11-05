@@ -69,7 +69,11 @@ export class CustomerProfileComponent implements OnInit {
   }
 
   cancelEditing(): void {
-    
+    //console.log("Cancel editing")
+    //confirm reset if any changes.
+    // if (this.customerForm.dirty) {
+    // }    
+
     this.customerForm.reset({
       'firstName' : this.customer.firstName,
       'lastName' : this.customer.lastName,
@@ -87,6 +91,12 @@ export class CustomerProfileComponent implements OnInit {
   }
 
   saveCustomer(formValue: any) {
+
+    if (!this.customerForm.valid){
+      console.log("Invalid form saving")
+      return;
+    }
+
     const customerToSave = this.setCustomerValue(formValue);
 
     if (customerToSave.$key) {

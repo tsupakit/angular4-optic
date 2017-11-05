@@ -77,6 +77,9 @@ export class VisionCheck {
     checkedAt: Object; //represent as date time in string format
     checkedBy: string;
 
+    updatedAt: Object; //represent as date time in string format
+    updatedBy: string;
+
     //sight information
     VASC_R: string;
     VASC_L: string;

@@ -1,50 +1,61 @@
-<div class="columns">
-    <div class="column is-10">
-      <div class="level">
-          <div class="level-left ">                  
-            <div class="level-item">
-              <h3 class="level-item title is-4 is-spaced">Visions</h3>
-            </div>
-            <div class="level-item">
-              <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-                <!-- <a class="pagination-previous">Previous</a>
-                <a class="pagination-next">Next page</a> -->
-                <ul class="pagination-list">
-                  <li *ngFor="let vision of customer.visionChecks; index as i">
-                    <a class="pagination-link" [class.is-current]="i==pageIndex" aria-label="Goto page i" (click)="selectVisionPage(i)">{{i + 1}}</a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-            <div class="level-item">
-                <h4 class="subtitle is-4">{{vision.checkedAt | date: 'medium'}}</h4>
-            </div>
-          </div>
-      </div>              
-    </div>
-    <!-- <div class="column"></div> -->
-    <div class="column">
-      <div class="field is-grouped is-grouped-right">
-        <p class="control"> <!-- *ngIf="!isEditing"> -->
-          <button class="button is-medium" (click)="isEditing = true" [disabled]="isEditing">
-            <span class="icon is-medium">
-              <i class="fa fa-pencil"></i>
-            </span>
-          </button>
-        </p>
-
-        <p class="control"> <!-- *ngIf="customerForm.dirty"> -->
-          <button class="button is-medium" (click)="cancelEditing()" [disabled]="!isEditing">
-            <span class="icon is-medium">
-              <i class="fa fa-refresh"></i>
-            </span>
-          </button>
-        </p>
-      </div>
-    </div>
-</div>
-
 <form [formGroup]="visionForm" (ngSubmit)="saveCustomerVision(visionForm.value)">
+  <div class="columns">
+      <div class="column is-10">
+        <div class="level">
+            <div class="level-left ">
+              <div class="level-item">
+                  <span class="icon">
+                    <i class="fa fa-eye fa3"></i>
+                  </span>
+                  <h3 class="level-item title is-4 is-spaced">Visions</h3>
+              </div>
+              <div class="level-item">
+                <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+                  <!-- <a class="pagination-previous">Previous</a>
+                  <a class="pagination-next">Next page</a> -->
+                  <ul class="pagination-list">
+                    <li *ngFor="let vision of customer.visionChecks; index as i">
+                      <a class="pagination-link" [class.is-current]="i==pageIndex" aria-label="Goto page i" (click)="selectVisionPage(i)">{{i + 1}}</a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+              <div class="level-item">
+                  <h4 class="subtitle is-4">{{vision.checkedAt | date: 'medium'}}</h4>
+              </div>
+            </div>
+        </div>
+      </div>
+      <!-- <div class="column"></div> -->
+      <div class="column">
+        <div class="field is-grouped is-grouped-right">
+          <p class="control"> <!-- *ngIf="!isEditing"> -->
+            <button class="button is-medium" title="Edit" (click)="isEditing = true" [disabled]="isEditing">
+              <span class="icon is-medium">
+                <i class="fa fa-pencil"></i>
+              </span>
+            </button>
+          </p>
+
+          <p class="control">
+            <button type="submit" class="button is-success is-medium" title="Save" [disabled]="!isEditing">
+              <span class="icon is-medium">
+                <i class="fa fa-floppy-o"></i>
+              </span>
+            </button>
+          </p>
+
+          <p class="control"> <!-- *ngIf="customerForm.dirty"> -->
+            <button class="button is-warning is-medium" title="Reset" (click)="cancelEditing()" [disabled]="!isEditing">
+              <span class="icon is-medium">
+                <i class="fa fa-refresh"></i>
+              </span>
+            </button>
+          </p>
+        </div>
+      </div>
+  </div>
+
   <div class="columns">
     <div class="column is-5">
         
@@ -134,7 +145,7 @@
         
     </div>
     <div class="column">
-        <table class="table is-bordered is-stripe">                    
+        <table class="table is-bordered is-stripe">
             <colgroup>
               <col>
             </colgroup>

@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Customer, VisionCheck } from '../customer.model';
 import { CustomerService } from '../customer.service';
 //import { DisableControlDirective } from '../../directives/disable-control.directive';
+import * as firebase from 'firebase/app';
 import * as _ from 'lodash';
 
 @Component({
@@ -15,6 +16,7 @@ export class CustomerVisionComponent implements OnInit {
   @Input() customer: Customer;
 
   visionForm: FormGroup;
+  isAdding: boolean;
   isEditing: boolean;
 
   // selected vision object (page)
@@ -38,17 +40,6 @@ export class CustomerVisionComponent implements OnInit {
       this.isEditing = true;
     }
 
-    // this.visionForm = this.fb.group({
-    //   'VASC_R' : [this.vision.VASC_R],
-    //   'VASC_L' : [this.vision.VASC_L],
-    //   'VASC' : [this.vision.VASC],
-    //   'PinH_R' : [this.vision.PinH_R],
-    //   'PinH_L' : [this.vision.PinH_L],
-    //   'PD_Dist_R' : [this.vision.PD_Dist_R],
-    //   'PD_Dist_L' : [this.vision.PD_Dist_L],
-    //   'PD_Near_R' : [this.vision.PD_Near_R],
-    //   'PD_Near_L' : [this.vision.PD_Near_L]
-    // });
     this.visionForm = this.fb.group(this.populateFormValues(this.vision));
   }
 
@@ -66,37 +57,67 @@ export class CustomerVisionComponent implements OnInit {
     }
   }
 
+  addVisionCheck(): void {
+    this.isAdding = true;
+  }
+
   cancelEditing(): void {
-    
+    //confirm reset if any changes.
+    // if (this.visionForm.dirty) {      
+    // }
+
     this.visionForm.reset(this.populateFormValues(this.vision));
 
-    //if (this.vision.$key) {
+    if (this.totalCheck == 0) {
       this.isEditing = false;
-    //}
+    }
   }
 
   selectVisionPage(index: number): void { 
     this.pageIndex = index;
     this.vision = this.customer.visionChecks[this.pageIndex];
-
-    // this.visionForm.setValue({
-    //   'VASC_R' : [this.vision.VASC_R],
-    //   'VASC_L' : [this.vision.VASC_L],
-    //   'VASC' : [this.vision.VASC],
-    //   'PinH_R' : [this.vision.PinH_R],
-    //   'PinH_L' : [this.vision.PinH_L],
-    //   'PD_Dist_R' : [this.vision.PD_Dist_R],
-    //   'PD_Dist_L' : [this.vision.PD_Dist_L],
-    //   'PD_Near_R' : [this.vision.PD_Near_R],
-    //   'PD_Near_L' : [this.vision.PD_Near_L]
-    // });
     this.visionForm.setValue(this.populateFormValues(this.vision));
   }
 
   // save customer root object child vision will automatically saved alongside.
   saveCustomerVision(formValue: any) {
-    // customer.updatedAt = firebase.database.ServerValue.TIMESTAMP;
-    // this.customerService.updateCustomer(this.customer.$key, customer);
+
+    const vision = this.setVisionValue(formValue);
+
+    // total check is 0 means newly adding
+    if (this.totalCheck == 0) {
+      vision.checkedAt = firebase.database.ServerValue.TIMESTAMP;
+      vision.checkedBy = "developer";
+
+      this.customer.visionChecks = new Array<VisionCheck>();
+      this.customer.visionChecks.push(vision);
+    } else {
+      vision.updatedAt = firebase.database.ServerValue.TIMESTAMP;
+      vision.updatedBy = "developer";
+
+      this.customer.visionChecks[this.pageIndex] = vision;
+    }
+
+    this.customerService.updateCustomer(this.customer.$key, this.customer);
+
+    this.isEditing = false;
+  }
+
+
+  private setVisionValue(formValue: any): VisionCheck {
+    this.vision.VASC_R = formValue.VASC_R;
+    this.vision.VASC_L = formValue.VASC_L;
+    this.vision.VASC = formValue.VASC;
+    this.vision.PinH_R = formValue.PinH_R;
+    this.vision.PinH_L = formValue.PinH_L;
+    this.vision.PD_Dist_R = formValue.PD_Dist_R;
+    this.vision.PD_Dist_L = formValue.PD_Dist_L;
+    this.vision.PD_Near_R = formValue.PD_Near_R;
+    this.vision.PD_Near_L = formValue.PD_Near_L;
+
+    // get other sight tables.
+
+    return this.vision;
   }
 
 }
