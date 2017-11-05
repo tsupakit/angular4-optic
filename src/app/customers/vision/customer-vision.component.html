@@ -5,7 +5,7 @@
             <div class="level-left ">
               <div class="level-item">
                   <span class="icon is-large">
-                    <i class="fa fa-eye fa3"></i>
+                    <i class="fa fa-eye fa-2x"></i>
                   </span>
                   <h3 class="level-item title is-4 is-spaced">Visions</h3>
               </div>
@@ -246,6 +246,118 @@
                   <td>
                     <p class="control">
                       <input class="input vision" type="text" formControlName="VA_L" [disableControl]="!isEditing">
+                    </p>
+                  </td>
+              </tr>
+            </tbody>
+        </table> 
+
+    </div>
+  </div>
+
+  <div class="columns">
+    <div class="column">
+        <table class="table is-bordered is-stripe">
+            <colgroup>
+              <col>
+            </colgroup>
+            <colgroup span="2"></colgroup>
+            <thead>
+                <tr>
+                    <th rowspan="2" scope="col">FULL</th>
+                    <th rowspan="2" scope="col">SPH</th>
+                    <th rowspan="2" scope="col">CYL</th>
+                    <th rowspan="2" scope="col">Ax</th>
+                    <th colspan="2" rowspan="2" scope="colgroup">VA Dist.</th>
+                    <th rowspan="2" scope="col">ADD</th>
+                    <th rowspan="2" scope="col">VA Near</th>
+                    <th rowspan="2" scope="col">Prism</th>
+                    <th rowspan="2" scope="col">Remark</th>                    
+                </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>R</th>
+                <td>
+                  <p class="control">
+                    <input class="input vision" type="text" formControlName="ES_SPH_R" [disableControl]="!isEditing">
+                  </p>
+                </td>
+                <td>
+                  <p class="control">
+                      <input class="input vision" type="text" formControlName="ES_CYL_R" [disableControl]="!isEditing">
+                  </p>
+                </td>
+                <td>
+                  <p class="control">
+                      <input class="input vision" type="text" formControlName="ES_Ax_R" [disableControl]="!isEditing">
+                  </p>
+                </td>
+                <td>
+                  <p class="control">
+                      <input class="input vision" type="text" formControlName="ES_VA_Dist_R" [disableControl]="!isEditing">
+                  </p>
+                </td>
+                <td rowspan="2" scope="rowgroup">
+                  <p class="control">
+                    <input class="input vision" type="text" formControlName="ES_VA_Dist" [disableControl]="!isEditing">
+                  </p>
+                </td>
+                
+                <td>
+                  <p class="control">
+                      <input class="input vision" type="text" formControlName="ES_ADD_R" [disableControl]="!isEditing">
+                  </p>
+                </td>
+
+                <td rowspan="2" scope="rowgroup">
+                  <p class="control">
+                      <input class="input vision" type="text" formControlName="ES_VA_Near" [disableControl]="!isEditing">
+                  </p>
+                </td>
+                <td>
+                  <p class="control">
+                      <input class="input vision" type="text" formControlName="ES_Prism_R" [disableControl]="!isEditing">
+                  </p>
+                </td>
+                <td rowspan="2" scope="rowgroup">
+                  <p class="control">
+                      <input class="input vision" type="text" formControlName="ES_Remark" [disableControl]="!isEditing">
+                  </p>
+                </td>
+                
+              </tr>
+
+              <tr>
+                  <th>L</th>
+                  <td>
+                      <p class="control">
+                        <input class="input vision" type="text" formControlName="ES_SPH_L" [disableControl]="!isEditing">
+                      </p>
+                  </td>
+                  <td>
+                    <p class="control">
+                        <input class="input vision" type="text" formControlName="ES_CYL_L" [disableControl]="!isEditing">
+                    </p>
+                  </td>
+                  <td>
+                    <p class="control">
+                      <input class="input vision" type="text" formControlName="ES_Ax_L" [disableControl]="!isEditing">
+                    </p>
+                  </td>
+                  <td>
+                    <p class="control">
+                        <input class="input vision" type="text" formControlName="ES_VA_Dist_L" [disableControl]="!isEditing">
+                    </p>
+                  </td>
+                  <td>
+                    <p class="control">
+                      <input class="input vision" type="text" formControlName="ES_ADD_L" [disableControl]="!isEditing">
+                    </p>
+                  </td>
+                  <td>
+                    <p class="control">
+                      <input class="input vision" type="text" formControlName="ES_Prism_L" [disableControl]="!isEditing">
                     </p>
                   </td>
               </tr>

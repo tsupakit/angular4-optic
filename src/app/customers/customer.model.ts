@@ -33,12 +33,12 @@ class OldGlassesSight extends Sight {
 }
 
 class EyeSight extends Sight {
-    VA_R: string;
-    VA_L: string;
-    VA: string; //L & R
+    VA_Dist_R: string;
+    VA_Dist_L: string;
+    VA_Dist: string; //L & R
 
-    Add_R: string;
-    Add_L: string;
+    ADD_R: string;
+    ADD_L: string;
     VA_Near: string;
     Prism_R: string;
     Prism_L: string;
@@ -53,11 +53,11 @@ class EyeSight extends Sight {
         sight.CYL_L = '-2.25';
         sight.Ax_R = '16.5';
         sight.Ax_L = '5';
-        sight.VA_R = '0.6';
-        sight.VA_L = '0.5';
-        sight.VA = '0.6';
-        sight.Add_R = '1.5';
-        sight.Add_L = '1.5';
+        sight.VA_Dist_R = '0.6';
+        sight.VA_Dist_L = '0.5';
+        sight.VA_Dist = '0.6';
+        sight.ADD_R = '1.5';
+        sight.ADD_L = '1.5';
 
         sight.remark = 'test';
 
