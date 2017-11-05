@@ -60,8 +60,8 @@
         <!-- <div class="column"></div> -->
         <div class="column">
           <div class="field is-grouped is-grouped-right">
-            <p class="control"> <!-- *ngIf="!isEnabled"> -->
-              <button class="button is-medium" (click)="isEnabled = true" [disabled]="isEnabled">
+            <p class="control"> <!-- *ngIf="!isEditing"> -->
+              <button class="button is-medium" (click)="isEditing = true" [disabled]="isEditing">
                 <span class="icon is-medium">
                   <i class="fa fa-pencil"></i>
                 </span>
@@ -69,7 +69,7 @@
             </p>
 
             <p class="control"> <!-- *ngIf="customerForm.dirty"> -->
-              <button class="button is-medium" (click)="cancelEditing()" [disabled]="!customerForm.dirty">
+              <button class="button is-medium" (click)="cancelEditing()" [disabled]="!isEditing">
                 <span class="icon is-medium">
                   <i class="fa fa-refresh"></i>
                 </span>
@@ -87,7 +87,7 @@
         <div class="field-body">
           <div class="field">
             <p class="control is-expanded has-icons-left">
-              <input class="input" type="text" placeholder="First Name" formControlName="firstName" [disableControl]="!isEnabled">
+              <input class="input" type="text" placeholder="First Name" formControlName="firstName" [disableControl]="!isEditing">
               <span class="icon is-small is-left">
                 <i class="fa fa-user"></i>
               </span>
@@ -96,7 +96,7 @@
 
           <div class="field">
             <p class="control is-expanded has-icons-left">
-              <input class="input" type="text" placeholder="Last Name" formControlName="lastName" [disableControl]="!isEnabled">
+              <input class="input" type="text" placeholder="Last Name" formControlName="lastName" [disableControl]="!isEditing">
               <span class="icon is-small is-left">
                 <i class="fa fa-user-circle"></i>
               </span>
@@ -113,7 +113,7 @@
           <div class="field is-narrow">
             <p class="control has-icons-left">
                 <span class="select is-fullwidth">
-                    <select formControlName="sex" [disableControl]="!isEnabled">
+                    <select formControlName="sex" [disableControl]="!isEditing">
                         <option *ngFor="let gender of genders" [value]="gender">{{gender}}</option>
                     </select>
                 </span>
@@ -131,7 +131,7 @@
 
           <div class="field is-narrow">
             <p class="control has-icons-left">
-                <input class="input" type="number" placeholder="Age" formControlName="age" [disableControl]="!isEnabled">
+                <input class="input" type="number" placeholder="Age" formControlName="age" [disableControl]="!isEditing">
                 <span class="icon is-small is-left">
                   <i class="fa fa-user-secret"></i>
                 </span>
@@ -147,7 +147,7 @@
 
           <div class="field">
             <p class="control has-icons-left">
-                <input class="input" type="text" placeholder="Telephone" formControlName="telephoneNo" [disableControl]="!isEnabled">
+                <input class="input" type="text" placeholder="Telephone" formControlName="telephoneNo" [disableControl]="!isEditing">
                 <span class="icon is-small is-left">
                   <i class="fa fa-mobile"></i>
                 </span>
@@ -163,7 +163,7 @@
         <div class="field-body">
           <div class="field">
             <p class="control is-expanded has-icons-left">
-                <input class="input" type="text" placeholder="Address" formControlName="address" [disableControl]="!isEnabled">
+                <input class="input" type="text" placeholder="Address" formControlName="address" [disableControl]="!isEditing">
                 <span class="icon is-small is-left">
                   <i class="fa fa-map-marker"></i>
                 </span>
@@ -180,7 +180,7 @@
         <div class="field-body">
             <div class="field">
                 <p class="control is-expanded has-icons-left">
-                  <input class="input" type="text" placeholder="cc" formControlName="cc" [disableControl]="!isEnabled">
+                  <input class="input" type="text" placeholder="cc" formControlName="cc" [disableControl]="!isEditing">
                   <span class="icon is-small is-left">
                     <i class="fa fa-cc"></i>
                   </span>
@@ -189,7 +189,7 @@
             
             <div class="field">
               <p class="control is-expanded has-icons-left">
-                  <input class="input" type="text" placeholder="remark" formControlName="remark" [disableControl]="!isEnabled">
+                  <input class="input" type="text" placeholder="remark" formControlName="remark" [disableControl]="!isEditing">
                   <span class="icon is-small is-left">
                     <i class="fa fa-comment-o"></i>
                   </span>
@@ -213,8 +213,8 @@
 
     </form>
 
+    <hr />
+    <customer-vision [customer]="customer"></customer-vision>
+  
   </div>
-  <hr />
 </section>
-
-<customer-vision [customer]="customer"></customer-vision>

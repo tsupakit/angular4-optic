@@ -22,9 +22,8 @@ export class CustomerProfileComponent implements OnInit {
 
   //@Input() customer: Customer;
   private customer: Customer;
-  customerForm: FormGroup;
-  visionForm: FormGroup;
-  isEnabled: boolean;
+  customerForm: FormGroup;  
+  isEditing: boolean;
 
   user: Observable<firebase.User>;
   //items: FirebaseListObservable<any[]>;
@@ -50,9 +49,9 @@ export class CustomerProfileComponent implements OnInit {
   }
 
   private initialize() {
-
+    // if selected is not null
     if (!this.customer) {
-      this.isEnabled = true;
+      this.isEditing = true;
       this.customer = new Customer('', '');
     }
 
@@ -67,24 +66,7 @@ export class CustomerProfileComponent implements OnInit {
       'remark' : [this.customer.remark]
     });
 
-    // const vision = this.customer.visionChecks ?  _.maxBy(this.customer.visionChecks, 'checkedAt') : new VisionCheck();
-    // this.visionCheckDate = vision.checkedAt;
-    // console.log(vision);
-
-    // this.visionForm = this.fb.group({
-    //   'VASC_R' : [vision.VASC_R],
-    //   'VASC_L' : [vision.VASC_L],
-    //   'VASC' : [vision.VASC],
-    //   'PinH_R' : [vision.PinH_R],
-    //   'PinH_L' : [vision.PinH_L],
-    //   'PD_Dist_R' : [vision.PD_Dist_R],
-    //   'PD_Dist_L' : [vision.PD_Dist_L],
-    //   'PD_Near_R' : [vision.PD_Near_R],
-    //   'PD_Near_L' : [vision.PD_Near_L]
-    // });
-
   }
-
 
   cancelEditing(): void {
     
@@ -100,7 +82,7 @@ export class CustomerProfileComponent implements OnInit {
     });
 
     if (this.customer.$key) {
-      this.isEnabled = false;
+      this.isEditing = false;
     }
   }
 
@@ -113,7 +95,7 @@ export class CustomerProfileComponent implements OnInit {
       this.createCustomer(customerToSave);
     }
 
-    this.isEnabled = false;
+    this.isEditing = false;
   }
 
   private setCustomerValue(formValue: any): Customer {
@@ -153,12 +135,5 @@ export class CustomerProfileComponent implements OnInit {
     customer.updatedAt = firebase.database.ServerValue.TIMESTAMP;
     this.customerService.updateCustomer(this.customer.$key, customer);
   }
-
-
-
-
-  // // VISIONs
-  // saveCustomerVision(formValue: any) {
-  // }
 
 }
