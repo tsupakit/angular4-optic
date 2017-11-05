@@ -27,11 +27,13 @@ export class CustomerVisionComponent implements OnInit {
   constructor(private customerService: CustomerService, private fb: FormBuilder) { }
 
   ngOnInit() {
-    
+    console.log("before get");
+    console.log(this.vision);
+
     if (this.customer.visionChecks) {
       this.customer.visionChecks = _.orderBy(this.customer.visionChecks, ['checkedAt'], ['desc']);
       this.vision = this.customer.visionChecks[this.pageIndex];
-      this.totalCheck = this.customer.visionChecks.length;
+      this.totalCheck = this.customer.visionChecks.length;    
     }
 
     //console.log(this.vision);
@@ -40,10 +42,21 @@ export class CustomerVisionComponent implements OnInit {
       this.isEditing = true;
     }
 
+    console.log("after get");
+    console.log(this.vision);
     this.visionForm = this.fb.group(this.populateFormValues(this.vision));
   }
 
   private populateFormValues(vision: VisionCheck) : any {
+
+    if (!vision.oldGlassesSight) {
+      VisionCheck.initOldGlassesSight(vision);
+    }
+
+    if (!vision.eyeSight) {
+      VisionCheck.initEyeSight(vision);
+    }
+
     return {
       'VASC_R' : [vision.VASC_R],
       'VASC_L' : [vision.VASC_L],
@@ -53,7 +66,24 @@ export class CustomerVisionComponent implements OnInit {
       'PD_Dist_R' : [vision.PD_Dist_R],
       'PD_Dist_L' : [vision.PD_Dist_L],
       'PD_Near_R' : [vision.PD_Near_R],
-      'PD_Near_L' : [vision.PD_Near_L]
+      'PD_Near_L' : [vision.PD_Near_L], 
+
+      //old glasses
+      'SPH_R' : [vision.oldGlassesSight.SPH_R],
+      'SPH_L' : [vision.oldGlassesSight.SPH_L],
+      'CYL_R' : [vision.oldGlassesSight.CYL_R],
+      'CYL_L' : [vision.oldGlassesSight.CYL_L],
+      'Ax_R' : [vision.oldGlassesSight.Ax_R],
+      'Ax_L' : [vision.oldGlassesSight.Ax_L],
+      'OG_PD_Dist_R' : [vision.oldGlassesSight.PD_Dist_R],
+      'OG_PD_Dist_L' : [vision.oldGlassesSight.PD_Dist_L],
+      'OG_PD_Near_R' : [vision.oldGlassesSight.PD_Near_R],
+      'OG_PD_Near_L' : [vision.oldGlassesSight.PD_Near_L],
+      'PH_R' : [vision.oldGlassesSight.PH_R],
+      'PH_L' : [vision.oldGlassesSight.PH_L],
+      'VA_R' : [vision.oldGlassesSight.VA_R],
+      'VA_L' : [vision.oldGlassesSight.VA_L],
+      'VA' : [vision.oldGlassesSight.VA],
     }
   }
 
@@ -101,6 +131,8 @@ export class CustomerVisionComponent implements OnInit {
     this.customerService.updateCustomer(this.customer.$key, this.customer);
 
     this.isEditing = false;
+
+    console.log(vision.checkedAt);
   }
 
 
@@ -116,8 +148,24 @@ export class CustomerVisionComponent implements OnInit {
     this.vision.PD_Near_L = formValue.PD_Near_L;
 
     // get other sight tables.
+    this.vision.oldGlassesSight.SPH_R = formValue.SPH_R;
+    this.vision.oldGlassesSight.SPH_L = formValue.SPH_L;
+    this.vision.oldGlassesSight.CYL_R = formValue.CYL_R;
+    this.vision.oldGlassesSight.CYL_L = formValue.CYL_L;
+    this.vision.oldGlassesSight.Ax_R = formValue.Ax_R;
+    this.vision.oldGlassesSight.Ax_L = formValue.Ax_L;
+    this.vision.oldGlassesSight.PD_Dist_R = formValue.OG_PD_Dist_R;
+    this.vision.oldGlassesSight.PD_Dist_L = formValue.OG_PD_Dist_L;
+    this.vision.oldGlassesSight.PD_Near_R = formValue.OG_PD_Near_R;
+    this.vision.oldGlassesSight.PD_Near_L = formValue.OG_PD_Near_L;
+    this.vision.oldGlassesSight.PH_R = formValue.PH_R;
+    this.vision.oldGlassesSight.PH_L = formValue.PH_L;
+    this.vision.oldGlassesSight.VA_R = formValue.VA_R;
+    this.vision.oldGlassesSight.VA_L = formValue.VA_L;
+    this.vision.oldGlassesSight.VA = formValue.VA;
 
     return this.vision;
   }
 
 }
+

@@ -96,6 +96,22 @@ export class VisionCheck {
     //newGlassesSight: NewGlassesSight;
     //contactLensSight: ContactLensSight;
 
+    /**
+     *
+     */
+    constructor() {
+        this.oldGlassesSight = new OldGlassesSight();
+        this.eyeSight = new EyeSight();
+    }
+
+    static initOldGlassesSight = (vision: VisionCheck) => { 
+        vision.oldGlassesSight = new OldGlassesSight();
+    }
+
+    static initEyeSight = (vision: VisionCheck) => { 
+        vision.eyeSight = new EyeSight();
+    }
+
     static SampleData() : VisionCheck {
         const vision = new VisionCheck();
         vision.checkedAt = new Date().toLocaleDateString();

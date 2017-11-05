@@ -4,7 +4,7 @@
         <div class="level">
             <div class="level-left ">
               <div class="level-item">
-                  <span class="icon">
+                  <span class="icon is-large">
                     <i class="fa fa-eye fa3"></i>
                   </span>
                   <h3 class="level-item title is-4 is-spaced">Visions</h3>
@@ -21,7 +21,7 @@
                 </nav>
               </div>
               <div class="level-item">
-                  <h4 class="subtitle is-4">{{vision.checkedAt | date: 'medium'}}</h4>
+                  <h4 class="subtitle is-4">{{vision.checkedAt || '' | date: 'medium'}}</h4>
               </div>
             </div>
         </div>
@@ -171,86 +171,83 @@
                 <th>R</th>
                 <td>
                   <p class="control">
-                    <input class="input vision" type="text"> <!-- formControlName=""> [disableControl]="!isEditing"> -->                      
+                    <input class="input vision" type="text" formControlName="SPH_R" [disableControl]="!isEditing">
                   </p>
                 </td>
                 <td>
                   <p class="control">
-                    <input class="input vision" type="text"> <!-- formControlName=""> [disableControl]="!isEditing"> -->                      
+                      <input class="input vision" type="text" formControlName="CYL_R" [disableControl]="!isEditing">
                   </p>
                 </td>
                 <td>
                   <p class="control">
-                      <input class="input vision" type="text"> <!-- formControlName=""> [disableControl]="!isEditing"> -->                      
+                      <input class="input vision" type="text" formControlName="Ax_R" [disableControl]="!isEditing">
                   </p>
                 </td>
                 <td>
                   <p class="control">
-                      <input class="input vision" type="text"> <!-- formControlName=""> [disableControl]="!isEditing"> -->                      
+                      <input class="input vision" type="text" formControlName="OG_PD_Dist_R" [disableControl]="!isEditing">
                   </p>
                 </td>
                 <td>
                   <p class="control">
-                      <input class="input vision" type="text"> <!-- formControlName=""> [disableControl]="!isEditing"> -->                      
-                  </p>
-                </td>
-
-                <td>
-                  <p class="control">
-                    <input class="input vision" type="text"> <!-- formControlName=""> [disableControl]="!isEditing"> -->                      
+                    <input class="input vision" type="text" formControlName="OG_PD_Near_R" [disableControl]="!isEditing">
                   </p>
                 </td>
                 <td>
                   <p class="control">
-                      <input class="input vision" type="text"> <!-- formControlName=""> [disableControl]="!isEditing"> -->                      
+                      <input class="input vision" type="text" formControlName="PH_R" [disableControl]="!isEditing">
+                  </p>
+                </td>
+                <td>
+                  <p class="control">
+                      <input class="input vision" type="text" formControlName="VA_R" [disableControl]="!isEditing">
                   </p>
                 </td>
                 <td rowspan="2" scope="rowgroup">
                   <p class="control">
-                      <input class="input vision" type="text"> <!-- formControlName=""> [disableControl]="!isEditing"> -->                      
+                      <input class="input vision" type="text" formControlName="VA" [disableControl]="!isEditing">
                   </p>
                 </td>
-                
               </tr>
 
               <tr>
                   <th>L</th>
                   <td>
                       <p class="control">
-                        <input class="input vision" type="text"> <!-- formControlName=""> [disableControl]="!isEditing"> -->                      
+                        <input class="input vision" type="text" formControlName="SPH_L" [disableControl]="!isEditing">
                       </p>
-                    </td>
-                    <td>
-                      <p class="control">
-                        <input class="input vision" type="text"> <!-- formControlName=""> [disableControl]="!isEditing"> -->                      
-                      </p>
-                    </td>
-                    <td>
-                      <p class="control">
-                          <input class="input vision" type="text"> <!-- formControlName=""> [disableControl]="!isEditing"> -->                      
-                      </p>
-                    </td>
-                    <td>
-                      <p class="control">
-                          <input class="input vision" type="text"> <!-- formControlName=""> [disableControl]="!isEditing"> -->                      
-                      </p>
-                    </td>
-                    <td>
-                      <p class="control">
-                          <input class="input vision" type="text"> <!-- formControlName=""> [disableControl]="!isEditing"> -->                      
-                      </p>
-                    </td>
-
-                    <td>
-                      <p class="control">
-                        <input class="input vision" type="text"> <!-- formControlName=""> [disableControl]="!isEditing"> -->                      
-                      </p>
-                    </td>
-                    <td>
-                      <p class="control">
-                          <input class="input vision" type="text"> <!-- formControlName=""> [disableControl]="!isEditing"> -->                      
-                      </p>
-                    </td>                            
+                  </td>
+                  <td>
+                    <p class="control">
+                        <input class="input vision" type="text" formControlName="CYL_L" [disableControl]="!isEditing">
+                    </p>
+                  </td>
+                  <td>
+                    <p class="control">
+                      <input class="input vision" type="text" formControlName="Ax_L" [disableControl]="!isEditing">
+                    </p>
+                  </td>
+                  <td>
+                    <p class="control">
+                        <input class="input vision" type="text" formControlName="OG_PD_Dist_L" [disableControl]="!isEditing">
+                    </p>
+                  </td>
+                  <td>
+                    <p class="control">
+                      <input class="input vision" type="text" formControlName="OG_PD_Near_L" [disableControl]="!isEditing">
+                    </p>
+                  </td>
+                  <td>
+                    <p class="control">
+                        <input class="input vision" type="text" formControlName="PH_L" [disableControl]="!isEditing">
+                    </p>
+                  </td>
+                  <td>
+                    <p class="control">
+                      <input class="input vision" type="text" formControlName="VA_L" [disableControl]="!isEditing">
+                    </p>
+                  </td>
               </tr>
             </tbody>
         </table> 
