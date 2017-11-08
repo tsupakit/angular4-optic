@@ -66,11 +66,24 @@ class EyeSight extends Sight {
 }
 
 class NewGlassesSight extends Sight {
+    VA: string; //L & R
+    ADD_R: string;
+    ADD_L: string;
+    PD_Dist_R: string;
+    PD_Dist_L: string;
+    PD_Near_R: string;
+    PD_Near_L: string;
+    PH_R: string;
+    PH_L: string;
 
+    remark: string;
 }
 
 class ContactLensSight extends Sight {
-
+    BC_R: string;
+    BC_L: string;
+    
+    remark: string;
 }
 
 export class VisionCheck {
@@ -93,8 +106,8 @@ export class VisionCheck {
 
     oldGlassesSight: OldGlassesSight;
     eyeSight: EyeSight;
-    //newGlassesSight: NewGlassesSight;
-    //contactLensSight: ContactLensSight;
+    newGlassesSight: NewGlassesSight;
+    contactLensSight: ContactLensSight;
 
     /**
      *
@@ -102,6 +115,7 @@ export class VisionCheck {
     constructor() {
         this.oldGlassesSight = new OldGlassesSight();
         this.eyeSight = new EyeSight();
+        this.newGlassesSight = new NewGlassesSight();
     }
 
     static initOldGlassesSight = (vision: VisionCheck) => { 
@@ -110,6 +124,14 @@ export class VisionCheck {
 
     static initEyeSight = (vision: VisionCheck) => { 
         vision.eyeSight = new EyeSight();
+    }
+
+    static initNewGlassesSight = (vision: VisionCheck) => { 
+        vision.newGlassesSight = new NewGlassesSight();
+    }
+
+    static initContactLensSight = (vision: VisionCheck) => { 
+        vision.contactLensSight = new ContactLensSight();
     }
 
     static SampleData() : VisionCheck {
@@ -136,17 +158,6 @@ export class Customer {
     remark: string;
     createdAt: Object; //firebase.database.ServerValue.TIMESTAMP
     updatedAt: Object; //firebase.database.ServerValue.TIMESTAMP
-
-    // //sight information
-    // VASC_R: string;
-    // VASC_L: string;
-    // VASC: string; //L & R
-    // PinH_R: string;
-    // PinH_L: string;
-    // PD_Dist_R: string;
-    // PD_Dist_L: string;
-    // PD_Near_R: string;
-    // PD_Near_L: string;
 
     visionChecks: VisionCheck[];
 
