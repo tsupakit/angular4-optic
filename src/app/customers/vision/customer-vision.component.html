@@ -20,9 +20,6 @@
                   </ul>
                 </nav>
               </div>
-              <div class="level-item">
-                  <h4 class="subtitle is-4">{{vision.checkedAt || '' | date: 'medium'}}</h4>
-              </div>
             </div>
         </div>
       </div>
@@ -30,7 +27,7 @@
       <div class="column">
         <div class="field is-grouped is-grouped-right">
           <p class="control"> <!-- *ngIf="!isEditing"> -->
-            <button class="button is-medium" title="Edit" (click)="isEditing = true" [disabled]="isEditing">
+            <button type="button" class="button is-medium" title="Edit" (click)="isEditing = true" [disabled]="isEditing">
               <span class="icon is-medium">
                 <i class="fa fa-pencil"></i>
               </span>
@@ -46,7 +43,7 @@
           </p>
 
           <p class="control"> <!-- *ngIf="customerForm.dirty"> -->
-            <button class="button is-warning is-medium" title="Reset" (click)="cancelEditing()" [disabled]="!isEditing">
+            <button type="button" class="button is-warning is-medium" title="Reset" (click)="cancelEditing()" [disabled]="!isEditing">
               <span class="icon is-medium">
                 <i class="fa fa-refresh"></i>
               </span>
@@ -54,6 +51,41 @@
           </p>
         </div>
       </div>
+  </div>
+
+  <!-- updating information -->
+  <div class="columns">
+    <div class="column">
+      <div class="field is-grouped is-grouped-multiline">
+        <div class="control">
+          <div class="tags has-addons">
+            <span class="tag is-medium is-light">Checked At</span>
+            <span class="tag is-medium is-info">{{vision.checkedAt || '' | date: 'medium'}}</span>
+          </div>
+        </div>
+      
+        <div class="control">
+          <div class="tags has-addons">
+            <span class="tag is-medium is-light">Checked By</span>
+            <span class="tag is-medium is-info">{{vision.checkedBy}}</span>
+          </div>
+        </div>
+      
+        <div class="control">
+          <div class="tags has-addons">
+            <span class="tag is-medium is-light">Last Update</span>
+            <span class="tag is-medium is-primary">{{vision.updatedAt || '' | date: 'medium'}}</span>
+          </div>
+        </div>
+
+        <div class="control">
+            <div class="tags has-addons">
+              <span class="tag is-medium is-light">Updated By</span>
+              <span class="tag is-medium is-primary">{{vision.updatedBy}}</span>
+            </div>
+          </div>
+      </div>
+    </div>
   </div>
 
   <div class="columns">
@@ -81,33 +113,28 @@
             <tr>
               <th>R</th>
               <td>
-                <!-- {{customer.VASC_R}} -->
                 <p class="control">
-                  <input class="input vision" type="text" formControlName="VASC_R" [disableControl]="!isEditing">
+                  <input class="input vision" type="text" tabindex="1" formControlName="VASC_R" [disableControl]="!isEditing">
                 </p>
               </td>
               <td rowspan="2" scope="rowgroup">
-                <!-- {{customer.VASC}} -->
                 <p class="control">
-                  <input class="input vision" type="text" formControlName="VASC" [disableControl]="!isEditing">
+                  <input class="input vision" type="text" tabindex="3" formControlName="VASC" [disableControl]="!isEditing">
                 </p>
               </td>
               <td>
-                <!-- {{customer.PinH_R}} -->
                 <p class="control">
-                    <input class="input vision" type="text" formControlName="PinH_R" [disableControl]="!isEditing">
+                    <input class="input vision" type="text" tabindex="4" formControlName="PinH_R" [disableControl]="!isEditing">
                 </p>
               </td>
               <td>
-                <!-- {{customer.PD_Dist_R}} -->
                 <p class="control">
-                    <input class="input vision" type="text" formControlName="PD_Dist_R" [disableControl]="!isEditing">
+                    <input class="input vision" type="text" tabindex="6" formControlName="PD_Dist_R" [disableControl]="!isEditing">
                 </p>
               </td>
               <td>
-                <!-- {{customer.PD_Near_R}} -->
                 <p class="control">
-                    <input class="input vision" type="text" formControlName="PD_Near_R" [disableControl]="!isEditing">
+                    <input class="input vision" type="text" tabindex="8" formControlName="PD_Near_R" [disableControl]="!isEditing">
                 </p>
               </td>
             </tr>
@@ -115,28 +142,24 @@
             <tr>
                 <th>L</th>
                 <td>
-                  <!-- {{customer.VASC_L}} -->
                   <p class="control">
-                      <input class="input vision" type="text" formControlName="VASC_L" [disableControl]="!isEditing">              
+                      <input class="input vision" type="text" tabindex="2" formControlName="VASC_L" [disableControl]="!isEditing">              
                   </p>
                 </td>
-                <!-- <td></td> -->
+                <!-- <td>merged row</td> -->
                 <td>
-                  <!-- {{customer.PinH_L}} -->
                   <p class="control">
-                      <input class="input vision" type="text" formControlName="PinH_L" [disableControl]="!isEditing">
-                  </p>
-                </td>
-                <td>
-                  <!-- {{customer.PD_Dist_L}} -->
-                  <p class="control">
-                      <input class="input vision" type="text" formControlName="PD_Dist_L" [disableControl]="!isEditing">    
+                      <input class="input vision" type="text" tabindex="5" formControlName="PinH_L" [disableControl]="!isEditing">
                   </p>
                 </td>
                 <td>
-                  <!-- {{customer.PD_Near_L}} -->
                   <p class="control">
-                      <input class="input vision" type="text" formControlName="PD_Near_L" [disableControl]="!isEditing">         
+                      <input class="input vision" type="text" tabindex="7" formControlName="PD_Dist_L" [disableControl]="!isEditing">    
+                  </p>
+                </td>
+                <td>
+                  <p class="control">
+                      <input class="input vision" type="text" tabindex="9" formControlName="PD_Near_L" [disableControl]="!isEditing">         
                   </p>
                 </td>
             </tr>
@@ -172,42 +195,42 @@
                 <th>R</th>
                 <td>
                   <p class="control">
-                    <input class="input vision" type="text" formControlName="OG_SPH_R" [disableControl]="!isEditing">
+                    <input class="input vision" type="text" tabindex="10" formControlName="OG_SPH_R" [disableControl]="!isEditing">
                   </p>
                 </td>
                 <td>
                   <p class="control">
-                      <input class="input vision" type="text" formControlName="OG_CYL_R" [disableControl]="!isEditing">
+                      <input class="input vision" type="text" tabindex="12" formControlName="OG_CYL_R" [disableControl]="!isEditing">
                   </p>
                 </td>
                 <td>
                   <p class="control">
-                      <input class="input vision" type="text" formControlName="OG_Ax_R" [disableControl]="!isEditing">
+                      <input class="input vision" type="text" tabindex="14" formControlName="OG_Ax_R" [disableControl]="!isEditing">
                   </p>
                 </td>
                 <td>
                   <p class="control">
-                      <input class="input vision" type="text" formControlName="OG_PD_Dist_R" [disableControl]="!isEditing">
+                      <input class="input vision" type="text" tabindex="16" formControlName="OG_PD_Dist_R" [disableControl]="!isEditing">
                   </p>
                 </td>
                 <td>
                   <p class="control">
-                    <input class="input vision" type="text" formControlName="OG_PD_Near_R" [disableControl]="!isEditing">
+                    <input class="input vision" type="text" tabindex="18" formControlName="OG_PD_Near_R" [disableControl]="!isEditing">
                   </p>
                 </td>
                 <td>
                   <p class="control">
-                      <input class="input vision" type="text" formControlName="OG_PH_R" [disableControl]="!isEditing">
+                      <input class="input vision" type="text" tabindex="20" formControlName="OG_PH_R" [disableControl]="!isEditing">
                   </p>
                 </td>
                 <td>
                   <p class="control">
-                      <input class="input vision" type="text" formControlName="OG_VA_R" [disableControl]="!isEditing">
+                      <input class="input vision" type="text" tabindex="22" formControlName="OG_VA_R" [disableControl]="!isEditing">
                   </p>
                 </td>
                 <td rowspan="2" scope="rowgroup">
                   <p class="control">
-                      <input class="input vision" type="text" formControlName="OG_VA" [disableControl]="!isEditing">
+                      <input class="input vision" type="text" tabindex="24" formControlName="OG_VA" [disableControl]="!isEditing">
                   </p>
                 </td>
               </tr>
@@ -216,37 +239,37 @@
                   <th>L</th>
                   <td>
                       <p class="control">
-                        <input class="input vision" type="text" formControlName="OG_SPH_L" [disableControl]="!isEditing">
+                        <input class="input vision" type="text" tabindex="11" formControlName="OG_SPH_L" [disableControl]="!isEditing">
                       </p>
                   </td>
                   <td>
                     <p class="control">
-                        <input class="input vision" type="text" formControlName="OG_CYL_L" [disableControl]="!isEditing">
+                        <input class="input vision" type="text" tabindex="13" formControlName="OG_CYL_L" [disableControl]="!isEditing">
                     </p>
                   </td>
                   <td>
                     <p class="control">
-                      <input class="input vision" type="text" formControlName="OG_Ax_L" [disableControl]="!isEditing">
+                      <input class="input vision" type="text" tabindex="15" formControlName="OG_Ax_L" [disableControl]="!isEditing">
                     </p>
                   </td>
                   <td>
                     <p class="control">
-                        <input class="input vision" type="text" formControlName="OG_PD_Dist_L" [disableControl]="!isEditing">
+                        <input class="input vision" type="text" tabindex="17" formControlName="OG_PD_Dist_L" [disableControl]="!isEditing">
                     </p>
                   </td>
                   <td>
                     <p class="control">
-                      <input class="input vision" type="text" formControlName="OG_PD_Near_L" [disableControl]="!isEditing">
+                      <input class="input vision" type="text" tabindex="19" formControlName="OG_PD_Near_L" [disableControl]="!isEditing">
                     </p>
                   </td>
                   <td>
                     <p class="control">
-                        <input class="input vision" type="text" formControlName="OG_PH_L" [disableControl]="!isEditing">
+                        <input class="input vision" type="text" tabindex="21" formControlName="OG_PH_L" [disableControl]="!isEditing">
                     </p>
                   </td>
                   <td>
                     <p class="control">
-                      <input class="input vision" type="text" formControlName="OG_VA_L" [disableControl]="!isEditing">
+                      <input class="input vision" type="text" tabindex="23" formControlName="OG_VA_L" [disableControl]="!isEditing">
                     </p>
                   </td>
               </tr>
@@ -282,49 +305,49 @@
                 <th>R</th>
                 <td>
                   <p class="control">
-                    <input class="input vision" type="text" formControlName="ES_SPH_R" [disableControl]="!isEditing">
+                    <input class="input vision" type="text" tabindex="25" formControlName="ES_SPH_R" [disableControl]="!isEditing">
                   </p>
                 </td>
                 <td>
                   <p class="control">
-                      <input class="input vision" type="text" formControlName="ES_CYL_R" [disableControl]="!isEditing">
+                      <input class="input vision" type="text" tabindex="27" formControlName="ES_CYL_R" [disableControl]="!isEditing">
                   </p>
                 </td>
                 <td>
                   <p class="control">
-                      <input class="input vision" type="text" formControlName="ES_Ax_R" [disableControl]="!isEditing">
+                      <input class="input vision" type="text" tabindex="29" formControlName="ES_Ax_R" [disableControl]="!isEditing">
                   </p>
                 </td>
                 <td>
                   <p class="control">
-                      <input class="input vision" type="text" formControlName="ES_VA_Dist_R" [disableControl]="!isEditing">
+                      <input class="input vision" type="text" tabindex="31" formControlName="ES_VA_Dist_R" [disableControl]="!isEditing">
                   </p>
                 </td>
                 <td rowspan="2" scope="rowgroup">
                   <p class="control">
-                    <input class="input vision" type="text" formControlName="ES_VA_Dist" [disableControl]="!isEditing">
+                    <input class="input vision" type="text" tabindex="33" formControlName="ES_VA_Dist" [disableControl]="!isEditing">
                   </p>
                 </td>
                 
                 <td>
                   <p class="control">
-                      <input class="input vision" type="text" formControlName="ES_ADD_R" [disableControl]="!isEditing">
+                      <input class="input vision" type="text" tabindex="34" formControlName="ES_ADD_R" [disableControl]="!isEditing">
                   </p>
                 </td>
 
                 <td rowspan="2" scope="rowgroup">
                   <p class="control">
-                      <input class="input vision" type="text" formControlName="ES_VA_Near" [disableControl]="!isEditing">
+                      <input class="input vision" type="text" tabindex="36" formControlName="ES_VA_Near" [disableControl]="!isEditing">
                   </p>
                 </td>
                 <td>
                   <p class="control">
-                      <input class="input vision" type="text" formControlName="ES_Prism_R" [disableControl]="!isEditing">
+                      <input class="input vision" type="text" tabindex="37" formControlName="ES_Prism_R" [disableControl]="!isEditing">
                   </p>
                 </td>
                 <td rowspan="2" scope="rowgroup">
                   <p class="control">
-                      <input class="input vision" type="text" formControlName="ES_Remark" [disableControl]="!isEditing">
+                      <input class="input vision" type="text" tabindex="39" formControlName="ES_Remark" [disableControl]="!isEditing">
                   </p>
                 </td>
                 
@@ -334,32 +357,32 @@
                   <th>L</th>
                   <td>
                       <p class="control">
-                        <input class="input vision" type="text" formControlName="ES_SPH_L" [disableControl]="!isEditing">
+                        <input class="input vision" type="text" tabindex="26" formControlName="ES_SPH_L" [disableControl]="!isEditing">
                       </p>
                   </td>
                   <td>
                     <p class="control">
-                        <input class="input vision" type="text" formControlName="ES_CYL_L" [disableControl]="!isEditing">
+                        <input class="input vision" type="text" tabindex="28" formControlName="ES_CYL_L" [disableControl]="!isEditing">
                     </p>
                   </td>
                   <td>
                     <p class="control">
-                      <input class="input vision" type="text" formControlName="ES_Ax_L" [disableControl]="!isEditing">
+                      <input class="input vision" type="text" tabindex="30" formControlName="ES_Ax_L" [disableControl]="!isEditing">
                     </p>
                   </td>
                   <td>
                     <p class="control">
-                        <input class="input vision" type="text" formControlName="ES_VA_Dist_L" [disableControl]="!isEditing">
+                        <input class="input vision" type="text" tabindex="32" formControlName="ES_VA_Dist_L" [disableControl]="!isEditing">
                     </p>
                   </td>
                   <td>
                     <p class="control">
-                      <input class="input vision" type="text" formControlName="ES_ADD_L" [disableControl]="!isEditing">
+                      <input class="input vision" type="text" tabindex="35" formControlName="ES_ADD_L" [disableControl]="!isEditing">
                     </p>
                   </td>
                   <td>
                     <p class="control">
-                      <input class="input vision" type="text" formControlName="ES_Prism_L" [disableControl]="!isEditing">
+                      <input class="input vision" type="text" tabindex="38" formControlName="ES_Prism_L" [disableControl]="!isEditing">
                     </p>
                   </td>
               </tr>
@@ -399,49 +422,49 @@
                   <th>R</th>
                   <td>
                     <p class="control">
-                      <input class="input vision" type="text" tabindex="1" formControlName="NG_SPH_R" [disableControl]="!isEditing">
+                      <input class="input vision" type="text" tabindex="40" formControlName="NG_SPH_R" [disableControl]="!isEditing">
                     </p>
                   </td>
                   <td>
                     <p class="control">
-                        <input class="input vision" type="text" tabindex="3" formControlName="NG_CYL_R" [disableControl]="!isEditing">
+                        <input class="input vision" type="text" tabindex="42" formControlName="NG_CYL_R" [disableControl]="!isEditing">
                     </p>
                   </td>
                   <td>
                     <p class="control">
-                        <input class="input vision" type="text" tabindex="5" formControlName="NG_Ax_R" [disableControl]="!isEditing">
+                        <input class="input vision" type="text" tabindex="44" formControlName="NG_Ax_R" [disableControl]="!isEditing">
                     </p>
                   </td>                  
                   <td rowspan="2" scope="rowgroup">
                     <p class="control">
-                      <input class="input vision" type="text" tabindex="7" formControlName="NG_VA" [disableControl]="!isEditing">
+                      <input class="input vision" type="text" tabindex="46" formControlName="NG_VA" [disableControl]="!isEditing">
                     </p>
                   </td>
                   
                   <td>
                     <p class="control">
-                        <input class="input vision" type="text" tabindex="9" formControlName="NG_ADD_R" [disableControl]="!isEditing">
+                        <input class="input vision" type="text" tabindex="47" formControlName="NG_ADD_R" [disableControl]="!isEditing">
                     </p>
                   </td>
   
                   <td>
                     <p class="control">
-                        <input class="input vision" type="text" tabindex="11" formControlName="NG_PD_Dist_R" [disableControl]="!isEditing">
+                        <input class="input vision" type="text" tabindex="49" formControlName="NG_PD_Dist_R" [disableControl]="!isEditing">
                     </p>
                   </td>
                   <td>
                     <p class="control">
-                        <input class="input vision" type="text" tabindex="13" formControlName="NG_PD_Near_R" [disableControl]="!isEditing">
+                        <input class="input vision" type="text" tabindex="51" formControlName="NG_PD_Near_R" [disableControl]="!isEditing">
                     </p>
                   </td>
                   <td>
                     <p class="control">
-                        <input class="input vision" type="text" tabindex="15" formControlName="NG_PH_R" [disableControl]="!isEditing">
+                        <input class="input vision" type="text" tabindex="53" formControlName="NG_PH_R" [disableControl]="!isEditing">
                     </p>
                   </td>
                   <td rowspan="2" scope="rowgroup">
                     <p class="control">
-                        <input class="input vision" type="text" tabindex="16" formControlName="NG_Remark" [disableControl]="!isEditing">
+                        <input class="input vision" type="text" tabindex="55" formControlName="NG_Remark" [disableControl]="!isEditing">
                     </p>
                   </td>
                   
@@ -451,37 +474,37 @@
                     <th>L</th>
                     <td>
                         <p class="control">
-                          <input class="input vision" type="text" tabindex="2" formControlName="NG_SPH_L" [disableControl]="!isEditing">
+                          <input class="input vision" type="text" tabindex="41" formControlName="NG_SPH_L" [disableControl]="!isEditing">
                         </p>
                     </td>
                     <td>
                       <p class="control">
-                          <input class="input vision" type="text" tabindex="4" formControlName="NG_CYL_L" [disableControl]="!isEditing">
+                          <input class="input vision" type="text" tabindex="43" formControlName="NG_CYL_L" [disableControl]="!isEditing">
                       </p>
                     </td>
                     <td>
                       <p class="control">
-                        <input class="input vision" type="text" tabindex="6" formControlName="NG_Ax_L" [disableControl]="!isEditing">
+                        <input class="input vision" type="text" tabindex="45" formControlName="NG_Ax_L" [disableControl]="!isEditing">
                       </p>
                     </td>
                     <td>
                       <p class="control">
-                        <input class="input vision" type="text" tabindex="8" formControlName="NG_ADD_L" [disableControl]="!isEditing">
+                        <input class="input vision" type="text" tabindex="48" formControlName="NG_ADD_L" [disableControl]="!isEditing">
                       </p>
                     </td>
                     <td>
                       <p class="control">
-                          <input class="input vision" type="text" tabindex="10" formControlName="NG_PD_Dist_L" [disableControl]="!isEditing">
+                          <input class="input vision" type="text" tabindex="50" formControlName="NG_PD_Dist_L" [disableControl]="!isEditing">
                       </p>
                     </td>
                     <td>
                       <p class="control">
-                          <input class="input vision" type="text" tabindex="12" formControlName="NG_PD_Near_L" [disableControl]="!isEditing">
+                          <input class="input vision" type="text" tabindex="52" formControlName="NG_PD_Near_L" [disableControl]="!isEditing">
                       </p>
                     </td>
                     <td>
                       <p class="control">
-                        <input class="input vision" type="text" tabindex="14" formControlName="NG_PH_L" [disableControl]="!isEditing">
+                        <input class="input vision" type="text" tabindex="54" formControlName="NG_PH_L" [disableControl]="!isEditing">
                       </p>
                     </td>
                 </tr>
@@ -510,27 +533,27 @@
           <th>R</th>
           <td>
             <p class="control">
-              <input class="input vision" type="text" tabindex="1" formControlName="CL_SPH_R" [disableControl]="!isEditing">
+              <input class="input vision" type="text" tabindex="56" formControlName="CL_SPH_R" [disableControl]="!isEditing">
             </p>
           </td>
           <td>
             <p class="control">
-                <input class="input vision" type="text" tabindex="3" formControlName="CL_CYL_R" [disableControl]="!isEditing">
+                <input class="input vision" type="text" tabindex="58" formControlName="CL_CYL_R" [disableControl]="!isEditing">
             </p>
           </td>
           <td>
             <p class="control">
-                <input class="input vision" type="text" tabindex="5" formControlName="CL_Ax_R" [disableControl]="!isEditing">
+                <input class="input vision" type="text" tabindex="60" formControlName="CL_Ax_R" [disableControl]="!isEditing">
             </p>
           </td>
           <td>
             <p class="control">
-                <input class="input vision" type="text" tabindex="7" formControlName="CL_BC_R" [disableControl]="!isEditing">
+                <input class="input vision" type="text" tabindex="62" formControlName="CL_BC_R" [disableControl]="!isEditing">
             </p>
           </td>          
           <td rowspan="2" scope="rowgroup">
             <p class="control">
-              <input class="input vision" type="text" tabindex="9" formControlName="CL_Remark" [disableControl]="!isEditing">
+              <input class="input vision" type="text" tabindex="64" formControlName="CL_Remark" [disableControl]="!isEditing">
             </p>
           </td>
         </tr>
@@ -539,22 +562,22 @@
             <th>L</th>
             <td>
               <p class="control">
-                <input class="input vision" type="text" tabindex="2" formControlName="CL_SPH_L" [disableControl]="!isEditing">
+                <input class="input vision" type="text" tabindex="57" formControlName="CL_SPH_L" [disableControl]="!isEditing">
               </p>
             </td>
             <td>
               <p class="control">
-                  <input class="input vision" type="text" tabindex="4" formControlName="CL_CYL_L" [disableControl]="!isEditing">
+                  <input class="input vision" type="text" tabindex="59" formControlName="CL_CYL_L" [disableControl]="!isEditing">
               </p>
             </td>
             <td>
               <p class="control">
-                  <input class="input vision" type="text" tabindex="6" formControlName="CL_Ax_L" [disableControl]="!isEditing">
+                  <input class="input vision" type="text" tabindex="61" formControlName="CL_Ax_L" [disableControl]="!isEditing">
               </p>
             </td>
             <td>
               <p class="control">
-                  <input class="input vision" type="text" tabindex="8" formControlName="CL_BC_L" [disableControl]="!isEditing">
+                  <input class="input vision" type="text" tabindex="63" formControlName="CL_BC_L" [disableControl]="!isEditing">
               </p>
             </td>
         </tr>
