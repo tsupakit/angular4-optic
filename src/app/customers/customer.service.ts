@@ -11,25 +11,24 @@ export class CustomerService {
   private basePath: string = '/customers';
   customers: FirebaseListObservable<Customer[]> = null; //  list of objects
   customer: FirebaseObjectObservable<Customer> = null; //   single object
-  
+
   constructor(private db: AngularFireDatabase) {
-    this.customers = db.list(this.basePath, { 
-      query: { limitToLast : 1 } 
-    })
+    this.customers = db.list(this.basePath, {
+      query: { limitToLast : 1 }
+    });
   }
 
   getCustomerList(query={}): FirebaseListObservable<Customer[]> {
-    this.customers = this.db.list(this.basePath, {
+    return this.db.list(this.basePath, {
       query: query
     });
-    return this.customers
   }
 
   getCustomers(start, end): FirebaseListObservable<Customer[]> {
     return this.db.list(this.basePath, {
       query: {
         orderByChild: 'firstName',
-        limitToFirst: 10,
+        limitToLast: 10,
         startAt: start,
         endAt: end
       }
@@ -41,24 +40,24 @@ export class CustomerService {
   // Return a single observable item
   getCustomer(key: string): FirebaseObjectObservable<Customer> {
     const itemPath =  `${this.basePath}/${key}`;
-    this.customer = this.db.object(itemPath)
-    
-    return this.customer
+    this.customer = this.db.object(itemPath);
+
+    return this.customer;
   }
 
   createCustomer(customer: Customer): void  {
     this.customers.push(customer)
-      .catch(error => this.handleError(error))
+      .catch(error => this.handleError(error));
   }
   // Update an existing item
   updateCustomer(key: string, value: any): void {
     this.customers.update(key, value)
-      .catch(error => this.handleError(error))
+      .catch(error => this.handleError(error));
   }
   // Deletes a single item
   deleteCustomer(key: string): void {
       this.customers.remove(key)
-        .catch(error => this.handleError(error))
+        .catch(error => this.handleError(error));
   }
   // Deletes the entire list of items
   // deleteAll(): void {
@@ -67,7 +66,7 @@ export class CustomerService {
   // }
   // Default error handling for all actions
   private handleError(error) {
-    console.log(error)
+    console.log(error);
   }
 
 

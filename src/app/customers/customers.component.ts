@@ -4,7 +4,7 @@ import { FormControl } from '@angular/forms';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject'
+import { Subject } from 'rxjs/Subject';
 import * as firebase from 'firebase/app';
 
 import { Customer } from './customer.model';
@@ -19,7 +19,6 @@ import { CustomerService } from './customer.service';
 export class CustomersComponent implements OnInit {
 
   user: Observable<firebase.User>;
-  //items: FirebaseListObservable<any[]>;
   msgVal: string = '';
   searchControl = new FormControl();
 
@@ -48,38 +47,34 @@ export class CustomersComponent implements OnInit {
     this.afAuth.auth.signOut();
   }
 
-  startAt = new Subject();
-  endAt = new Subject();
+  //startAt = new Subject();
+  //endAt = new Subject();
+  startAt: string;
+  endAt: string;
   //lastKeypress: number = 0;
-  
-  search() { //$event) {
-    // if ($event.timeStamp - this.lastKeypress > 200) {     
-    // }
-    //this.lastKeypress = $event.timeStamp;
-    const value = this.searchControl.value
-    console.log(value);
-    this.startAt.next(value);
-    this.endAt.next(value + "\uf8ff");
 
-    this.customers = this.customerService.getCustomers(this.startAt, this.endAt); //.subscribe(customers => this.customers = customers );
-    console.log(this.customers);
+  search() {
+    const value = this.searchControl.value || '';
+    //this.startAt.next(value);
+    //this.endAt.next(value + '\uf8ff');
+    this.startAt = value;
+    this.endAt = value + '\uf8ff';
+
+    this.customers = this.customerService.getCustomers(this.startAt, this.endAt);
   }
 
-  createNew() : void {
+  createNew(): void {
     this.customerService.selectedCustomer = null;
     this.router.navigate(['/customer/profile']);
   }
 
-  onSelect (customer: Customer) : void {
+  onSelect (customer: Customer): void {
     this.customerService.selectedCustomer = customer;
     this.router.navigate(['/customer/profile']);
   }
 
   ngOnInit() {
-    this.customers = this.customerService.getCustomerList({limitToLast: 50})
-
-    // this.customerService.getCustomers(this.startAt, this.endAt)
-    // .subscribe(customers => this.customers = customers );
+    this.customers = this.customerService.getCustomers(this.startAt, this.endAt);
   }
 
 }
