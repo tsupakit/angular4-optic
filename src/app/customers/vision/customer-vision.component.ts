@@ -71,7 +71,7 @@ export class CustomerVisionComponent implements OnInit {
       'PD_Dist_R' : [vision.PD_Dist_R || ''],
       'PD_Dist_L' : [vision.PD_Dist_L || ''],
       'PD_Near_R' : [vision.PD_Near_R || ''],
-      'PD_Near_L' : [vision.PD_Near_L || ''], 
+      'PD_Near_L' : [vision.PD_Near_L || ''],
 
       // Old Glasses
       'OG_SPH_R' : [vision.oldGlassesSight.SPH_R || ''],
@@ -139,7 +139,11 @@ export class CustomerVisionComponent implements OnInit {
   }
 
   addVisionCheck(): void {
+    const newVision = new VisionCheck();
+    this.customer.visionChecks.splice(0, 0, newVision);
+    this.selectVisionPage(0);
     this.isAdding = true;
+    this.isEditing = true;
   }
 
   cancelEditing(): void {

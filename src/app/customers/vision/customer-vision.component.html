@@ -1,6 +1,6 @@
 <form [formGroup]="visionForm" (ngSubmit)="saveCustomerVision(visionForm.value)">
   <div class="columns">
-      <div class="column is-10">
+      <div class="column is-9">
         <div class="level">
             <div class="level-left ">
               <div class="level-item">
@@ -27,6 +27,14 @@
       <div class="column">
         <div class="field is-grouped is-grouped-right">
           <p class="control"> <!-- *ngIf="!isEditing"> -->
+            <button type="button" class="button is-medium is-info" title="Add" (click)="addVisionCheck()" [disabled]="isEditing">
+              <span class="icon is-medium">
+                <i class="fa fa-plus"></i>
+              </span>
+            </button>
+          </p>
+
+          <p class="control"> <!-- *ngIf="!isEditing"> -->
             <button type="button" class="button is-medium" title="Edit" (click)="isEditing = true" [disabled]="isEditing">
               <span class="icon is-medium">
                 <i class="fa fa-pencil"></i>
@@ -35,7 +43,7 @@
           </p>
 
           <p class="control">
-            <button type="submit" class="button is-success is-medium" title="Save" [disabled]="!isEditing">
+            <button type="submit" class="button is-medium is-success" title="Save" [disabled]="!isEditing">
               <span class="icon is-medium">
                 <i class="fa fa-floppy-o"></i>
               </span>
@@ -43,7 +51,7 @@
           </p>
 
           <p class="control"> <!-- *ngIf="customerForm.dirty"> -->
-            <button type="button" class="button is-warning is-medium" title="Reset" (click)="cancelEditing()" [disabled]="!isEditing">
+            <button type="button" class="button is-medium is-warning" title="Reset" (click)="cancelEditing()" [disabled]="!isEditing">
               <span class="icon is-medium">
                 <i class="fa fa-refresh"></i>
               </span>
