@@ -72,7 +72,7 @@ export class CustomerProfileComponent implements OnInit {
     //console.log("Cancel editing")
     //confirm reset if any changes.
     // if (this.customerForm.dirty) {
-    // }    
+    // }
 
     this.customerForm.reset({
       'firstName' : this.customer.firstName,
@@ -92,8 +92,8 @@ export class CustomerProfileComponent implements OnInit {
 
   saveCustomer(formValue: any) {
 
-    if (!this.customerForm.valid){
-      console.log("Invalid form saving")
+    if (!this.customerForm.valid) {
+      console.log("Invalid form saving");
       return;
     }
 
@@ -128,9 +128,9 @@ export class CustomerProfileComponent implements OnInit {
 
   private editCustomer(customer: Customer) {
     // //test eye sight data
-    // const visionCheck = new VisionCheck();    
+    // const visionCheck = new VisionCheck();
     // visionCheck.checkedAt = firebase.database.ServerValue.TIMESTAMP;
-    // visionCheck.VASC_R = "แสง";    
+    // visionCheck.VASC_R = "แสง";
     // visionCheck.VASC_L = "แสง";
     // visionCheck.VASC = "0.04";
     // visionCheck.PinH_R = "0.1";

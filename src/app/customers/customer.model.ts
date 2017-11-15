@@ -82,7 +82,7 @@ class NewGlassesSight extends Sight {
 class ContactLensSight extends Sight {
     BC_R: string;
     BC_L: string;
-    
+
     remark: string;
 }
 
@@ -118,27 +118,27 @@ export class VisionCheck {
         this.newGlassesSight = new NewGlassesSight();
     }
 
-    static initOldGlassesSight = (vision: VisionCheck) => { 
+    static initOldGlassesSight = (vision: VisionCheck) => {
         vision.oldGlassesSight = new OldGlassesSight();
     }
 
-    static initEyeSight = (vision: VisionCheck) => { 
+    static initEyeSight = (vision: VisionCheck) => {
         vision.eyeSight = new EyeSight();
     }
 
-    static initNewGlassesSight = (vision: VisionCheck) => { 
+    static initNewGlassesSight = (vision: VisionCheck) => {
         vision.newGlassesSight = new NewGlassesSight();
     }
 
-    static initContactLensSight = (vision: VisionCheck) => { 
+    static initContactLensSight = (vision: VisionCheck) => {
         vision.contactLensSight = new ContactLensSight();
     }
 
-    static SampleData() : VisionCheck {
+    static SampleData(): VisionCheck {
         const vision = new VisionCheck();
         vision.checkedAt = new Date().toLocaleDateString();
         vision.oldGlassesSight = OldGlassesSight.SampleData();
-        vision.eyeSight = EyeSight.SampleData();        
+        vision.eyeSight = EyeSight.SampleData();
 
         return vision;
     }

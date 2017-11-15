@@ -19,8 +19,8 @@ import { CustomerService } from './customer.service';
 export class CustomersComponent implements OnInit {
 
   user: Observable<firebase.User>;
-  msgVal: string = '';
   searchControl = new FormControl();
+  orderBy: string = 'firstName';
 
   //customers: any[]; 
   customers: FirebaseListObservable<Customer[]>;
@@ -60,8 +60,13 @@ export class CustomersComponent implements OnInit {
     this.startAt = value;
     this.endAt = value + '\uf8ff';
 
-    this.customers = this.customerService.getCustomers(this.startAt, this.endAt);
+    this.customers = this.customerService.getCustomers(this.orderBy, this.startAt, this.endAt);
   }
+
+  // setOrderBy(value: string): void {
+  //   this.orderBy = value;
+  //   this.search();
+  // }
 
   createNew(): void {
     this.customerService.selectedCustomer = null;
@@ -74,7 +79,7 @@ export class CustomersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.customers = this.customerService.getCustomers(this.startAt, this.endAt);
+    this.customers = this.customerService.getCustomers(this.orderBy, this.startAt, this.endAt);
   }
 
 }

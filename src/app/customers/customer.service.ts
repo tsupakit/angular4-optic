@@ -24,10 +24,10 @@ export class CustomerService {
     });
   }
 
-  getCustomers(start, end): FirebaseListObservable<Customer[]> {
+  getCustomers(orderBy: string, start, end): FirebaseListObservable<Customer[]> {
     return this.db.list(this.basePath, {
       query: {
-        orderByChild: 'firstName',
+        orderByChild: orderBy,
         limitToLast: 10,
         startAt: start,
         endAt: end

@@ -54,11 +54,11 @@
 <section class="section">
     <div class="container">
         <div class="columns">
-            <div class="column is-half">
+            <div class="column is-one-third">
                 <form (ngSubmit)="search()">
                     <div class="field has-addons has-addons-right">                        
                         <p class="control is-expanded">
-                            <input class="input" type="text" placeholder="Find customer" [formControl]="searchControl" />
+                            <input class="input" type="text" placeholder="Search customer by first name" [formControl]="searchControl" />
                         </p>
                         <p class="control">
                             <button type="submit" class="button is-info">Search</button>
@@ -66,13 +66,24 @@
                     </div>
                 </form>
             </div>
-            <div class="column is-half">
+            <div class="column">
+                <!-- <nav class="pagination is-centered" role="navigation" aria-label="pagination"> -->
+                    <!-- <a class="pagination-previous">Previous</a>
+                    <a class="pagination-next">Next page</a> -->
+                    <!-- <ul class="pagination-list">
+                        <li *ngFor="let index of customer.visionChecks; index as i">
+                            <a class="pagination-link" [class.is-current]="i==pageIndex" aria-label="Goto page i" (click)="selectVisionPage(i)">{{i + 1}}</a>
+                        </li>
+                    </ul>
+                </nav> -->
+            </div>
+            <div class="column">
                 <div class="level has-text-right">
                     <div class="level-left"></div>
                     <div class="level-right">
-                        <p class="level-item"><strong>Sort By</strong></p>
-                        <p class="level-item"><a>Name</a></p>
-                        <p class="level-item"><a>Recent</a></p>            
+                        <!-- <p class="level-item"><strong>Sort By</strong></p>
+                        <p class="level-item"><a (click)="setOrderBy('firstName')">Name</a></p>
+                        <p class="level-item"><a (click)="setOrderBy('updatedAt')">Recent</a></p> -->
                         <p class="level-item">
                             <a class="button is-success" (click)="createNew()">New</a>
                         </p>

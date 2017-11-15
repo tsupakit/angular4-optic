@@ -31,19 +31,19 @@ export class CustomerVisionComponent implements OnInit {
     if (this.customer.visionChecks) {
       this.customer.visionChecks = _.orderBy(this.customer.visionChecks, ['checkedAt'], ['desc']);
       this.vision = this.customer.visionChecks[this.pageIndex];
-      this.totalCheck = this.customer.visionChecks.length;    
+      this.totalCheck = this.customer.visionChecks.length;
     }
 
     //console.log(this.vision);
     // enable form if no vision check.
-    if (this.totalCheck == 0) {
+    if (this.totalCheck === 0) {
       this.isEditing = true;
     }
 
     this.visionForm = this.fb.group(this.populateFormValues(this.vision));
   }
 
-  private populateFormValues(vision: VisionCheck) : any {
+  private populateFormValues(vision: VisionCheck): any {
 
     if (!vision.oldGlassesSight) {
       VisionCheck.initOldGlassesSight(vision);
@@ -124,7 +124,7 @@ export class CustomerVisionComponent implements OnInit {
       'NG_PH_R' : [vision.newGlassesSight.PH_R || ''],
       'NG_PH_L' : [vision.newGlassesSight.PH_L || ''],
       'NG_Remark' : [vision.newGlassesSight.remark || ''],
-      
+
       // Contact Lens
       'CL_SPH_R' : [vision.contactLensSight.SPH_R || ''],
       'CL_SPH_L' : [vision.contactLensSight.SPH_L || ''],
@@ -135,7 +135,7 @@ export class CustomerVisionComponent implements OnInit {
       'CL_BC_R' : [vision.contactLensSight.BC_R || ''],
       'CL_BC_L' : [vision.contactLensSight.BC_L || ''],
       'CL_Remark' : [vision.contactLensSight.remark || ''],
-    }
+    };
   }
 
   addVisionCheck(): void {
@@ -144,9 +144,9 @@ export class CustomerVisionComponent implements OnInit {
 
   cancelEditing(): void {
     //confirm reset if any changes.
-    // if (this.visionForm.dirty) {      
+    // if (this.visionForm.dirty) {
     // }
-    
+
     this.visionForm.reset(this.populateFormValues(this.vision));
 
     if (this.totalCheck > 0) {
@@ -154,7 +154,7 @@ export class CustomerVisionComponent implements OnInit {
     }
   }
 
-  selectVisionPage(index: number): void { 
+  selectVisionPage(index: number): void {
     this.pageIndex = index;
     this.vision = this.customer.visionChecks[this.pageIndex];
     this.visionForm.setValue(this.populateFormValues(this.vision));
@@ -166,19 +166,20 @@ export class CustomerVisionComponent implements OnInit {
     const vision = this.setVisionValue(formValue);
 
     // total check is 0 means newly adding
-    if (this.totalCheck == 0) {
+    if (this.totalCheck === 0) {
       vision.checkedAt = firebase.database.ServerValue.TIMESTAMP;
-      vision.checkedBy = "developer";
+      vision.checkedBy = 'developer';
 
       this.customer.visionChecks = new Array<VisionCheck>();
       this.customer.visionChecks.push(vision);
     } else {
       vision.updatedAt = firebase.database.ServerValue.TIMESTAMP;
-      vision.updatedBy = "developer";
+      vision.updatedBy = 'developer';
 
       this.customer.visionChecks[this.pageIndex] = vision;
     }
 
+    this.customer.updatedAt = firebase.database.ServerValue.TIMESTAMP;
     this.customerService.updateCustomer(this.customer.$key, this.customer);
 
     this.isEditing = false;
@@ -249,7 +250,7 @@ export class CustomerVisionComponent implements OnInit {
     this.vision.newGlassesSight.PH_R = formValue.NG_PH_R;
     this.vision.newGlassesSight.PH_L = formValue.NG_PH_L;
     this.vision.newGlassesSight.remark = formValue.NG_Remark;
-    
+
     // contact lens sight
     this.vision.contactLensSight.SPH_R = formValue.CL_SPH_R;
     this.vision.contactLensSight.SPH_L = formValue.CL_SPH_L;

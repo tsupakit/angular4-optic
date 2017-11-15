@@ -15,7 +15,7 @@
                   <a class="pagination-next">Next page</a> -->
                   <ul class="pagination-list">
                     <li *ngFor="let vision of customer.visionChecks; index as i">
-                      <a class="pagination-link" [class.is-current]="i==pageIndex" aria-label="Goto page i" (click)="selectVisionPage(i)">{{i + 1}}</a>
+                      <a class="pagination-link" [class.is-current]="i==pageIndex" aria-label="Goto page i" (click)="selectVisionPage(i)">{{customer.visionChecks.length - i}}</a>
                     </li>
                   </ul>
                 </nav>
