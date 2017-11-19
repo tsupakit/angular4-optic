@@ -22,7 +22,7 @@ export class CustomerVisionComponent implements OnInit {
   // selected vision object (page)
   vision: VisionCheck = new VisionCheck();
   pageIndex: number = 0;
-  totalCheck: number = 0;
+  //totalCheck: number = 0;
 
   constructor(private customerService: CustomerService, private fb: FormBuilder) { }
 
@@ -31,12 +31,12 @@ export class CustomerVisionComponent implements OnInit {
     if (this.customer.visionChecks) {
       this.customer.visionChecks = _.orderBy(this.customer.visionChecks, ['checkedAt'], ['desc']);
       this.vision = this.customer.visionChecks[this.pageIndex];
-      this.totalCheck = this.customer.visionChecks.length;
+      //this.totalCheck = this.customer.visionChecks.length;
     }
-
     //console.log(this.vision);
     // enable form if no vision check.
-    if (this.totalCheck === 0) {
+    //if (this.customer.visionChecks.length === 0) {
+    else {
       this.isEditing = true;
     }
 
@@ -151,11 +151,20 @@ export class CustomerVisionComponent implements OnInit {
     // if (this.visionForm.dirty) {
     // }
 
+    if (this.isAdding) {
+      // remove current object.
+      this.customer.visionChecks.splice(0, 1);
+      this.vision = this.customer.visionChecks[this.pageIndex];
+    }
+
     this.visionForm.reset(this.populateFormValues(this.vision));
 
-    if (this.totalCheck > 0) {
+    // disable form if there are existing checks
+    if (this.customer.visionChecks && this.customer.visionChecks.length > 0) {
       this.isEditing = false;
     }
+
+    this.isAdding = false;
   }
 
   selectVisionPage(index: number): void {
@@ -169,13 +178,15 @@ export class CustomerVisionComponent implements OnInit {
 
     const vision = this.setVisionValue(formValue);
 
-    // total check is 0 means newly adding
-    if (this.totalCheck === 0) {
-      vision.checkedAt = firebase.database.ServerValue.TIMESTAMP;
-      vision.checkedBy = 'developer';
-
+    // fist check ever!!
+    if (!this.customer.visionChecks) {
       this.customer.visionChecks = new Array<VisionCheck>();
       this.customer.visionChecks.push(vision);
+    }
+
+    if (!vision.checkedAt) {
+      vision.checkedAt = firebase.database.ServerValue.TIMESTAMP;
+      vision.checkedBy = 'developer';
     } else {
       vision.updatedAt = firebase.database.ServerValue.TIMESTAMP;
       vision.updatedBy = 'developer';
@@ -187,6 +198,7 @@ export class CustomerVisionComponent implements OnInit {
     this.customerService.updateCustomer(this.customer.$key, this.customer);
 
     this.isEditing = false;
+    this.isAdding = false;
 
     console.log(vision.checkedAt);
   }
