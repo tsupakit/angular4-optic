@@ -177,24 +177,25 @@ export class CustomerVisionComponent implements OnInit {
   saveCustomerVision(formValue: any) {
 
     const vision = this.setVisionValue(formValue);
+    const now = new Date();
 
-    // fist check ever!!
+    // first check ever!!
     if (!this.customer.visionChecks) {
       this.customer.visionChecks = new Array<VisionCheck>();
       this.customer.visionChecks.push(vision);
     }
 
     if (!vision.checkedAt) {
-      vision.checkedAt = firebase.database.ServerValue.TIMESTAMP;
+      vision.checkedAt = now.getTime();
       vision.checkedBy = 'developer';
     } else {
-      vision.updatedAt = firebase.database.ServerValue.TIMESTAMP;
+      vision.updatedAt = now.getTime();
       vision.updatedBy = 'developer';
 
       this.customer.visionChecks[this.pageIndex] = vision;
     }
 
-    this.customer.updatedAt = firebase.database.ServerValue.TIMESTAMP;
+    this.customer.updatedAt = now.getTime();
     this.customerService.updateCustomer(this.customer.$key, this.customer);
 
     this.isEditing = false;

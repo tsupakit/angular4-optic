@@ -45,7 +45,7 @@ class EyeSight extends Sight {
 
     remark: string;
 
-    static SampleData() : EyeSight {
+    static SampleData(): EyeSight {
         let sight = new EyeSight();
         sight.SPH_R = '-6';
         sight.SPH_L = '-9.5';
@@ -87,10 +87,10 @@ class ContactLensSight extends Sight {
 }
 
 export class VisionCheck {
-    checkedAt: Object; //represent as date time in string format
+    checkedAt: number; //represent as date time
     checkedBy: string;
 
-    updatedAt: Object; //represent as date time in string format
+    updatedAt: number; //represent as date time
     updatedBy: string;
 
     //sight information
@@ -136,7 +136,7 @@ export class VisionCheck {
 
     static SampleData(): VisionCheck {
         const vision = new VisionCheck();
-        vision.checkedAt = new Date().toLocaleDateString();
+        vision.checkedAt = new Date().getTime();
         vision.oldGlassesSight = OldGlassesSight.SampleData();
         vision.eyeSight = EyeSight.SampleData();
 
@@ -153,11 +153,11 @@ export class Customer {
     sex: string;
     telephoneNo: string;
     address: string;
-    job: string;    
+    job: string;
     cc: string; //reason
     remark: string;
-    createdAt: Object; //firebase.database.ServerValue.TIMESTAMP
-    updatedAt: Object; //firebase.database.ServerValue.TIMESTAMP
+    createdAt: number; //firebase.database.ServerValue.TIMESTAMP
+    updatedAt: number; //firebase.database.ServerValue.TIMESTAMP
 
     visionChecks: VisionCheck[];
 
@@ -166,7 +166,7 @@ export class Customer {
         this.lastName = lastName;
     }
 
-    static SampleData() : Customer {
+    static SampleData(): Customer {
         const customer = new Customer('ณิชกานต์', 'อินสว่าง');
         customer.age = 43;
         customer.sex = 'F';

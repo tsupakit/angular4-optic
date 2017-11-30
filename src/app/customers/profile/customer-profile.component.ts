@@ -122,7 +122,7 @@ export class CustomerProfileComponent implements OnInit {
   }
 
   private createCustomer(customer: Customer) {
-    customer.createdAt = firebase.database.ServerValue.TIMESTAMP;
+    customer.createdAt = new Date().getTime();
     this.customerService.createCustomer(customer);
   }
 
@@ -142,7 +142,7 @@ export class CustomerProfileComponent implements OnInit {
 
     // customer.visionChecks.push(visionCheck);
     // //
-    customer.updatedAt = firebase.database.ServerValue.TIMESTAMP;
+    customer.updatedAt = new Date().getTime();
     this.customerService.updateCustomer(this.customer.$key, customer);
   }
 
