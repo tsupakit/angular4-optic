@@ -26,6 +26,7 @@
       <!-- <div class="column"></div> -->
       <div class="column">
         <div class="field is-grouped is-grouped-right">
+          
           <p class="control"> <!-- *ngIf="!isEditing"> -->
             <button type="button" class="button is-medium is-info" title="Add" (click)="addVisionCheck()" [disabled]="isEditing">
               <span class="icon is-medium">
@@ -65,11 +66,14 @@
   <div class="columns">
     <div class="column">
       <div class="field is-grouped is-grouped-multiline">
-        <div class="control">
+        <!-- <div class="control">
           <div class="tags has-addons">
             <span class="tag is-medium is-light">Checked At</span>
             <span class="tag is-medium is-info">{{vision.checkedAt || '' | date: 'medium'}}</span>
           </div>
+        </div> -->
+        <div class="control">
+            <date-picker formControlName="date" format="LL" showClearButton="false" [disabled]="!isEditing"></date-picker>
         </div>
       
         <div class="control">

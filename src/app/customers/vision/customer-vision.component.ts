@@ -63,6 +63,7 @@ export class CustomerVisionComponent implements OnInit {
 
     // undefined checking using || for prevent error from unsaved properties when reset the form.
     return {
+      'date' : [new Date(vision.checkedAt)],
       'VASC_R' : [vision.VASC_R || ''],
       'VASC_L' : [vision.VASC_L || ''],
       'VASC' : [vision.VASC || ''],

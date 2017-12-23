@@ -1,13 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // import {MdExpansionModule, MdInputModule, MdButtonModule} from '@angular/material';
 // import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-
+import { OverlayModule } from 'angular-io-overlay';
+import { DatePickerModule } from 'angular-io-datepicker';
 import { AngularFireModule } from 'angularfire2';
 
 // New imports to update based on AngularFire2 version 4
@@ -49,11 +50,11 @@ const ROUTES = [
     AppComponent,
     DisableControlDirective,
     CustomersComponent,
-    CustomerProfileComponent,    
+    CustomerProfileComponent,
     CustomerVisionComponent
   ],
   imports: [
-    BrowserModule, 
+    BrowserModule,
     // BrowserAnimationsModule,
     // MdExpansionModule,
     // MdInputModule,
@@ -63,7 +64,9 @@ const ROUTES = [
     RouterModule.forRoot(ROUTES), // Add routes to the app
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    OverlayModule,
+    DatePickerModule
   ],
   providers: [CustomerService],
   bootstrap: [AppComponent]
