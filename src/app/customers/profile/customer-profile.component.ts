@@ -22,7 +22,7 @@ export class CustomerProfileComponent implements OnInit {
 
   //@Input() customer: Customer;
   private customer: Customer;
-  customerForm: FormGroup;  
+  customerForm: FormGroup;
   isEditing: boolean;
 
   user: Observable<firebase.User>;
@@ -49,7 +49,7 @@ export class CustomerProfileComponent implements OnInit {
   }
 
   private initialize() {
-    // if selected is not null
+    // if selected is null
     if (!this.customer) {
       this.isEditing = true;
       this.customer = new Customer('', '');
@@ -93,7 +93,7 @@ export class CustomerProfileComponent implements OnInit {
   saveCustomer(formValue: any) {
 
     if (!this.customerForm.valid) {
-      console.log("Invalid form saving");
+      console.log('Invalid form saving');
       return;
     }
 

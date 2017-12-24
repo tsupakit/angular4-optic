@@ -113,6 +113,7 @@ export class VisionCheck {
      *
      */
     constructor() {
+        this.checkedAt = new Date().getTime();
         this.oldGlassesSight = new OldGlassesSight();
         this.eyeSight = new EyeSight();
         this.newGlassesSight = new NewGlassesSight();
@@ -165,6 +166,10 @@ export class Customer {
         this.firstName = firstName;
         this.lastName = lastName;
     }
+
+    // isNew(): boolean {
+    //     return (this.$key) == '';
+    // }
 
     static SampleData(): Customer {
         const customer = new Customer('ณิชกานต์', 'อินสว่าง');

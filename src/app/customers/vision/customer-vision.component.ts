@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { Observable } from 'rxjs/Observable';
+import { AngularFireAuth } from 'angularfire2/auth';
+
 import { Customer, VisionCheck } from '../customer.model';
 import { CustomerService } from '../customer.service';
 //import { DisableControlDirective } from '../../directives/disable-control.directive';
@@ -15,6 +18,8 @@ import * as _ from 'lodash';
 export class CustomerVisionComponent implements OnInit {
   @Input() customer: Customer;
 
+  user: string;
+
   visionForm: FormGroup;
   isAdding: boolean;
   isEditing: boolean;
@@ -24,9 +29,14 @@ export class CustomerVisionComponent implements OnInit {
   pageIndex: number = 0;
   //totalCheck: number = 0;
 
-  constructor(private customerService: CustomerService, private fb: FormBuilder) { }
+  constructor(private afAuth: AngularFireAuth, private customerService: CustomerService, private fb: FormBuilder) { }
 
   ngOnInit() {
+
+    this.afAuth.authState.subscribe(u => {
+      this.user = u.uid;
+      console.log(this.user);
+    });
 
     if (this.customer.visionChecks) {
       this.customer.visionChecks = _.orderBy(this.customer.visionChecks, ['checkedAt'], ['desc']);
@@ -153,7 +163,7 @@ export class CustomerVisionComponent implements OnInit {
     // }
 
     if (this.isAdding) {
-      // remove current object.
+      // remove new object that added to the top of the list.
       this.customer.visionChecks.splice(0, 1);
       this.vision = this.customer.visionChecks[this.pageIndex];
     }
@@ -188,10 +198,10 @@ export class CustomerVisionComponent implements OnInit {
 
     if (!vision.checkedAt) {
       vision.checkedAt = now.getTime();
-      vision.checkedBy = 'developer';
+      vision.checkedBy = this.user;
     } else {
       vision.updatedAt = now.getTime();
-      vision.updatedBy = 'developer';
+      vision.updatedBy = this.user;
 
       this.customer.visionChecks[this.pageIndex] = vision;
     }
