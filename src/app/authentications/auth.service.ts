@@ -41,7 +41,7 @@ export class AuthService {
 
   // Anonymous User
   get currentUserAnonymous(): boolean {
-    return this.authenticated ? this.authState.isAnonymous : false
+    return this.authenticated ? this.authState.isAnonymous : false;
   }
 
   // Returns current user display name or Guest
@@ -51,7 +51,7 @@ export class AuthService {
     } else if (this.currentUserAnonymous) {
       return 'Anonymous';
     } else {
-      return this.authState['displayName'] || 'User without a Name'; 
+      return this.authState['displayName'] || 'User without a Name';
     }
   }
 

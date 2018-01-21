@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { environment } from '../environments/environment';
 
 // import {MdExpansionModule, MdInputModule, MdButtonModule} from '@angular/material';
 // import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -19,15 +20,7 @@ import { CustomersComponent } from './customers/customers.component';
 import { CustomerProfileComponent } from './customers/profile/customer-profile.component';
 import { DisableControlDirective } from './directives/disable-control.directive';
 import { CustomerVisionComponent } from './customers/vision/customer-vision.component';
-
-export const firebaseConfig = {
-  apiKey: "AIzaSyCs2NEgHP3U0JXaKnhRI7_2l80n9qiOFZU",
-  authDomain: "ravipanich-optic.firebaseapp.com",
-  databaseURL: "https://ravipanich-optic.firebaseio.com",
-  projectId: "ravipanich-optic",
-  storageBucket: "ravipanich-optic.appspot.com",
-  messagingSenderId: "92362886527"
-};
+import { UserLoginComponent } from './users/user-login/user-login.component';
 
 const ROUTES = [
   {
@@ -51,7 +44,8 @@ const ROUTES = [
     DisableControlDirective,
     CustomersComponent,
     CustomerProfileComponent,
-    CustomerVisionComponent
+    CustomerVisionComponent,
+    UserLoginComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +56,7 @@ const ROUTES = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(ROUTES), // Add routes to the app
-    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     OverlayModule,
