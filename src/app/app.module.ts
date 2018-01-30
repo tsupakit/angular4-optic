@@ -20,7 +20,8 @@ import { CustomersComponent } from './customers/customers.component';
 import { CustomerProfileComponent } from './customers/profile/customer-profile.component';
 import { DisableControlDirective } from './directives/disable-control.directive';
 import { CustomerVisionComponent } from './customers/vision/customer-vision.component';
-import { UserLoginComponent } from './users/user-login/user-login.component';
+import { UserLoginComponent } from './users/user-login.component';
+import { AuthService } from './authentications/auth.service';
 
 const ROUTES = [
   {
@@ -31,10 +32,14 @@ const ROUTES = [
   {
     path: 'customer/main',
     component: CustomersComponent
-  }, 
-  { 
-    path: 'customer/profile', 
+  },
+  {
+    path: 'customer/profile',
     component: CustomerProfileComponent
+  },
+  {
+    path: 'login',
+    component: UserLoginComponent
   }
 ];
 
@@ -42,6 +47,7 @@ const ROUTES = [
   declarations: [
     AppComponent,
     DisableControlDirective,
+    UserLoginComponent,
     CustomersComponent,
     CustomerProfileComponent,
     CustomerVisionComponent,
@@ -62,7 +68,7 @@ const ROUTES = [
     OverlayModule,
     DatePickerModule
   ],
-  providers: [CustomerService],
+  providers: [CustomerService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

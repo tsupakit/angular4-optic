@@ -14,6 +14,8 @@ export class UserLoginComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    console.log(this.auth.currentUser);
+    console.log(this.auth.currentUserDisplayName);
   }
 
   private afterSignIn(): void {
