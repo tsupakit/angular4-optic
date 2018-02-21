@@ -14,8 +14,6 @@ export class UserLoginComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    console.log(this.auth.currentUser);
-    console.log(this.auth.currentUserDisplayName);
   }
 
   private afterSignIn(): void {
@@ -26,6 +24,10 @@ export class UserLoginComponent implements OnInit {
   signInWithGoogle(): void {
     this.auth.googleLogin()
       .then(() => this.afterSignIn());
+  }
+
+  signOut(): void {
+    this.auth.signOut();
   }
 
 }

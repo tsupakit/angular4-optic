@@ -1,8 +1,11 @@
-<div *ngIf="!auth.currentUser; else alreadyLoggedIn">
+<div *ngIf="!(auth.currentUserObservable | async); else alreadyLoggedIn">
   <button (click)="signInWithGoogle()">
     Connect Google
   </button>
   <ng-template #alreadyLoggedIn>
       already logged in!
   </ng-template>
+</div>
+<div>
+  <button (click)="signOut()">Sign Out</button>
 </div>

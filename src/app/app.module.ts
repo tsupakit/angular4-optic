@@ -22,6 +22,7 @@ import { DisableControlDirective } from './directives/disable-control.directive'
 import { CustomerVisionComponent } from './customers/vision/customer-vision.component';
 import { UserLoginComponent } from './users/user-login.component';
 import { AuthService } from './authentications/auth.service';
+import { AuthGuardService } from './authentications/auth-guard.service';
 
 const ROUTES = [
   {
@@ -31,11 +32,13 @@ const ROUTES = [
   },
   {
     path: 'customer/main',
-    component: CustomersComponent
+    component: CustomersComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'customer/profile',
-    component: CustomerProfileComponent
+    component: CustomerProfileComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'login',
@@ -68,7 +71,7 @@ const ROUTES = [
     OverlayModule,
     DatePickerModule
   ],
-  providers: [CustomerService, AuthService],
+  providers: [CustomerService, AuthService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -9,6 +9,7 @@ import * as firebase from 'firebase/app';
 
 import { Customer } from './customer.model';
 import { CustomerService } from './customer.service';
+import { AuthService } from '../authentications/auth.service';
 
 @Component({
   selector: 'app-customers',
@@ -26,7 +27,7 @@ export class CustomersComponent implements OnInit {
   customers: FirebaseListObservable<Customer[]>;
   selectedCustomer: Customer;
 
-  constructor(private router: Router, private customerService: CustomerService, public afAuth: AngularFireAuth) { //, public af: AngularFireDatabase) {
+  constructor(private router: Router, private customerService: CustomerService, public auth: AuthService) { //, public af: AngularFireDatabase) {
 
     // this.customers = af.list('/customers', {
     //   query: {
@@ -36,16 +37,15 @@ export class CustomersComponent implements OnInit {
 
     // this.user = this.afAuth.authState;
     // this.user.subscribe(u => console.log(`${u.uid} - ${u.displayName}`));
-
   }
 
-  login() {
-    this.afAuth.auth.signInAnonymously();
-  }
+  // login() {
+  //   this.afAuth.auth.signInAnonymously();
+  // }
 
-  logout() {
-    this.afAuth.auth.signOut();
-  }
+  // logout() {
+  //   this.afAuth.auth.signOut();
+  // }
 
   //startAt = new Subject();
   //endAt = new Subject();
@@ -54,6 +54,12 @@ export class CustomersComponent implements OnInit {
   //lastKeypress: number = 0;
 
   search() {
+
+    console.log('authenticated ' + this.auth.authenticated);
+    console.log('user id ' + this.auth.currentUserId);
+    console.log('user ' + this.auth.currentUser);
+    console.log('display name ' + this.auth.currentUserDisplayName);
+
     const value = this.searchControl.value || '';
     //this.startAt.next(value);
     //this.endAt.next(value + '\uf8ff');
