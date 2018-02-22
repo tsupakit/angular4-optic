@@ -88,4 +88,9 @@ export class CustomersComponent implements OnInit {
     this.customers = this.customerService.getCustomers(this.orderBy, this.startAt, this.endAt);
   }
 
+  signOut(): void {
+    this.auth.signOut();
+    this.router.navigate(['/login']);
+  }
+
 }

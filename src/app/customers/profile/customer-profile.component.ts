@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 //import { FormsModule }   from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -9,6 +10,7 @@ import * as firebase from 'firebase/app';
 
 import { Customer, VisionCheck } from '../customer.model';
 import { CustomerService } from '../customer.service';
+import { AuthService } from '../../authentications/auth.service';
 import { DisableControlDirective } from '../../directives/disable-control.directive';
 import * as _ from 'lodash';
 
@@ -35,10 +37,8 @@ export class CustomerProfileComponent implements OnInit {
   ];
 
   //constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase, private customerService: CustomerService, private fb: FormBuilder) { 
-  constructor(public afAuth: AngularFireAuth, private customerService: CustomerService, private fb: FormBuilder) {
+  constructor(public auth: AuthService, private router: Router, private customerService: CustomerService, private fb: FormBuilder) {
     // setup user information
-    this.user = this.afAuth.authState;
-    //this.user.subscribe(u => console.log(`${u.uid} - ${u.displayName}`));
 
     this.customer = customerService.selectedCustomer;
 
@@ -66,6 +66,11 @@ export class CustomerProfileComponent implements OnInit {
       'remark' : [this.customer.remark]
     });
 
+  }
+
+  signOut(): void {
+    this.auth.signOut();
+    this.router.navigate(['/login']);
   }
 
   cancelEditing(): void {

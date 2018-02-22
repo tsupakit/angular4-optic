@@ -6,6 +6,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 
 import { Customer, VisionCheck } from '../customer.model';
 import { CustomerService } from '../customer.service';
+import { AuthService } from '../../authentications/auth.service';
 //import { DisableControlDirective } from '../../directives/disable-control.directive';
 import * as firebase from 'firebase/app';
 import * as _ from 'lodash';
@@ -18,8 +19,6 @@ import * as _ from 'lodash';
 export class CustomerVisionComponent implements OnInit {
   @Input() customer: Customer;
 
-  user: string;
-
   visionForm: FormGroup;
   isAdding: boolean;
   isEditing: boolean;
@@ -29,14 +28,9 @@ export class CustomerVisionComponent implements OnInit {
   pageIndex: number = 0;
   //totalCheck: number = 0;
 
-  constructor(private afAuth: AngularFireAuth, private customerService: CustomerService, private fb: FormBuilder) { }
+  constructor(public auth: AuthService, private customerService: CustomerService, private fb: FormBuilder) { }
 
   ngOnInit() {
-
-    this.afAuth.authState.subscribe(u => {
-      this.user = u.uid;
-      console.log(this.user);
-    });
 
     if (this.customer.visionChecks) {
       this.customer.visionChecks = _.orderBy(this.customer.visionChecks, ['checkedAt'], ['desc']);
@@ -198,10 +192,10 @@ export class CustomerVisionComponent implements OnInit {
 
     if (!vision.checkedAt) {
       vision.checkedAt = now.getTime();
-      vision.checkedBy = this.user;
+      vision.checkedBy = this.auth.currentUserId;
     } else {
       vision.updatedAt = now.getTime();
-      vision.updatedBy = this.user;
+      vision.updatedBy = this.auth.currentUserId;
 
       this.customer.visionChecks[this.pageIndex] = vision;
     }
