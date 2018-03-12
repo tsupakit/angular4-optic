@@ -1,4 +1,9 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { Observable } from 'rxjs/Observable';
+
+import { AuthService } from './authentications/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -6,48 +11,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  // user: Observable<firebase.User>;
-  // //items: FirebaseListObservable<any[]>;
-  // msgVal: string = '';
 
-  // customers: FirebaseListObservable<Customer[]>;
+  constructor(private router: Router, public auth: AuthService) { }
 
-  // constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase) {
-  //   // this.items = af.list('/messages', {
-  //   //   query: {
-  //   //     limitToLast: 50
-  //   //   }
-  //   // });
-
-  //   this.customers = af.list('/customers', {
-  //     query: {
-  //       limitToLast: 50
-  //     }
-  //   });
-
-  //   this.user = this.afAuth.authState;
-  //   this.user.subscribe(u => console.log(`${u.uid} - ${u.displayName}`));
-  // }
-
-  // login() {
-  //   this.afAuth.auth.signInAnonymously();
-  // }
-
-  // logout() {
-  //   this.afAuth.auth.signOut();
-  // }
-
-  // Send(desc: string) {
-  //   //this.items.push({ message: desc});
-  //   //let customer = new Customer('Supakit', 'Thanomboonchareon');
-  //   // customer.age = 33;
-  //   // customer.telephoneNo = '0815347979';
-  //   // customer.address = 'Bangkok';
-
-  //   const customer = Customer.SampleData();
-  //   this.customers.push(customer);
-
-  //   this.msgVal = '';
-  // }
-
+  signOut(): void {
+    this.auth.signOut();
+    this.router.navigate(['/login']);
+  }
 }

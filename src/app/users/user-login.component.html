@@ -1,11 +1,20 @@
-<div *ngIf="!(auth.currentUserObservable | async); else alreadyLoggedIn">
-  <button (click)="signInWithGoogle()">
-    Connect Google
-  </button>
-  <ng-template #alreadyLoggedIn>
-      already logged in!
-  </ng-template>
-</div>
-<div>
-  <button (click)="signOut()">Sign Out</button>
-</div>
+<section class="section">
+	<div class="container">
+
+		<div *ngIf="!(auth.currentUserObservable | async); else alreadyLoggedIn">
+			<!-- <button (click)="signInWithGoogle()">
+				Connect Google
+			</button> -->
+			<input type="image" src="../../assets/images/btn_google_signin_dark_pressed_web.png" (click)="signInWithGoogle()" />
+			
+		</div>
+
+		<ng-template #alreadyLoggedIn>
+				already logged in!
+		</ng-template>
+		<!-- <div>
+			<button (click)="signOut()">Sign Out</button>
+		</div> -->
+
+	</div>
+</section>
