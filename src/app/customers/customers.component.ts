@@ -27,8 +27,7 @@ export class CustomersComponent implements OnInit {
   customers: FirebaseListObservable<Customer[]>;
   selectedCustomer: Customer;
 
-  constructor(private router: Router, private customerService: CustomerService, public auth: AuthService) { //, public af: AngularFireDatabase) {
-
+  constructor(private router: Router, private customerService: CustomerService, public auth: AuthService) { //, public af: AngularFireDatabase) {    
     // this.customers = af.list('/customers', {
     //   query: {
     //     limitToLast: 50
