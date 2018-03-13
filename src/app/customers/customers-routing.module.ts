@@ -11,29 +11,29 @@ const customersRoutes: Routes = [
   {
     path: 'customers',
     component: CustomersComponent,
-    children: [
-      {
-        path: '',
-        component: CustomersComponent,
-        canActivate: [AuthGuardService],
-         children: [
-           {
-        //     path: ':id',
-        //     component: CrisisDetailComponent,
-        //     canDeactivate: [CanDeactivateGuard],
-        //     resolve: {
-        //       crisis: CrisisDetailResolver
-        //     }
-        //   },
-        //   {
-             path: 'profile',
-             component: CustomerProfileComponent
-           }
-         ]
-      },
-      //{ path: 'customer/profile', component: CustomerProfileComponent }
-    ]
+    // children: [
+    //   {
+    //     path: '',
+    //     component: CustomersComponent,
+    //     canActivate: [AuthGuardService],
+    //     //  children: [
+    //     //    {
+    //     //     // path: ':id',
+    //     //     // component: CustomerProfileComponent
+    //     //     // canDeactivate: [CanDeactivateGuard],
+    //     //     // resolve: {
+    //     //     //   crisis: CustomerProfileResolver
+    //     //     // }
+    //     //    },
+    //     //  ]
+    //   },
+    // ]
   },
+  {
+    path: 'customer/profile',
+    component: CustomerProfileComponent,
+    canActivate: [AuthGuardService],
+  }
 ];
 
 @NgModule({
