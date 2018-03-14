@@ -87,10 +87,10 @@ class ContactLensSight extends Sight {
 }
 
 export class VisionCheck {
-    checkedAt: number; //represent as date time
+    checkedAt: number; //representing a date time
     checkedBy: string;
 
-    updatedAt: number; //represent as date time
+    updatedAt: number; //representing a date time
     updatedBy: string;
 
     //sight information

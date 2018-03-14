@@ -190,7 +190,7 @@ export class CustomerVisionComponent implements OnInit {
       this.customer.visionChecks.push(vision);
     }
 
-    if (!vision.checkedAt) {
+    if (!vision.updatedAt) {
       vision.checkedAt = now.getTime();
       vision.checkedBy = this.auth.currentUserDisplayName;
     } else {
