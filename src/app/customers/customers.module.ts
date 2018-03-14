@@ -18,7 +18,6 @@ import { AngularFireModule } from 'angularfire2';
 
 @NgModule({
   imports: [
-    //BrowserModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

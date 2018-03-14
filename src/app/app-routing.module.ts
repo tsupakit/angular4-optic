@@ -16,9 +16,9 @@ const appRoutes: Routes = [
 	//     outlet: 'popup'
 	//   },
 	{
-    path: 'login',
-    component: UserLoginComponent
-  },
+		path: 'login',
+		component: UserLoginComponent
+	},
 	{
 		path: 'customers',
 		loadChildren: 'app/customers/customers.module#CustomersModule',
