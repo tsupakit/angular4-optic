@@ -47,10 +47,12 @@ export class CustomerService {
 
   createCustomer(customer: Customer): void  {
     this.customers.push(customer)
+      .then(res => customer.$key = res.key)
       .catch(error => this.handleError(error));
   }
   // Update an existing item
   updateCustomer(key: string, value: any): void {
+    console.log('updating ' + key);
     this.customers.update(key, value)
       .catch(error => this.handleError(error));
   }

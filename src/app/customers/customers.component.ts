@@ -54,11 +54,6 @@ export class CustomersComponent implements OnInit {
 
   search() {
 
-    console.log('authenticated ' + this.auth.authenticated);
-    console.log('user id ' + this.auth.currentUserId);
-    console.log('user ' + this.auth.currentUser);
-    console.log('display name ' + this.auth.currentUserDisplayName);
-
     const value = this.searchControl.value || '';
     //this.startAt.next(value);
     //this.endAt.next(value + '\uf8ff');
@@ -85,11 +80,6 @@ export class CustomersComponent implements OnInit {
 
   ngOnInit() {
     this.customers = this.customerService.getCustomers(this.orderBy, this.startAt, this.endAt);
-  }
-
-  signOut(): void {
-    this.auth.signOut();
-    this.router.navigate(['/login']);
   }
 
 }

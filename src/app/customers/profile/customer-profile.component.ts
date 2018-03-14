@@ -68,11 +68,6 @@ export class CustomerProfileComponent implements OnInit {
 
   }
 
-  signOut(): void {
-    this.auth.signOut();
-    this.router.navigate(['/login']);
-  }
-
   cancelEditing(): void {
     //console.log("Cancel editing")
     //confirm reset if any changes.
