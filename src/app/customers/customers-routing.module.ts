@@ -11,6 +11,7 @@ const customersRoutes: Routes = [
   {
     path: 'customers',
     component: CustomersComponent,
+    canActivate: [AuthGuardService],
     // children: [
     //   {
     //     path: '',
