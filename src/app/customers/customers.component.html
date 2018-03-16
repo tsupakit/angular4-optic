@@ -59,6 +59,7 @@
                     <th>Telephone No.</th>
                     <th>CC</th>
                     <th>Last Update</th>
+                    <th>Total Check</th>
                 </tr>
             </thead>
             <tbody>
@@ -68,10 +69,11 @@
                     <td>{{item.telephoneNo}}</td>
                     <td>{{item.cc}}</td>
                     <td>{{item.updatedAt | date: 'medium'}}</td>
+                    <td>{{item.visionChecks?.length}}</td>
                 </tr>
 
                 <tr *ngIf="customers?.length < 1">                    
-                    <td colspan="5">
+                    <td colspan="6">
                       No results found
                     </td>
                 </tr>

@@ -26,7 +26,6 @@ export class CustomerVisionComponent implements OnInit {
   // selected vision object (page)
   vision: VisionCheck = new VisionCheck();
   pageIndex: number = 0;
-  //totalCheck: number = 0;
 
   constructor(public auth: AuthService, private customerService: CustomerService, private fb: FormBuilder) { }
 
@@ -35,12 +34,7 @@ export class CustomerVisionComponent implements OnInit {
     if (this.customer.visionChecks) {
       this.customer.visionChecks = _.orderBy(this.customer.visionChecks, ['checkedAt'], ['desc']);
       this.vision = this.customer.visionChecks[this.pageIndex];
-      //this.totalCheck = this.customer.visionChecks.length;
-    }
-    //console.log(this.vision);
-    // enable form if no vision check.
-    //if (this.customer.visionChecks.length === 0) {
-    else {
+    } else {
       this.isEditing = true;
     }
 
@@ -190,14 +184,11 @@ export class CustomerVisionComponent implements OnInit {
       this.customer.visionChecks.push(vision);
     }
 
-    if (!vision.updatedAt) {
-      vision.checkedAt = now.getTime();
+    if (!vision.checkedBy) {
       vision.checkedBy = this.auth.currentUserDisplayName;
     } else {
       vision.updatedAt = now.getTime();
       vision.updatedBy = this.auth.currentUserDisplayName;
-
-      this.customer.visionChecks[this.pageIndex] = vision;
     }
 
     this.customer.updatedAt = now.getTime();

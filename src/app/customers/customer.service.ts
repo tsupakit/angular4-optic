@@ -52,8 +52,11 @@ export class CustomerService {
   }
   // Update an existing item
   updateCustomer(key: string, value: any): void {
-    console.log('updating ' + key);
+    // have to delete the key of 2nd argument due to firebase update function using 1st argument already.
+    delete value.$key;
     this.customers.update(key, value)
+      // set back the key for disable ui buttons.
+      .then(() => value.$key = key)
       .catch(error => this.handleError(error));
   }
   // Deletes a single item
