@@ -196,12 +196,21 @@ export class CustomerVisionComponent implements OnInit {
 
     this.isEditing = false;
     this.isAdding = false;
-
-    console.log(vision.checkedAt);
   }
 
 
   private setVisionValue(formValue: any): VisionCheck {
+    // angular-io-datepicker given 3 selection results.
+    // 1. normal selection -> return moment, isValid = true;
+    // 2. no selection -> return date;
+    // 3. control getting set value from changing page and select nothing -> return moment "Invalid Date" (result._i);
+    let checkedDate = new Date(formValue.date).getTime();
+
+    if (isNaN(checkedDate)) {
+      checkedDate = new Date(formValue.date._i).getTime();
+    }
+
+    this.vision.checkedAt = checkedDate;
     this.vision.VASC_R = formValue.VASC_R;
     this.vision.VASC_L = formValue.VASC_L;
     this.vision.VASC = formValue.VASC;
