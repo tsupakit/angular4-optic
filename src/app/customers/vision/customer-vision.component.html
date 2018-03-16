@@ -15,7 +15,9 @@
                   <a class="pagination-next">Next page</a> -->
                   <ul class="pagination-list">
                     <li *ngFor="let vision of customer.visionChecks; index as i">
-                      <a class="pagination-link" [class.is-current]="i==pageIndex" aria-label="Goto page i" (click)="selectVisionPage(i)">{{customer.visionChecks.length - i}}</a>
+                      <a class="pagination-link" [class.is-current]="i==pageIndex" aria-label="Goto page i" (click)="selectVisionPage(i)" [class.disabled]="isEditing">
+                        {{customer.visionChecks.length - i}}
+                      </a>
                     </li>
                   </ul>
                 </nav>
@@ -73,7 +75,7 @@
           </div>
         </div> -->
         <div class="control">
-            <date-picker formControlName="date" format="LL" showClearButton="false" [disabled]="!isEditing"></date-picker>
+            <date-picker formControlName="date" format="LL" [showClearButton]="false" [disabled]="!isEditing"></date-picker>
         </div>
       
         <div class="control">
