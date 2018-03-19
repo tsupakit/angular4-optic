@@ -79,6 +79,8 @@ export class CustomerVisionComponent implements OnInit {
       'OG_CYL_L' : [vision.oldGlassesSight.CYL_L || ''],
       'OG_Ax_R' : [vision.oldGlassesSight.Ax_R || ''],
       'OG_Ax_L' : [vision.oldGlassesSight.Ax_L || ''],
+      'OG_ADD_R' : [vision.oldGlassesSight.ADD_R || ''],
+      'OG_ADD_L' : [vision.oldGlassesSight.ADD_L || ''],
       'OG_PD_Dist_R' : [vision.oldGlassesSight.PD_Dist_R || ''],
       'OG_PD_Dist_L' : [vision.oldGlassesSight.PD_Dist_L || ''],
       'OG_PD_Near_R' : [vision.oldGlassesSight.PD_Near_R || ''],
@@ -228,6 +230,8 @@ export class CustomerVisionComponent implements OnInit {
     this.vision.oldGlassesSight.CYL_L = formValue.OG_CYL_L;
     this.vision.oldGlassesSight.Ax_R = formValue.OG_Ax_R;
     this.vision.oldGlassesSight.Ax_L = formValue.OG_Ax_L;
+    this.vision.newGlassesSight.ADD_R = formValue.ADD_R;
+    this.vision.newGlassesSight.ADD_L = formValue.ADD_L;
     this.vision.oldGlassesSight.PD_Dist_R = formValue.OG_PD_Dist_R;
     this.vision.oldGlassesSight.PD_Dist_L = formValue.OG_PD_Dist_L;
     this.vision.oldGlassesSight.PD_Near_R = formValue.OG_PD_Near_R;
@@ -255,7 +259,7 @@ export class CustomerVisionComponent implements OnInit {
     this.vision.eyeSight.Prism_L = formValue.ES_Prism_L;
     this.vision.eyeSight.remark = formValue.ES_Remark;
 
-    // old glasses sight.
+    // new glasses sight.
     this.vision.newGlassesSight.SPH_R = formValue.NG_SPH_R;
     this.vision.newGlassesSight.SPH_L = formValue.NG_SPH_L;
     this.vision.newGlassesSight.CYL_R = formValue.NG_CYL_R;

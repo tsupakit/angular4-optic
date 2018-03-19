@@ -10,6 +10,8 @@ abstract class Sight {
 }
 
 class OldGlassesSight extends Sight {
+    ADD_R: string;
+    ADD_L: string;
     PD_Dist_R: string;
     PD_Dist_L: string;
     PD_Near_R: string;

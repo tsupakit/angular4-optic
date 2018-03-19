@@ -1,9 +1,15 @@
 {
   "rules": {
-    ".read": "auth.email == 'caosnight@gmail.com'|| 
-               auth.email == 'tha.supakit@gmail.com'",
-    ".write": "auth.email == 'caosnight@gmail.com' || 
-               auth.email == 'tha.supakit@gmail.com'",
+    ".read": "auth.email == 'caosnight@gmail.com'
+               || auth.email == 'tha.supakit@gmail.com'
+               || auth.email == 'zzzzzzzzk@gmail.com'
+    					 || auth.email == 's.pumtham@gmail.com'
+    					 || auth.email == 'poom.jinkyo@gmail.com'",
+    ".write": "auth.email == 'caosnight@gmail.com'
+    					 || auth.email == 'tha.supakit@gmail.com'
+    					 || auth.email == 'zzzzzzzzk@gmail.com'
+    					 || auth.email == 's.pumtham@gmail.com'
+    					 || auth.email == 'poom.jinkyo@gmail.com'",
       
     "customers" : {
       ".indexOn" : ["firstName"]
