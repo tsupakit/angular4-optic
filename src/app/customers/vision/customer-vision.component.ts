@@ -237,8 +237,6 @@ export class CustomerVisionComponent implements OnInit {
     this.vision.oldGlassesSight.Ax_L = formValue.OG_Ax_L;
     this.vision.oldGlassesSight.ADD_R = formValue.OG_ADD_R;
     this.vision.oldGlassesSight.ADD_L = formValue.OG_ADD_L;
-    this.vision.newGlassesSight.ADD_R = formValue.ADD_R;
-    this.vision.newGlassesSight.ADD_L = formValue.ADD_L;
     this.vision.oldGlassesSight.PD_Dist_R = formValue.OG_PD_Dist_R;
     this.vision.oldGlassesSight.PD_Dist_L = formValue.OG_PD_Dist_L;
     this.vision.oldGlassesSight.PD_Near_R = formValue.OG_PD_Near_R;
