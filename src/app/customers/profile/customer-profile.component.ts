@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 //import { FormsModule }   from '@angular/forms';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
@@ -18,25 +18,18 @@ import * as _ from 'lodash';
   selector: 'customer-profile',
   templateUrl: './customer-profile.component.html',
   styleUrls: ['./customer-profile.component.css'],
-  //providers: [CustomerService]
 })
 export class CustomerProfileComponent implements OnInit {
 
-  //@Input() customer: Customer;
   private customer: Customer;
   customerForm: FormGroup;
   isEditing: boolean;
-
-  user: Observable<firebase.User>;
-  //items: FirebaseListObservable<any[]>;
-  // visionCheckDate: Object;
 
   genders: string[] = [
     'Male',
     'Female'
   ];
 
-  //constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase, private customerService: CustomerService, private fb: FormBuilder) { 
   constructor(public auth: AuthService, private router: Router, private customerService: CustomerService, private fb: FormBuilder) {
     // setup user information
 
@@ -65,15 +58,15 @@ export class CustomerProfileComponent implements OnInit {
       'cc' : [this.customer.cc],
       'remark' : [this.customer.remark]
     });
+  }
 
+  displayRequiredCss(control: FormControl) {
+    return {
+      'is-danger': control.invalid && control.touched
+    };
   }
 
   cancelEditing(): void {
-    //console.log("Cancel editing")
-    //confirm reset if any changes.
-    // if (this.customerForm.dirty) {
-    // }
-
     this.customerForm.reset({
       'firstName' : this.customer.firstName,
       'lastName' : this.customer.lastName,
@@ -93,7 +86,8 @@ export class CustomerProfileComponent implements OnInit {
   saveCustomer(formValue: any) {
 
     if (!this.customerForm.valid) {
-      console.log('Invalid form saving');
+      this.customerForm.controls.firstName.markAsTouched({ onlySelf: true });
+      this.customerForm.controls.lastName.markAsTouched({ onlySelf: true });
       return;
     }
 
@@ -127,21 +121,6 @@ export class CustomerProfileComponent implements OnInit {
   }
 
   private editCustomer(customer: Customer) {
-    // //test eye sight data
-    // const visionCheck = new VisionCheck();
-    // visionCheck.checkedAt = firebase.database.ServerValue.TIMESTAMP;
-    // visionCheck.VASC_R = "แสง";
-    // visionCheck.VASC_L = "แสง";
-    // visionCheck.VASC = "0.04";
-    // visionCheck.PinH_R = "0.1";
-    // visionCheck.PinH_L = "0.06"
-    // visionCheck.PD_Dist_R = "29.5";
-    // visionCheck.PD_Dist_L = "29.5";
-    // visionCheck.PD_Near_R = "27.5";
-    // visionCheck.PD_Near_L = "27.5";
-
-    // customer.visionChecks.push(visionCheck);
-    // //
     customer.updatedAt = new Date().getTime();
     this.customerService.updateCustomer(this.customer.$key, customer);
   }

@@ -28,7 +28,7 @@ export class CustomerService {
     return this.db.list(this.basePath, {
       query: {
         orderByChild: orderBy,
-        limitToLast: 10,
+        limitToLast: 30,
         startAt: start,
         endAt: end
       }

@@ -15,15 +15,12 @@ import { AuthService } from '../authentications/auth.service';
   selector: 'app-customers',
   templateUrl: './customers.component.html',
   styleUrls: ['./customers.component.css'],
-  //providers: [CustomerService]
 })
 export class CustomersComponent implements OnInit {
 
-  user: Observable<firebase.User>;
   searchControl = new FormControl();
   orderBy: string = 'firstName';
 
-  //customers: any[]; 
   customers: FirebaseListObservable<Customer[]>;
   selectedCustomer: Customer;
 
@@ -38,14 +35,6 @@ export class CustomersComponent implements OnInit {
     // this.user.subscribe(u => console.log(`${u.uid} - ${u.displayName}`));
   }
 
-  // login() {
-  //   this.afAuth.auth.signInAnonymously();
-  // }
-
-  // logout() {
-  //   this.afAuth.auth.signOut();
-  // }
-
   //startAt = new Subject();
   //endAt = new Subject();
   startAt: string;
@@ -53,7 +42,6 @@ export class CustomersComponent implements OnInit {
   //lastKeypress: number = 0;
 
   search() {
-
     const value = this.searchControl.value || '';
     //this.startAt.next(value);
     //this.endAt.next(value + '\uf8ff');

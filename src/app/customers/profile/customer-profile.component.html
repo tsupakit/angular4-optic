@@ -66,7 +66,7 @@
         <div class="field-body">
           <div class="field">
             <p class="control is-expanded has-icons-left">
-              <input class="input" type="text" placeholder="First Name" formControlName="firstName" [disableControl]="!isEditing">
+              <input class="input" type="text" placeholder="First Name" formControlName="firstName" [disableControl]="!isEditing" [ngClass]="displayRequiredCss(customerForm.controls.firstName)">
               <span class="icon is-small is-left">
                 <i class="fa fa-user"></i>
               </span>
@@ -75,7 +75,7 @@
 
           <div class="field">
             <p class="control is-expanded has-icons-left">
-              <input class="input" type="text" placeholder="Last Name" formControlName="lastName" [disableControl]="!isEditing">
+              <input class="input" type="text" placeholder="Last Name" formControlName="lastName" [disableControl]="!isEditing" [ngClass]="displayRequiredCss(customerForm.controls.lastName)">
               <span class="icon is-small is-left">
                 <i class="fa fa-user-circle"></i>
               </span>
