@@ -111,6 +111,11 @@ export class VisionCheck {
     newGlassesSight: NewGlassesSight;
     contactLensSight: ContactLensSight;
 
+    //product information
+    glasses: string;
+    lens: string;
+    others: string;
+
     /**
      *
      */

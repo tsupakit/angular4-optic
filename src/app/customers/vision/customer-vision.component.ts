@@ -136,6 +136,11 @@ export class CustomerVisionComponent implements OnInit {
       'CL_BC_R' : [vision.contactLensSight.BC_R || ''],
       'CL_BC_L' : [vision.contactLensSight.BC_L || ''],
       'CL_Remark' : [vision.contactLensSight.remark || ''],
+
+      // product information
+      'glasses' : [vision.glasses || ''],
+      'lens' : [vision.lens || ''],
+      'others' : [vision.others || ''],
     };
   }
 
@@ -289,6 +294,11 @@ export class CustomerVisionComponent implements OnInit {
     this.vision.contactLensSight.BC_R = formValue.CL_BC_R;
     this.vision.contactLensSight.BC_L = formValue.CL_BC_L;
     this.vision.contactLensSight.remark = formValue.CL_Remark;
+
+    // product information
+    this.vision.glasses = formValue.glasses;
+    this.vision.lens = formValue.lens;
+    this.vision.others = formValue.others;
 
     return this.vision;
   }
