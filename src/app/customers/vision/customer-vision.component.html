@@ -321,8 +321,7 @@
                     <th colspan="2" scope="colgroup">VA Dist.</th>
                     <th scope="col">ADD</th>
                     <th scope="col">VA Near</th>
-                    <th scope="col">Prism</th>
-                    <th scope="col">Remark</th>                    
+                    <th scope="col">Prism</th>               
                 </tr>
             </thead>
             <tbody>
@@ -369,13 +368,7 @@
                   <p class="control">
                       <input class="input vision" type="text" tabindex="52" formControlName="ES_Prism_R" [disableControl]="!isEditing">
                   </p>
-                </td>
-                <td rowspan="2" scope="rowgroup">
-                  <p class="control">
-                      <input class="input vision" type="text" tabindex="54" formControlName="ES_Remark" [disableControl]="!isEditing">
-                  </p>
-                </td>
-                
+                </td>                
               </tr>
 
               <tr>
@@ -412,6 +405,16 @@
                   </td>
               </tr>
             </tbody>
+            <tfoot>
+              <tr>
+                <th>Remark</th>                
+                <td colspan="8">
+                  <p class="control">
+                      <input class="input vision" type="text" tabindex="54" formControlName="ES_Remark" [disableControl]="!isEditing">
+                  </p>
+                </td>
+              </tr>
+            </tfoot>
         </table> 
 
     <!-- </div>
@@ -434,8 +437,7 @@
                       <th rowspan="2" scope="col">VA</th>
                       <th rowspan="2" scope="col">ADD</th>
                       <th colspan="2" scope="colgroup">PD</th>                      
-                      <th rowspan="2" scope="col">PH/Seg</th>
-                      <th rowspan="2" scope="col">Remark</th>                    
+                      <th rowspan="2" scope="col">PH/Seg</th>           
                   </tr>
                   <tr>
                       <th>Dist.</th>
@@ -486,13 +488,7 @@
                     <p class="control">
                         <input class="input vision" type="text" tabindex="73" formControlName="NG_PH_R" [disableControl]="!isEditing">
                     </p>
-                  </td>
-                  <td rowspan="2" scope="rowgroup">
-                    <p class="control">
-                        <input class="input vision" type="text" tabindex="75" formControlName="NG_Remark" [disableControl]="!isEditing">
-                    </p>
-                  </td>
-                  
+                  </td>                  
                 </tr>
   
                 <tr>
@@ -534,6 +530,16 @@
                     </td>
                 </tr>
               </tbody>
+              <tfoot>
+                <tr>
+                  <th>Remark</th>                
+                  <td colspan="8">
+                    <p class="control">
+                        <input class="input vision" type="text" tabindex="75" formControlName="NG_Remark" [disableControl]="!isEditing">
+                    </p>
+                  </td>
+                </tr>
+              </tfoot>
           </table> 
   
       <!-- </div>
@@ -550,7 +556,6 @@
               <th scope="col">CYL</th>
               <th scope="col">Ax</th>
               <th scope="col">BC</th>
-              <th scope="col">Remark</th>
           </tr>
       </thead>
       <tbody>
@@ -574,11 +579,6 @@
           <td>
             <p class="control">
                 <input class="input vision" type="text" tabindex="86" formControlName="CL_BC_R" [disableControl]="!isEditing">
-            </p>
-          </td>          
-          <td rowspan="2" scope="rowgroup">
-            <p class="control">
-              <input class="input vision" type="text" tabindex="88" formControlName="CL_Remark" [disableControl]="!isEditing">
             </p>
           </td>
         </tr>
@@ -607,6 +607,16 @@
             </td>
         </tr>
       </tbody>
+      <tfoot>
+        <tr>
+          <th>Remark</th>                
+          <td colspan="4">
+            <p class="control">
+              <input class="input vision" type="text" tabindex="88" formControlName="CL_Remark" [disableControl]="!isEditing">
+            </p>
+          </td>
+        </tr>
+      </tfoot>
     </table>
 
     <!-- <footer class="footer">
