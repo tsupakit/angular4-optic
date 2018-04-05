@@ -1,14 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Customer } from './customer.model';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { FirebaseListObservable, FirebaseObjectObservable, AngularFireDatabase } from 'angularfire2/database';
 
 @Injectable()
 export class CustomerService {
 
-  selectedCustomer: Customer;
+  private selectedCustomer = new BehaviorSubject<Customer>(null);
+  customerObservable = this.selectedCustomer.asObservable();
 
-  private basePath: string = '/customers';
+  select(customer: Customer) {
+    this.selectedCustomer.next(customer);
+  }
+
+  private basePath = '/customers';
   customers: FirebaseListObservable<Customer[]> = null; //  list of objects
   customer: FirebaseObjectObservable<Customer> = null; //   single object
 

@@ -8,7 +8,6 @@ import { Customer, VisionCheck } from '../customer.model';
 import { CustomerService } from '../customer.service';
 import { AuthService } from '../../authentications/auth.service';
 //import { DisableControlDirective } from '../../directives/disable-control.directive';
-import * as firebase from 'firebase/app';
 import * as _ from 'lodash';
 
 @Component({
@@ -25,7 +24,7 @@ export class CustomerVisionComponent implements OnInit {
 
   // selected vision object (page)
   vision: VisionCheck = new VisionCheck();
-  pageIndex: number = 0;
+  pageIndex = 0;
 
   constructor(public auth: AuthService, private customerService: CustomerService, private fb: FormBuilder) { }
 

@@ -5,7 +5,6 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
-import * as firebase from 'firebase/app';
 
 import { Customer } from './customer.model';
 import { CustomerService } from './customer.service';
@@ -57,12 +56,12 @@ export class CustomersComponent implements OnInit {
   // }
 
   createNew(): void {
-    this.customerService.selectedCustomer = null;
+    this.customerService.select(null);
     this.router.navigate(['/customer/profile']);
   }
 
   onSelect (customer: Customer): void {
-    this.customerService.selectedCustomer = customer;
+    this.customerService.select(customer);
     this.router.navigate(['/customer/profile']);
   }
 

@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
-import * as firebase from 'firebase/app';
 
 import { Customer, VisionCheck } from '../customer.model';
 import { CustomerService } from '../customer.service';
@@ -32,13 +31,12 @@ export class CustomerProfileComponent implements OnInit {
 
   constructor(public auth: AuthService, private router: Router, private customerService: CustomerService, private fb: FormBuilder) {
     // setup user information
-
-    this.customer = customerService.selectedCustomer;
-
-    this.initialize();
   }
 
   ngOnInit() {
+    this.customerService.customerObservable.subscribe(customer => this.customer = customer);
+
+    this.initialize();
   }
 
   private initialize() {
