@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 import { Customer, VisionCheck } from '../customer.model';
-import { CustomerService } from '../customer.service';
+import { CustomerServiceFirestore } from '../customer.service.firestore';
 import { AuthService } from '../../authentications/auth.service';
 //import { DisableControlDirective } from '../../directives/disable-control.directive';
 import * as _ from 'lodash';
@@ -26,7 +26,7 @@ export class CustomerVisionComponent implements OnInit {
   vision: VisionCheck = new VisionCheck();
   pageIndex = 0;
 
-  constructor(public auth: AuthService, private customerService: CustomerService, private fb: FormBuilder) { }
+  constructor(public auth: AuthService, private customerService: CustomerServiceFirestore, private fb: FormBuilder) { }
 
   ngOnInit() {
 
@@ -198,7 +198,7 @@ export class CustomerVisionComponent implements OnInit {
     }
 
     this.customer.updatedAt = now.getTime();
-    this.customerService.updateCustomer(this.customer.$key, this.customer);
+    //this.customerService.updateCustomer(this.customer.$key, this.customer);
 
     this.isEditing = false;
     this.isAdding = false;

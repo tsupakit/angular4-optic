@@ -8,12 +8,13 @@ import { CustomerRoutingModule } from './customers-routing.module';
 import { CustomersComponent } from './customers.component';
 import { CustomerProfileComponent } from './profile/customer-profile.component';
 import { CustomerVisionComponent } from './vision/customer-vision.component';
-import { CustomerService } from './customer.service';
+//import { CustomerService } from './customer.service';
+import { CustomerServiceFirestore } from './customer.service.firestore';
 import { DisableControlDirective } from '../directives/disable-control.directive';
 import { AuthService } from '../authentications/auth.service';
 
-import { OverlayModule } from 'angular-io-overlay';
-import { DatePickerModule } from 'angular-io-datepicker';
+// import { OverlayModule } from 'angular-io-overlay';
+// import { DatePickerModule } from 'angular-io-datepicker';
 import { AngularFireModule } from 'angularfire2';
 
 @NgModule({
@@ -21,8 +22,8 @@ import { AngularFireModule } from 'angularfire2';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    OverlayModule,
-    DatePickerModule,
+    // OverlayModule,
+    // DatePickerModule,
     AngularFireDatabaseModule,
     CustomerRoutingModule,
   ],
@@ -32,6 +33,6 @@ import { AngularFireModule } from 'angularfire2';
     CustomerVisionComponent,
     DisableControlDirective,
   ],
-  providers: [CustomerService, AuthService],
+  providers: [CustomerServiceFirestore, AuthService],
 })
 export class CustomersModule {}

@@ -8,7 +8,8 @@ import { AppRoutingModule } from './app-routing.module';
 
 // New imports to update based on AngularFire2 version 4
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+//import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { MenuTopComponent } from './menus/menu-top.component';
@@ -26,6 +27,7 @@ import { CustomersModule } from './customers/customers.module';
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule.enablePersistence(),
     // AngularFireDatabaseModule,
     AngularFireAuthModule,
     CustomersModule,

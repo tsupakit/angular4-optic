@@ -3,12 +3,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 
 import { Customer, VisionCheck } from '../customer.model';
-import { CustomerService } from '../customer.service';
+import { CustomerServiceFirestore } from '../customer.service.firestore';
 import { AuthService } from '../../authentications/auth.service';
 import { DisableControlDirective } from '../../directives/disable-control.directive';
 import * as _ from 'lodash';
@@ -29,7 +28,7 @@ export class CustomerProfileComponent implements OnInit {
     'Female'
   ];
 
-  constructor(public auth: AuthService, private router: Router, private customerService: CustomerService, private fb: FormBuilder) {
+  constructor(public auth: AuthService, private router: Router, private customerService: CustomerServiceFirestore, private fb: FormBuilder) {
     // setup user information
   }
 
@@ -115,12 +114,12 @@ export class CustomerProfileComponent implements OnInit {
 
   private createCustomer(customer: Customer) {
     customer.createdAt = new Date().getTime();
-    this.customerService.createCustomer(customer);
+    //this.customerService.createCustomer(customer);
   }
 
   private editCustomer(customer: Customer) {
     customer.updatedAt = new Date().getTime();
-    this.customerService.updateCustomer(this.customer.$key, customer);
+    //this.customerService.updateCustomer(this.customer.$key, customer);
   }
 
 }

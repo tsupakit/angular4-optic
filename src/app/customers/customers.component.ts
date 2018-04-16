@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+//import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
 import { Customer } from './customer.model';
-import { CustomerService } from './customer.service';
 import { AuthService } from '../authentications/auth.service';
+import { CustomerServiceFirestore } from './customer.service.firestore';
 
 @Component({
   selector: 'app-customers',
@@ -18,12 +18,12 @@ import { AuthService } from '../authentications/auth.service';
 export class CustomersComponent implements OnInit {
 
   searchControl = new FormControl();
-  orderBy: string = 'firstName';
+  //orderBy: string = 'firstName';
 
-  customers: FirebaseListObservable<Customer[]>;
+  customers: Observable<Customer[]>;
   selectedCustomer: Customer;
 
-  constructor(private router: Router, private customerService: CustomerService, public auth: AuthService) { //, public af: AngularFireDatabase) {    
+  constructor(private router: Router, private customerService: CustomerServiceFirestore, public auth: AuthService) { //, public af: AngularFireDatabase) {    
     // this.customers = af.list('/customers', {
     //   query: {
     //     limitToLast: 50
@@ -32,22 +32,23 @@ export class CustomersComponent implements OnInit {
 
     // this.user = this.afAuth.authState;
     // this.user.subscribe(u => console.log(`${u.uid} - ${u.displayName}`));
+    
   }
 
   //startAt = new Subject();
   //endAt = new Subject();
-  startAt: string;
-  endAt: string;
+  // startAt: string;
+  // endAt: string;
   //lastKeypress: number = 0;
 
   search() {
-    const value = this.searchControl.value || '';
+    //const value = this.searchControl.value || '';
     //this.startAt.next(value);
     //this.endAt.next(value + '\uf8ff');
-    this.startAt = value;
-    this.endAt = value + '\uf8ff';
+    // this.startAt = value;
+    // this.endAt = value + '\uf8ff';
 
-    this.customers = this.customerService.getCustomers(this.orderBy, this.startAt, this.endAt);
+    //this.customers = this.customerService.getCustomers(this.orderBy, this.startAt, this.endAt);
   }
 
   // setOrderBy(value: string): void {
@@ -66,7 +67,8 @@ export class CustomersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.customers = this.customerService.getCustomers(this.orderBy, this.startAt, this.endAt);
+    //this.customers = this.customerService.getCustomers(this.orderBy, this.startAt, this.endAt);
+    this.customers = this.customerService.getCustomerList();
   }
 
 }
