@@ -68,7 +68,7 @@ export class CustomersComponent implements OnInit {
 
   ngOnInit() {
     //this.customers = this.customerService.getCustomers(this.orderBy, this.startAt, this.endAt);
-    this.customers = this.customerService.getCustomerList();
+    this.customers = this.customerService.getCustomers();
   }
 
 }

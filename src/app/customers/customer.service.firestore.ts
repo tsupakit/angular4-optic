@@ -19,14 +19,24 @@ export class CustomerServiceFirestore {
   customerRef: AngularFirestoreCollection<Customer>; //  list of objects
   customer$: Observable<Customer[]>; //   single object
 
-  constructor(private db: AngularFirestore) {
-    this.customerRef = db.collection<Customer>(this.basePath);
+  constructor(private afs: AngularFirestore) {
+    this.customerRef = afs.collection<Customer>(this.basePath);
     this.customer$ = this.customerRef.valueChanges();
   }
 
-  getCustomerList(): Observable<Customer[]> {
+  getCustomers(): Observable<Customer[]> {
     return this.customer$;
   }
+
+  createCustomer(customer) {
+    // var map = arrayOfArtical.map((obj)=> {return Object.assign({}, obj)});
+    // Firestore only accepts a JavaScript object embedded within a document
+    // https://stackoverflow.com/questions/47190803/firestore-adding-object-with-an-array?rq=1
+    this.customerRef.add(Object.assign({}, customer));
+  }
+  
+  // https://alligator.io/angular/cloud-firestore-angularfire/
+  // https://coursetro.com/posts/code/94/Use-Angular-with-Google's-Cloud-Firestore---Tutorial
 
   // getCustomers(orderBy: string, start, end): Observable<Customer[]> {
   //   return this.db.list(this.basePath, {

@@ -114,7 +114,7 @@ export class CustomerProfileComponent implements OnInit {
 
   private createCustomer(customer: Customer) {
     customer.createdAt = new Date().getTime();
-    //this.customerService.createCustomer(customer);
+    this.customerService.createCustomer(customer);
   }
 
   private editCustomer(customer: Customer) {
