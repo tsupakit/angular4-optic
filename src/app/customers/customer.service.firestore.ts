@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Customer } from './customer.model';
+import { Customer, VisionCheck } from './customer.model';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { AngularFirestoreModule, AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
@@ -21,12 +21,33 @@ export class CustomerServiceFirestore {
 
   constructor(private afs: AngularFirestore) {
     this.customerRef = afs.collection<Customer>(this.basePath);
-    this.customer$ = this.customerRef.valueChanges();
+    //this.customer$ = this.customerRef.valueChanges();
+    this.customer$ = this.customerRef.snapshotChanges()
+      .map(actions => {
+        return actions.map(action => {
+          const data = action.payload.doc.data() as Customer;
+          const id = action.payload.doc.id;
+
+          return { id, ...data };
+        });
+      });
   }
 
   getCustomers(): Observable<Customer[]> {
     return this.customer$;
   }
+
+  // getVisions(id: string): Observable<VisionCheck[]> {
+  //   const collection: AngularFirestoreCollection<VisionCheck> = this.afs.collection('customers/' + id + '/visions');
+
+  //   return collection.snapshotChanges().map(actions => {
+  //     return actions.map(a => {
+  //       const data = a.payload.doc.data() as VisionCheck;
+  //       const vid = a.payload.doc.id;
+  //       return {vid, ...data};
+  //     });
+  //   });
+  // }
 
   createCustomer(customer) {
     // var map = arrayOfArtical.map((obj)=> {return Object.assign({}, obj)});
