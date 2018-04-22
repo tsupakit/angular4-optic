@@ -198,7 +198,7 @@ export class CustomerVisionComponent implements OnInit {
     }
 
     this.customer.updatedAt = now.getTime();
-    this.customerService.updateCustomer(this.customer.$key, this.customer);
+    this.customerService.updateCustomer(this.customer.id, this.customer);
 
     this.isEditing = false;
     this.isAdding = false;

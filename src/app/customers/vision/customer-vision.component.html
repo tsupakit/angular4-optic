@@ -46,7 +46,7 @@
           </p>
 
           <p class="control">
-            <button type="submit" class="button is-medium is-success" title="Save" [disabled]="!isEditing || !customer.$key">
+            <button type="submit" class="button is-medium is-success" title="Save" [disabled]="!isEditing || !customer.id">
               <span class="icon is-medium">
                 <i class="fa fa-floppy-o"></i>
               </span>
@@ -54,7 +54,7 @@
           </p>
 
           <p class="control"> <!-- *ngIf="customerForm.dirty"> -->
-            <button type="button" class="button is-medium is-warning" title="Reset" (click)="cancelEditing()" [disabled]="!isEditing || !customer.$key">
+            <button type="button" class="button is-medium is-warning" title="Reset" (click)="cancelEditing()" [disabled]="!isEditing || !customer.id">
               <span class="icon is-medium">
                 <i class="fa fa-refresh"></i>
               </span>
@@ -75,7 +75,7 @@
           </div>
         </div> -->
         <div class="control">
-            <date-picker formControlName="date" format="LL" [showClearButton]="false" [disabled]="!isEditing"></date-picker>
+            <!-- <date-picker formControlName="date" format="LL" [showClearButton]="false" [disabled]="!isEditing"></date-picker> -->
         </div>
       
         <div class="control">

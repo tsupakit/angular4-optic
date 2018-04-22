@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Customer } from './customer.model';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-import { FirebaseListObservable, FirebaseObjectObservable, AngularFireDatabase } from 'angularfire2/database';
+import {AngularFireDatabase, AngularFireList, AngularFireObject } from 'angularfire2/database';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class CustomerService {
@@ -15,36 +16,28 @@ export class CustomerService {
   }
 
   private basePath = '/customers';
-  customers: FirebaseListObservable<Customer[]> = null; //  list of objects
-  customer: FirebaseObjectObservable<Customer> = null; //   single object
+  customers: AngularFireList<Customer[]> = null; //  list of objects
+  customer: AngularFireObject<Customer> = null; //   single object
 
   constructor(private db: AngularFireDatabase) {
-    this.customers = db.list(this.basePath, {
-      query: { limitToLast : 1 }
-    });
+    this.customers = db.list(this.basePath);
   }
 
-  getCustomerList(query={}): FirebaseListObservable<Customer[]> {
-    return this.db.list(this.basePath, {
-      query: query
-    });
-  }
+  getCustomers(orderBy: string, start, end): Observable<Customer[]> {
+    this.customers = this.db.list(this.basePath, ref => ref
+      .orderByChild(orderBy)
+      .limitToLast(30)
+      .startAt(start)
+      .endAt(end)
+    );
 
-  getCustomers(orderBy: string, start, end): FirebaseListObservable<Customer[]> {
-    return this.db.list(this.basePath, {
-      query: {
-        orderByChild: orderBy,
-        limitToLast: 30,
-        startAt: start,
-        endAt: end
-      }
+    return this.customers.snapshotChanges().map(actions => {
+      return actions.map(action => ({ id: action.key, ...action.payload.val() }));
     });
-
-    //return this.customers;
   }
 
   // Return a single observable item
-  getCustomer(key: string): FirebaseObjectObservable<Customer> {
+  getCustomer(key: string): AngularFireObject<Customer> {
     const itemPath =  `${this.basePath}/${key}`;
     this.customer = this.db.object(itemPath);
 
@@ -52,17 +45,19 @@ export class CustomerService {
   }
 
   createCustomer(customer: Customer): void  {
-    this.customers.push(customer)
-      .then(res => customer.$key = res.key)
-      .catch(error => this.handleError(error));
+    const list = this.db.list(this.basePath);
+    list.push(customer)
+    //this.customers.push(Object.assign({}, customer))
+      .then(res => customer.id = res.key);
+      //.catch(error => this.handleError(error));
   }
   // Update an existing item
   updateCustomer(key: string, value: any): void {
     // have to delete the key of 2nd argument due to firebase update function using 1st argument already.
-    delete value.$key;
+    delete value.id;
     this.customers.update(key, value)
       // set back the key for disable ui buttons.
-      .then(() => value.$key = key)
+      .then(() => value.id = key)
       .catch(error => this.handleError(error));
   }
   // Deletes a single item
@@ -79,7 +74,5 @@ export class CustomerService {
   private handleError(error) {
     console.log(error);
   }
-
-
 
 }

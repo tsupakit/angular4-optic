@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+//import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 
@@ -76,7 +76,7 @@ export class CustomerProfileComponent implements OnInit {
       'remark' : this.customer.remark
     });
 
-    if (this.customer.$key) {
+    if (this.customer.id) {
       this.isEditing = false;
     }
   }
@@ -91,7 +91,7 @@ export class CustomerProfileComponent implements OnInit {
 
     const customerToSave = this.setCustomerValue(formValue);
 
-    if (customerToSave.$key) {
+    if (customerToSave.id) {
       this.editCustomer(customerToSave);
     } else {
       this.createCustomer(customerToSave);
@@ -120,7 +120,7 @@ export class CustomerProfileComponent implements OnInit {
 
   private editCustomer(customer: Customer) {
     customer.updatedAt = new Date().getTime();
-    this.customerService.updateCustomer(this.customer.$key, customer);
+    this.customerService.updateCustomer(this.customer.id, customer);
   }
 
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
@@ -18,20 +17,12 @@ import { AuthService } from '../authentications/auth.service';
 export class CustomersComponent implements OnInit {
 
   searchControl = new FormControl();
-  orderBy: string = 'firstName';
+  orderBy = 'firstName';
 
-  customers: FirebaseListObservable<Customer[]>;
+  customers: Observable<Customer[]>;
   selectedCustomer: Customer;
 
-  constructor(private router: Router, private customerService: CustomerService, public auth: AuthService) { //, public af: AngularFireDatabase) {    
-    // this.customers = af.list('/customers', {
-    //   query: {
-    //     limitToLast: 50
-    //   }
-    // });
-
-    // this.user = this.afAuth.authState;
-    // this.user.subscribe(u => console.log(`${u.uid} - ${u.displayName}`));
+  constructor(private router: Router, private customerService: CustomerService, public auth: AuthService) {
   }
 
   //startAt = new Subject();
@@ -66,7 +57,7 @@ export class CustomersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.customers = this.customerService.getCustomers(this.orderBy, this.startAt, this.endAt);
+    this.search();
   }
 
 }

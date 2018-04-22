@@ -12,8 +12,8 @@ import { CustomerService } from './customer.service';
 import { DisableControlDirective } from '../directives/disable-control.directive';
 import { AuthService } from '../authentications/auth.service';
 
-import { OverlayModule } from 'angular-io-overlay';
-import { DatePickerModule } from 'angular-io-datepicker';
+// import { OverlayModule } from 'angular-io-overlay';
+// import { DatePickerModule } from 'angular-io-datepicker';
 import { AngularFireModule } from 'angularfire2';
 
 @NgModule({
@@ -21,8 +21,8 @@ import { AngularFireModule } from 'angularfire2';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    OverlayModule,
-    DatePickerModule,
+    // OverlayModule,
+    // DatePickerModule,
     AngularFireDatabaseModule,
     CustomerRoutingModule,
   ],
