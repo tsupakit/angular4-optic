@@ -72,7 +72,7 @@
                     <td>{{item.visionChecks?.length}}</td>
                 </tr>
 
-                <tr *ngIf="customers?.length < 1">                    
+                <tr *ngIf="(customers | async)?.length < 1">                    
                     <td colspan="6">
                       No results found
                     </td>

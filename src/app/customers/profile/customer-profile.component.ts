@@ -20,7 +20,7 @@ import * as _ from 'lodash';
 })
 export class CustomerProfileComponent implements OnInit {
 
-  private customer: Customer;
+  customer: Customer;
   customerForm: FormGroup;
   isEditing: boolean;
 
@@ -58,7 +58,7 @@ export class CustomerProfileComponent implements OnInit {
     });
   }
 
-  displayRequiredCss(control: FormControl) {
+  displayRequiredCss(control) {
     return {
       'is-danger': control.invalid && control.touched
     };
