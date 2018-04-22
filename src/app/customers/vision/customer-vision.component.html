@@ -68,14 +68,11 @@
   <div class="columns">
     <div class="column">
       <div class="field is-grouped is-grouped-multiline">
-        <!-- <div class="control">
-          <div class="tags has-addons">
-            <span class="tag is-medium is-light">Checked At</span>
-            <span class="tag is-medium is-info">{{vision.checkedAt || '' | date: 'medium'}}</span>
-          </div>
-        </div> -->
         <div class="control">
-            <!-- <date-picker formControlName="date" format="LL" [showClearButton]="false" [disabled]="!isEditing"></date-picker> -->
+          <!-- https://valor-software.com/ngx-bootstrap/#/datepicker#reactive-forms -->
+          <input type="text" class="input" placeholder="Check date, dd/mm/yyyy" formControlName="date"
+            bsDatepicker  [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" 
+            [disabled]="!isEditing">
         </div>
       
         <div class="control">

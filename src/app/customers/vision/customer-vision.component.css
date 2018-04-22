@@ -1,3 +1,7 @@
+
+/* https://valor-software.com/ngx-bootstrap/#/datepicker#reactive-forms */
+@import "https://unpkg.com/ngx-bootstrap/datepicker/bs-datepicker.css";
+
 .table th, .table td {
     text-align: center;
     vertical-align: middle;
