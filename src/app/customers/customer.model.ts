@@ -95,6 +95,9 @@ export class VisionCheck {
     updatedAt: number; //representing a date time
     updatedBy: string;
 
+    checkedByUid: string;
+    updatedByUid: string;
+
     //sight information
     VASC_R: string;
     VASC_L: string;
@@ -166,6 +169,9 @@ export class Customer {
     remark: string;
     createdAt: number; //firebase.database.ServerValue.TIMESTAMP
     updatedAt: number; //firebase.database.ServerValue.TIMESTAMP
+
+    createdByUid: string;
+    updatedByUid: string;
 
     visionChecks: VisionCheck[];
 

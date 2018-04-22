@@ -196,9 +196,11 @@ export class CustomerVisionComponent implements OnInit {
 
     if (!vision.checkedBy) {
       vision.checkedBy = this.auth.currentUserDisplayName;
+      vision.checkedByUid = this.auth.currentUserId;
     } else {
       vision.updatedAt = now.getTime();
       vision.updatedBy = this.auth.currentUserDisplayName;
+      vision.updatedByUid = this.auth.currentUserId;
     }
 
     this.customer.updatedAt = now.getTime();

@@ -115,11 +115,15 @@ export class CustomerProfileComponent implements OnInit {
 
   private createCustomer(customer: Customer) {
     customer.createdAt = new Date().getTime();
+    customer.createdByUid = this.auth.currentUserId;
+
     this.customerService.createCustomer(customer);
   }
 
   private editCustomer(customer: Customer) {
     customer.updatedAt = new Date().getTime();
+    customer.updatedByUid = this.auth.currentUserId;
+
     this.customerService.updateCustomer(this.customer.id, customer);
   }
 
