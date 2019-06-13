@@ -34,6 +34,13 @@ class OldGlassesSight extends Sight {
     }
 }
 
+class ComSight extends Sight {
+    PD_Dist_R: string;
+    PD_Dist_L: string;
+    PD_Near_R: string;
+    PD_Near_L: string;
+}
+
 class EyeSight extends Sight {
     VA_Dist_R: string;
     VA_Dist_L: string;
@@ -88,6 +95,20 @@ class ContactLensSight extends Sight {
     remark: string;
 }
 
+export class Product {
+    name: string;
+    brand: string;
+    price: string;
+    /**
+     *
+     */
+    constructor(name: string, brand: string, price: string) {
+        this.name = name;
+        this.brand = brand;
+        this.price = price;
+    }
+}
+
 export class VisionCheck {
     checkedAt: number; //representing a date time
     checkedBy: string;
@@ -110,13 +131,14 @@ export class VisionCheck {
     PD_Near_L: string;
 
     oldGlassesSight: OldGlassesSight;
+    comSight: ComSight;
     eyeSight: EyeSight;
     newGlassesSight: NewGlassesSight;
     contactLensSight: ContactLensSight;
 
     //product information
-    glasses: string;
-    lens: string;
+    glasses: Product;
+    lens: Product;
     others: string;
 
     /**
@@ -125,12 +147,19 @@ export class VisionCheck {
     constructor() {
         this.checkedAt = new Date().getTime();
         this.oldGlassesSight = new OldGlassesSight();
+        this.comSight = new ComSight();
         this.eyeSight = new EyeSight();
         this.newGlassesSight = new NewGlassesSight();
+        this.glasses = new Product('', '', '');
+        this.lens = new Product('', '', '');
     }
 
     static initOldGlassesSight = (vision: VisionCheck) => {
         vision.oldGlassesSight = new OldGlassesSight();
+    }
+
+    static initComSight = (vision: VisionCheck) => {
+        vision.comSight = new ComSight();
     }
 
     static initEyeSight = (vision: VisionCheck) => {

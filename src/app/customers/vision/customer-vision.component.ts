@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 
-import { Customer, VisionCheck } from '../customer.model';
+import { Customer, VisionCheck, Product } from '../customer.model';
 import { CustomerService } from '../customer.service';
 import { AuthService } from '../../authentications/auth.service';
 //import { DisableControlDirective } from '../../directives/disable-control.directive';
@@ -46,6 +46,10 @@ export class CustomerVisionComponent implements OnInit {
 
     if (!vision.oldGlassesSight) {
       VisionCheck.initOldGlassesSight(vision);
+    }
+
+    if (!vision.comSight) {
+      VisionCheck.initComSight(vision);
     }
 
     if (!vision.eyeSight) {
@@ -94,6 +98,18 @@ export class CustomerVisionComponent implements OnInit {
       'OG_VA_L' : [vision.oldGlassesSight.VA_L || ''],
       'OG_VA' : [vision.oldGlassesSight.VA || ''],
 
+      // Old Glasses
+      'COM_SPH_R' : [vision.comSight.SPH_R || ''],
+      'COM_SPH_L' : [vision.comSight.SPH_L || ''],
+      'COM_CYL_R' : [vision.comSight.CYL_R || ''],
+      'COM_CYL_L' : [vision.comSight.CYL_L || ''],
+      'COM_Ax_R' : [vision.comSight.Ax_R || ''],
+      'COM_Ax_L' : [vision.comSight.Ax_L || ''],
+      'COM_PD_Dist_R' : [vision.comSight.PD_Dist_R || ''],
+      'COM_PD_Dist_L' : [vision.comSight.PD_Dist_L || ''],
+      'COM_PD_Near_R' : [vision.comSight.PD_Near_R || ''],
+      'COM_PD_Near_L' : [vision.comSight.PD_Near_L || ''],
+
       // Eye Sight
       'ES_SPH_R' : [vision.eyeSight.SPH_R || ''],
       'ES_SPH_L' : [vision.eyeSight.SPH_L || ''],
@@ -141,8 +157,12 @@ export class CustomerVisionComponent implements OnInit {
       'CL_Remark' : [vision.contactLensSight.remark || ''],
 
       // product information
-      'glasses' : [vision.glasses || ''],
-      'lens' : [vision.lens || ''],
+      'glassesName' : [vision.glasses.name || ''],
+      'glassesBrand' : [vision.glasses.brand || ''],
+      'glassesPrice' : [vision.glasses.price || ''],
+      'lensName' : [vision.lens.name || ''],
+      'lensBrand' : [vision.lens.brand || ''],
+      'lensPrice' : [vision.lens.price || ''],
       'others' : [vision.others || ''],
     };
   }
@@ -244,6 +264,18 @@ export class CustomerVisionComponent implements OnInit {
     this.vision.oldGlassesSight.VA_L = formValue.OG_VA_L;
     this.vision.oldGlassesSight.VA = formValue.OG_VA;
 
+    // com sight.
+    this.vision.comSight.SPH_R = formValue.COM_SPH_R;
+    this.vision.comSight.SPH_L = formValue.COM_SPH_L;
+    this.vision.comSight.CYL_R = formValue.COM_CYL_R;
+    this.vision.comSight.CYL_L = formValue.COM_CYL_L;
+    this.vision.comSight.Ax_R = formValue.COM_Ax_R;
+    this.vision.comSight.Ax_L = formValue.COM_Ax_L;
+    this.vision.comSight.PD_Dist_R = formValue.COM_PD_Dist_R;
+    this.vision.comSight.PD_Dist_L = formValue.COM_PD_Dist_L;
+    this.vision.comSight.PD_Near_R = formValue.COM_PD_Near_R;
+    this.vision.comSight.PD_Near_L = formValue.COM_PD_Near_L;
+
     // eye sight
     this.vision.eyeSight.SPH_R = formValue.ES_SPH_R;
     this.vision.eyeSight.SPH_L = formValue.ES_SPH_L;
@@ -291,8 +323,8 @@ export class CustomerVisionComponent implements OnInit {
     this.vision.contactLensSight.remark = formValue.CL_Remark;
 
     // product information
-    this.vision.glasses = formValue.glasses;
-    this.vision.lens = formValue.lens;
+    this.vision.glasses = new Product(formValue.glassesName, formValue.glassesBrand, formValue.glassesPrice);
+    this.vision.lens = new Product(formValue.lensName, formValue.lensBrand, formValue.lensPrice);
     this.vision.others = formValue.others;
 
     return this.vision;
