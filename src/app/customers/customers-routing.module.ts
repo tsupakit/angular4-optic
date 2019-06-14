@@ -11,7 +11,7 @@ const customersRoutes: Routes = [
   {
     path: 'customers',
     component: CustomersComponent,
-    //canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
     // children: [
     //   {
     //     path: '',
@@ -33,7 +33,7 @@ const customersRoutes: Routes = [
   {
     path: 'customer/profile',
     component: CustomerProfileComponent,
-    //canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
   }
 ];
 

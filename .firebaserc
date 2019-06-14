@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "ravipanich-optic"
+    "default": "ravipanich-optic",
+    "moreyes": "moreyes-optic"
   }
 }
